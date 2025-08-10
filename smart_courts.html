@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Smart Courts — AI Powered Sports</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+
+    <style>
+      /* small extras */
+      .glow {
+        text-shadow: 0 6px 18px rgba(59, 130, 246, 0.35);
+      }
+      /* scoreboard overlay centering within the 3D container */
+      .overlay {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 18px;
+        z-index: 10;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-white">
+    <!-- NAV -->
+    <nav class="px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div
+          class="w-10 h-10 rounded-md bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center font-bold"
+        >
+          SC
+        </div>
+        <div>
+          <div class="text-sm font-semibold">Smart Courts</div>
+          <div class="text-xs text-gray-400">AI-Powered Sports Referee</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <a class="text-gray-300 hover:text-white" href="#how">How it works</a>
+        <a class="text-gray-300 hover:text-white" href="#market">Market</a>
+        <button class="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-500">
+          Apply for Pilot
+        </button>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header
+      class="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-gray-900 via-slate-900 to-black"
+    >
+      <div class="max-w-4xl text-center px-6">
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4 glow">
+          Revolutionizing Sports with AI-Powered Smart Courts
+        </h1>
+        <p class="text-gray-300 mb-8 text-lg">
+          No referees. No interruptions. Just fair play — powered by computer
+          vision and real-time orchestration.
+        </p>
+        <div class="flex justify-center gap-4">
+          <button
+            class="bg-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-500 transition"
+          >
+            Join Early Access
+          </button>
+          <button
+            class="border border-gray-600 px-6 py-3 rounded-lg text-gray-200 hover:bg-white/5 transition"
+          >
+            Book a Demo
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Problem & Solution -->
+    <section id="how" class="py-16 px-6 bg-gray-800">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Problem & Solution</h2>
+        <p class="text-gray-300 max-w-3xl mx-auto mb-10">
+          Sports still rely on fallible human referees and manual scorekeeping.
+          Smart Courts automates match arbitration, orchestrates rallies, and
+          provides coaching-grade analytics — all from a simple camera setup.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div
+            class="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition"
+          >
+            <h3 class="font-bold text-xl mb-2">AI Referee</h3>
+            <p class="text-gray-300">
+              Real-time ball & player detection, line-in/out decisions and foul
+              detection.
+            </p>
+          </div>
+          <div
+            class="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition"
+          >
+            <h3 class="font-bold text-xl mb-2">Match Orchestration</h3>
+            <p class="text-gray-300">
+              Start/stop rallies automatically and update scoreboards without
+              human intervention.
+            </p>
+          </div>
+          <div
+            class="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition"
+          >
+            <h3 class="font-bold text-xl mb-2">Player Analytics</h3>
+            <p class="text-gray-300">
+              Movement heatmaps, shot reaction times, tactical suggestions for
+              coaches and players.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Market -->
+    <section id="market" class="py-16 px-6 bg-gray-900">
+      <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Market Opportunity</h2>
+        <p class="text-gray-300 mb-8">
+          The sports technology market is booming. Our initial target: badminton
+          & tennis clubs, training academies, and indoor sports centers — where
+          cost-effective automation creates immediate ROI.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-6">
+          <div class="bg-gray-800 p-6 rounded-xl w-56">
+            <div class="text-3xl font-extrabold text-blue-400">$24B</div>
+            <div class="text-gray-400 text-sm mt-1">
+              Sports Tech Market (2024)
+            </div>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-xl w-56">
+            <div class="text-3xl font-extrabold text-green-400">13%</div>
+            <div class="text-gray-400 text-sm mt-1">Projected CAGR</div>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-xl w-56">
+            <div class="text-3xl font-extrabold text-purple-400">12K+</div>
+            <div class="text-gray-400 text-sm mt-1">
+              Courts in India (target initial market)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D Court Section -->
+    <section class="py-12 px-6 bg-gray-800">
+      <div class="max-w-6xl mx-auto relative">
+        <h2 class="text-3xl font-bold mb-4 text-center">
+          Experience the Smart Court
+        </h2>
+        <p class="text-center text-gray-300 mb-6">
+          Interactive demo showing ball tracking, rally orchestration and live
+          score updates.
+        </p>
+
+        <!-- scoreboard overlay -->
+        <div class="overlay" id="scoreOverlay" aria-hidden="true">
+          <div
+            class="bg-black/50 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-6 border border-white/10"
+          >
+            <div class="text-center">
+              <div class="text-xs text-gray-300">Player Blue</div>
+              <div id="scoreA" class="text-2xl font-bold text-blue-300">0</div>
+            </div>
+            <div class="px-3 text-gray-200">|</div>
+            <div class="text-center">
+              <div class="text-xs text-gray-300">Player Red</div>
+              <div id="scoreB" class="text-2xl font-bold text-red-300">0</div>
+            </div>
+            <div class="text-sm text-gray-300 pl-4" id="rallyState">Ready</div>
+          </div>
+        </div>
+
+        <!-- 3D container -->
+        <div
+          id="courtContainer"
+          class="w-full h-[520px] rounded-xl shadow-2xl overflow-hidden border border-white/5"
+        ></div>
+
+        <!-- small legend -->
+        <div class="mt-4 text-gray-400 text-sm text-center">
+          This demo simulates an automated rally. Points are counted when the
+          ball misses a player's side.
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Model -->
+    <section class="py-12 px-6 bg-gray-900">
+      <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6">Business Model</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-gray-800 p-6 rounded-xl">
+            <h3 class="font-bold mb-2">B2B Licensing</h3>
+            <p class="text-gray-300">
+              Hardware+software license for clubs and academies.
+            </p>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-xl">
+            <h3 class="font-bold mb-2">Analytics Subscription</h3>
+            <p class="text-gray-300">
+              Monthly analytics per court with player insights.
+            </p>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-xl">
+            <h3 class="font-bold mb-2">Enterprise</h3>
+            <p class="text-gray-300">
+              Multi-court cloud dashboards and coaching integrations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section
+      class="py-12 px-6 bg-gradient-to-br from-blue-700 to-indigo-600 text-center"
+    >
+      <h3 class="text-2xl font-bold mb-3">Ready to automate your court?</h3>
+      <p class="text-gray-100 mb-6">
+        Apply for pilot programs and get early adopter benefits.
+      </p>
+      <div class="flex gap-4 justify-center">
+        <button class="bg-black/80 px-6 py-3 rounded-md font-semibold">
+          Apply for Pilot Program
+        </button>
+        <button class="border border-white/20 px-6 py-3 rounded-md">
+          Contact Sales
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 bg-gray-950 text-center text-gray-400 text-sm">
+      © 2025 Smart Courts. All Rights Reserved.
+    </footer>
+
+    <!-- Three.js + orchestration script -->
+    <script>
+      // --- Basic setup ---
+      const container = document.getElementById("courtContainer");
+      const scene = new THREE.Scene();
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setPixelRatio(
+        window.devicePixelRatio ? window.devicePixelRatio : 1
+      );
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setClearColor(0x0b1220, 1);
+      container.appendChild(renderer.domElement);
+
+      const camera = new THREE.PerspectiveCamera(
+        45,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
+      );
+      camera.position.set(15, 14, 15);
+      camera.lookAt(0, 0, 0);
+
+      // responsive helper
+      window.addEventListener("resize", () => {
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+      });
+
+      // --- Court floor ---
+      const courtW = 10,
+        courtL = 20;
+      const courtGeometry = new THREE.PlaneGeometry(courtW, courtL);
+      const courtMaterial = new THREE.MeshStandardMaterial({
+        color: 0x0f6b3a,
+        metalness: 0.1,
+        roughness: 0.9,
+      });
+      const court = new THREE.Mesh(courtGeometry, courtMaterial);
+      court.rotation.x = -Math.PI / 2;
+      scene.add(court);
+
+      // court boundary (thin white lines)
+      function addLine(p1, p2, color = 0xffffff) {
+        const pts = [new THREE.Vector3(...p1), new THREE.Vector3(...p2)];
+        const geom = new THREE.BufferGeometry().setFromPoints(pts);
+        const mat = new THREE.LineBasicMaterial({ color });
+        const line = new THREE.Line(geom, mat);
+        scene.add(line);
+      }
+      // outer rectangle
+      addLine(
+        [-courtW / 2, 0.01, -courtL / 2],
+        [courtW / 2, 0.01, -courtL / 2]
+      );
+      addLine([courtW / 2, 0.01, -courtL / 2], [courtW / 2, 0.01, courtL / 2]);
+      addLine([courtW / 2, 0.01, courtL / 2], [-courtW / 2, 0.01, courtL / 2]);
+      addLine(
+        [-courtW / 2, 0.01, courtL / 2],
+        [-courtW / 2, 0.01, -courtL / 2]
+      );
+
+      // center line (optional)
+      addLine([-courtW / 2, 0.01, 0], [courtW / 2, 0.01, 0], 0xffffff);
+
+      // --- Players (cylinders) ---
+      const playerGeo = new THREE.CylinderGeometry(0.5, 0.5, 1.6, 32);
+      const matBlue = new THREE.MeshStandardMaterial({
+        color: 0x2b6bff,
+        metalness: 0.3,
+        roughness: 0.6,
+      });
+      const matRed = new THREE.MeshStandardMaterial({
+        color: 0xff416b,
+        metalness: 0.3,
+        roughness: 0.6,
+      });
+
+      const playerA = new THREE.Mesh(playerGeo, matBlue);
+      playerA.position.set(-1.2, 0.8, -7);
+      scene.add(playerA);
+
+      const playerB = new THREE.Mesh(playerGeo, matRed);
+      playerB.position.set(1.2, 0.8, 7);
+      scene.add(playerB);
+
+      // small markers for player's feet
+      function addMarker(x, z, color = 0xffffff) {
+        const g = new THREE.CircleGeometry(0.6, 16);
+        const m = new THREE.MeshBasicMaterial({ color });
+        const mesh = new THREE.Mesh(g, m);
+        mesh.rotation.x = -Math.PI / 2;
+        mesh.position.set(x, 0.02, z);
+        scene.add(mesh);
+      }
+      addMarker(playerA.position.x, playerA.position.z, 0x1849ff);
+      addMarker(playerB.position.x, playerB.position.z, 0xff1848);
+
+      // --- Ball ---
+      const ballGeo = new THREE.SphereGeometry(0.22, 18, 18);
+      const ballMat = new THREE.MeshStandardMaterial({
+        color: 0xffe400,
+        emissive: 0x222200,
+        metalness: 0.2,
+        roughness: 0.3,
+      });
+      const ball = new THREE.Mesh(ballGeo, ballMat);
+      ball.position.set(0, 0.2, 0);
+      scene.add(ball);
+
+      // trailing path (line that updates with recent positions)
+      let trailPoints = [];
+      const maxTrail = 40;
+      const trailGeom = new THREE.BufferGeometry();
+      trailGeom.setAttribute(
+        "position",
+        new THREE.BufferAttribute(new Float32Array(maxTrail * 3), 3)
+      );
+      const trailMat = new THREE.LineBasicMaterial({
+        color: 0xffffff,
+        linewidth: 2,
+        transparent: true,
+        opacity: 0.9,
+      });
+      const trailLine = new THREE.Line(trailGeom, trailMat);
+      scene.add(trailLine);
+
+      // dashed AI predicted path across the center (static visual)
+      const dashedPts = [];
+      for (let z = -7; z <= 7; z += 1)
+        dashedPts.push(new THREE.Vector3(0, 0.22, z));
+      const dashedGeom = new THREE.BufferGeometry().setFromPoints(dashedPts);
+      const dashedMat = new THREE.LineDashedMaterial({
+        color: 0xffffff,
+        dashSize: 0.25,
+        gapSize: 0.12,
+      });
+      const dashedLine = new THREE.Line(dashedGeom, dashedMat);
+      dashedLine.computeLineDistances();
+      scene.add(dashedLine);
+
+      // Lighting
+      const ambient = new THREE.AmbientLight(0xffffff, 0.65);
+      scene.add(ambient);
+      const pl = new THREE.PointLight(0xffffff, 0.6);
+      pl.position.set(0, 12, 0);
+      scene.add(pl);
+
+      // --- Camera subtle orbit ---
+      let angle = Math.PI / 6;
+
+      // --- Game orchestration variables ---
+      const rallyZ = 7; // player Z positions +/- 7
+      let ballDirection = 1; // 1 => towards +z (playerB), -1 => towards -z (playerA)
+      let ballSpeed = 0.08 + Math.random() * 0.02; // speed
+      let isPaused = false;
+      let scoreA = 0,
+        scoreB = 0;
+      const scoreAEl = document.getElementById("scoreA");
+      const scoreBEl = document.getElementById("scoreB");
+      const stateEl = document.getElementById("rallyState");
+
+      // helper to update scoreboard UI
+      function updateScores() {
+        scoreAEl.textContent = scoreA;
+        scoreBEl.textContent = scoreB;
+      }
+
+      // orchestrate point: call when someone misses
+      function onPoint(scoringPlayer) {
+        isPaused = true;
+        stateEl.textContent = "Point scored — updating";
+        if (scoringPlayer === "A") scoreA++;
+        else scoreB++;
+        updateScores();
+
+        // show small animation: flash scoreboard then reset ball mid-court
+        setTimeout(() => {
+          // reset ball to center
+          ball.position.set(0, 0.2, 0);
+          ballDirection = Math.random() > 0.5 ? 1 : -1;
+          ballSpeed = 0.07 + Math.random() * 0.03;
+
+          // short countdown before next rally
+          let countdown = 3;
+          stateEl.textContent = "Next rally in " + countdown;
+          const t = setInterval(() => {
+            countdown--;
+            if (countdown > 0)
+              stateEl.textContent = "Next rally in " + countdown;
+            else {
+              clearInterval(t);
+              isPaused = false;
+              stateEl.textContent = "Rally live";
+            }
+          }, 1000);
+        }, 700);
+      }
+
+      // --- Animation loop ---
+      function animate() {
+        requestAnimationFrame(animate);
+
+        // gentle camera orbit to add life
+        angle += 0.001;
+        camera.position.x = 15 * Math.cos(angle);
+        camera.position.z = 15 * Math.sin(angle);
+        camera.lookAt(0, 0, 0);
+
+        if (!isPaused) {
+          // move ball in Z
+          ball.position.z += ballDirection * ballSpeed;
+
+          // add subtle X drift to simulate off-center hits
+          ball.position.x += Math.sin(ball.position.z * 0.2) * 0.01;
+
+          // bounce height based on position (simulated arc)
+          ball.position.y =
+            0.2 + Math.abs(Math.sin(ball.position.z * 0.6)) * 1.1;
+
+          // If ball passes beyond a player's side, count a point for opposite player
+          if (ball.position.z > rallyZ + 0.6) {
+            // ball went past Player B side => point for A
+            onPoint("A");
+          } else if (ball.position.z < -rallyZ - 0.6) {
+            // ball went past Player A side => point for B
+            onPoint("B");
+          } else {
+            // If ball reaches near player (simulate a hit) then flip direction and randomize
+            if (
+              ballDirection > 0 &&
+              ball.position.z >= playerB.position.z - 0.8
+            ) {
+              ballDirection = -1;
+              // random lateral deflection
+              ball.position.x += (Math.random() - 0.5) * 2;
+              ballSpeed = 0.07 + Math.random() * 0.04;
+            } else if (
+              ballDirection < 0 &&
+              ball.position.z <= playerA.position.z + 0.8
+            ) {
+              ballDirection = 1;
+              ball.position.x += (Math.random() - 0.5) * 2;
+              ballSpeed = 0.07 + Math.random() * 0.04;
+            }
+          }
+
+          // update trail
+          trailPoints.push(ball.position.clone());
+          if (trailPoints.length > maxTrail) trailPoints.shift();
+          // write trail into geometry buffer
+          const positions = trailGeom.attributes.position.array;
+          for (let i = 0; i < maxTrail; i++) {
+            const idx = i * 3;
+            const p =
+              trailPoints[i] ||
+              new THREE.Vector3(
+                ball.position.x,
+                ball.position.y,
+                ball.position.z
+              );
+            positions[idx] = p.x;
+            positions[idx + 1] = p.y;
+            positions[idx + 2] = p.z;
+          }
+          trailGeom.attributes.position.needsUpdate = true;
+        }
+
+        renderer.render(scene, camera);
+      }
+
+      // initialize UI text
+      stateEl.textContent = "Ready";
+      updateScores();
+      animate();
+
+      // small click-to-serve: clicking container will start rally if paused
+      container.addEventListener("click", () => {
+        if (!isPaused) return;
+        isPaused = false;
+        stateEl.textContent = "Rally live";
+      });
+    </script>
+  </body>
+</html>
