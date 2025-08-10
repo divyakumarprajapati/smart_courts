@@ -1,0 +1,2 @@
+/* using Tailwind CDN; keep minimal resets */
+html, body, #root { height: 100%; }
