@@ -1,5 +1,5 @@
-import SmartCourt from './components/SmartCourt.jsx'
-import { Link } from 'react-router-dom'
+import SmartCourt from "./components/SmartCourt.jsx";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -12,13 +12,21 @@ function App() {
           </div>
           <div>
             <div className="text-sm font-semibold">Smart Courts</div>
-            <div className="text-xs text-gray-400">AI-Powered Sports Referee</div>
+            <div className="text-xs text-gray-400">
+              AI-Powered Sports Referee
+            </div>
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <a className="text-gray-300 hover:text-white" href="#how">How it works</a>
-          <a className="text-gray-300 hover:text-white" href="#market">Market</a>
-          <button className="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-500">Apply for Pilot</button>
+          <a className="text-gray-300 hover:text-white" href="#how">
+            How it works
+          </a>
+          <a className="text-gray-300 hover:text-white" href="#market">
+            Market
+          </a>
+          <button className="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-500">
+            Apply for Pilot
+          </button>
         </div>
       </nav>
 
@@ -29,11 +37,16 @@ function App() {
             Revolutionizing Sports with AI-Powered Smart Courts
           </h1>
           <p className="text-gray-300 mb-8 text-lg">
-            No referees. No interruptions. Just fair play — powered by computer vision and real-time orchestration.
+            No referees. No interruptions. Just fair play — powered by computer
+            vision and real-time orchestration.
           </p>
           <div className="flex justify-center gap-4">
-            <button className="bg-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-500 transition">Join Early Access</button>
-            <button className="border border-gray-600 px-6 py-3 rounded-lg text-gray-200 hover:bg-white/5 transition">Book a Demo</button>
+            <button className="bg-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-500 transition">
+              Join Early Access
+            </button>
+            <button className="border border-gray-600 px-6 py-3 rounded-lg text-gray-200 hover:bg-white/5 transition">
+              Book a Demo
+            </button>
           </div>
         </div>
       </header>
@@ -41,22 +54,45 @@ function App() {
       {/* Problem & Solution */}
       <section id="how" className="py-16 px-6 bg-gray-800">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Problem & Solution</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Problem & Solution
+          </h2>
           <p className="text-gray-300 max-w-3xl mx-auto mb-10">
-            Sports still rely on fallible human referees and manual scorekeeping. Smart Courts automates match arbitration, orchestrates rallies, and provides coaching-grade analytics — all from a simple camera setup.
+            Sports still rely on fallible human referees and manual
+            scorekeeping. Smart Courts automates match arbitration, orchestrates
+            rallies, and provides coaching-grade analytics — all from a simple
+            camera setup.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
-            <Link to="/computer-vision" className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block">
+            <Link
+              to="/computer-vision"
+              className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block"
+            >
               <h3 className="font-bold text-xl mb-2">AI Referee</h3>
-              <p className="text-gray-300">Real time computer vision analysis of game and on click we will navigate to new page on Computer vision analysis where we go details in Computer vision analysis how it will be done and how this tech will be beneficial for all other techs as well</p>
+              <p className="text-gray-300">
+                Real-time ball & player detection, line-in/out decisions and
+                foul detection.
+              </p>
             </Link>
-            <Link to="/match-orchestration" className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block">
+            <Link
+              to="/match-orchestration"
+              className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block"
+            >
               <h3 className="font-bold text-xl mb-2">Match Orchestration</h3>
-              <p className="text-gray-300">Start/stop rallies automatically and update scoreboards without human intervention.</p>
+              <p className="text-gray-300">
+                Start/stop rallies automatically and update scoreboards without
+                human intervention.
+              </p>
             </Link>
-            <Link to="/player-analytics" className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block">
+            <Link
+              to="/player-analytics"
+              className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block"
+            >
               <h3 className="font-bold text-xl mb-2">Player Analytics</h3>
-              <p className="text-gray-300">Movement heatmaps, shot reaction times, tactical suggestions for coaches and players.</p>
+              <p className="text-gray-300">
+                Movement heatmaps, shot reaction times, tactical suggestions for
+                coaches and players.
+              </p>
             </Link>
           </div>
         </div>
@@ -65,22 +101,32 @@ function App() {
       {/* Market */}
       <section id="market" className="py-16 px-6 bg-gray-900">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Market Opportunity</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Market Opportunity
+          </h2>
           <p className="text-gray-300 mb-8">
-            The sports technology market is booming. Our initial target: badminton & tennis clubs, training academies, and indoor sports centers — where cost-effective automation creates immediate ROI.
+            The sports technology market is booming. Our initial target:
+            badminton & tennis clubs, training academies, and indoor sports
+            centers — where cost-effective automation creates immediate ROI.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             <div className="bg-gray-800 p-6 rounded-xl w-56">
               <div className="text-3xl font-extrabold text-blue-400">$24B</div>
-              <div className="text-gray-400 text-sm mt-1">Sports Tech Market (2024)</div>
+              <div className="text-gray-400 text-sm mt-1">
+                Sports Tech Market (2024)
+              </div>
             </div>
             <div className="bg-gray-800 p-6 rounded-xl w-56">
               <div className="text-3xl font-extrabold text-green-400">13%</div>
               <div className="text-gray-400 text-sm mt-1">Projected CAGR</div>
             </div>
             <div className="bg-gray-800 p-6 rounded-xl w-56">
-              <div className="text-3xl font-extrabold text-purple-400">12K+</div>
-              <div className="text-gray-400 text-sm mt-1">Courts in India (target initial market)</div>
+              <div className="text-3xl font-extrabold text-purple-400">
+                12K+
+              </div>
+              <div className="text-gray-400 text-sm mt-1">
+                Courts in India (target initial market)
+              </div>
             </div>
           </div>
         </div>
@@ -89,8 +135,13 @@ function App() {
       {/* 3D Court Section */}
       <section className="py-12 px-6 bg-gray-800">
         <div className="max-w-6xl mx-auto relative">
-          <h2 className="text-3xl font-bold mb-4 text-center">Experience the Smart Court</h2>
-          <p className="text-center text-gray-300 mb-6">Interactive demo showing ball tracking, rally orchestration and live score updates.</p>
+          <h2 className="text-3xl font-bold mb-4 text-center">
+            Experience the Smart Court
+          </h2>
+          <p className="text-center text-gray-300 mb-6">
+            Interactive demo showing ball tracking, rally orchestration and live
+            score updates.
+          </p>
           <SmartCourt />
         </div>
       </section>
@@ -102,15 +153,21 @@ function App() {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-gray-800 p-6 rounded-xl">
               <h3 className="font-bold mb-2">B2B Licensing</h3>
-              <p className="text-gray-300">Hardware+software license for clubs and academies.</p>
+              <p className="text-gray-300">
+                Hardware+software license for clubs and academies.
+              </p>
             </div>
             <div className="bg-gray-800 p-6 rounded-xl">
               <h3 className="font-bold mb-2">Analytics Subscription</h3>
-              <p className="text-gray-300">Monthly analytics per court with player insights.</p>
+              <p className="text-gray-300">
+                Monthly analytics per court with player insights.
+              </p>
             </div>
             <div className="bg-gray-800 p-6 rounded-xl">
               <h3 className="font-bold mb-2">Enterprise</h3>
-              <p className="text-gray-300">Multi-court cloud dashboards and coaching integrations.</p>
+              <p className="text-gray-300">
+                Multi-court cloud dashboards and coaching integrations.
+              </p>
             </div>
           </div>
         </div>
@@ -118,11 +175,19 @@ function App() {
 
       {/* CTA */}
       <section className="py-12 px-6 bg-gradient-to-br from-blue-700 to-indigo-600 text-center">
-        <h3 className="text-2xl font-bold mb-3">Ready to automate your court?</h3>
-        <p className="text-gray-100 mb-6">Apply for pilot programs and get early adopter benefits.</p>
+        <h3 className="text-2xl font-bold mb-3">
+          Ready to automate your court?
+        </h3>
+        <p className="text-gray-100 mb-6">
+          Apply for pilot programs and get early adopter benefits.
+        </p>
         <div className="flex gap-4 justify-center">
-          <button className="bg-black/80 px-6 py-3 rounded-md font-semibold">Apply for Pilot Program</button>
-          <button className="border border-white/20 px-6 py-3 rounded-md">Contact Sales</button>
+          <button className="bg-black/80 px-6 py-3 rounded-md font-semibold">
+            Apply for Pilot Program
+          </button>
+          <button className="border border-white/20 px-6 py-3 rounded-md">
+            Contact Sales
+          </button>
         </div>
       </section>
 
@@ -131,7 +196,7 @@ function App() {
         © 2025 Smart Courts. All Rights Reserved.
       </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
