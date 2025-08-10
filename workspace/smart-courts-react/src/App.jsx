@@ -1,4 +1,5 @@
 import SmartCourt from './components/SmartCourt.jsx'
+import { Link } from 'react-router-dom'
 
 function App() {
   return (
@@ -45,18 +46,18 @@ function App() {
             Sports still rely on fallible human referees and manual scorekeeping. Smart Courts automates match arbitration, orchestrates rallies, and provides coaching-grade analytics — all from a simple camera setup.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition">
+            <Link to="/computer-vision" className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block">
               <h3 className="font-bold text-xl mb-2">AI Referee</h3>
-              <p className="text-gray-300">Real-time ball & player detection, line-in/out decisions and foul detection.</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition">
+              <p className="text-gray-300">Real time computer vision analysis of game and on click we will navigate to new page on Computer vision analysis where we go details in Computer vision analysis how it will be done and how this tech will be beneficial for all other techs as well</p>
+            </Link>
+            <Link to="/match-orchestration" className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block">
               <h3 className="font-bold text-xl mb-2">Match Orchestration</h3>
               <p className="text-gray-300">Start/stop rallies automatically and update scoreboards without human intervention.</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition">
+            </Link>
+            <Link to="/player-analytics" className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block">
               <h3 className="font-bold text-xl mb-2">Player Analytics</h3>
               <p className="text-gray-300">Movement heatmaps, shot reaction times, tactical suggestions for coaches and players.</p>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
