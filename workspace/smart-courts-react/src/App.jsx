@@ -166,6 +166,33 @@ function App() {
         </div>
       </section>
 
+      {/* Business Model */}
+      <section className="py-12 px-6 bg-gray-900">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6">Business Model</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-gray-800 p-6 rounded-xl">
+              <h3 className="font-bold mb-2">B2B Licensing</h3>
+              <p className="text-gray-300">
+                Hardware+software license for clubs and academies.
+              </p>
+            </div>
+            <div className="bg-gray-800 p-6 rounded-xl">
+              <h3 className="font-bold mb-2">Analytics Subscription</h3>
+              <p className="text-gray-300">
+                Monthly analytics per court with player insights.
+              </p>
+            </div>
+            <div className="bg-gray-800 p-6 rounded-xl">
+              <h3 className="font-bold mb-2">Enterprise</h3>
+              <p className="text-gray-300">
+                Multi-court cloud dashboards and coaching integrations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-12 px-6 bg-gradient-to-br from-blue-700 to-indigo-600 text-center">
         <h3 className="text-2xl font-bold mb-3">
