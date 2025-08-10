@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0" stop-color="#071126"/>
+      <stop offset="1" stop-color="#071431"/>
+    </linearGradient>
+    <linearGradient id="led" x1="0" x2="1">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="20" result="b"/>
+      <feBlend in="SourceGraphic" in2="b"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+
+  <!-- Stylized 'AI Referee' avatar -->
+  <g transform="translate(260,140)">
+    <!-- body / torso -->
+    <rect x="180" y="260" width="240" height="300" rx="24" fill="#0b1220" stroke="#1e293b" stroke-width="2"/>
+    <!-- chest panel -->
+    <rect x="220" y="300" width="160" height="140" rx="12" fill="#071631" stroke="#0ea5e9" stroke-width="2" opacity="0.08"/>
+    <!-- head dome -->
+    <g transform="translate(300,180)">
+      <ellipse cx="0" cy="0" rx="80" ry="60" fill="#0b1220" stroke="#94a3b8" stroke-width="2"/>
+      <!-- visor / camera eye -->
+      <rect x="-62" y="-12" width="124" height="28" rx="14" fill="url(#led)" opacity="0.98"/>
+      <circle cx="-22" cy="2" r="8" fill="#071431" />
+      <circle cx="22" cy="2" r="8" fill="#071431" />
+    </g>
+
+    <!-- antennas / sensors -->
+    <path d="M300 110 L300 60" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="300" cy="60" r="8" fill="#60a5fa" opacity="0.95"/>
+    <path d="M360 120 L420 88" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="420" cy="88" r="6" fill="#c084fc" opacity="0.95"/>
+  </g>
+
+  <!-- Floating mini-court in chest showing tracking -->
+  <g transform="translate(370,420)">
+    <rect x="-140" y="-80" width="280" height="140" rx="8" fill="#071431" stroke="#0ea5e9" stroke-width="1.5"/>
+    <line x1="-80" y1="-80" x2="-80" y2="60" stroke="#7c3aed" stroke-width="2" stroke-dasharray="6 5" opacity="0.85"/>
+    <circle cx="40" cy="-10" r="8" fill="#ffedd5" stroke="#fb923c" stroke-width="2"/>
+    <path d="M-120 30 C-60 0, 20 -20, 80 -40" stroke="#60a5fa" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Light glow -->
+  <g>
+    <ellipse cx="880" cy="160" rx="220" ry="80" fill="#0ea5e9" opacity="0.04"/>
+    <ellipse cx="240" cy="720" rx="320" ry="120" fill="#7c3aed" opacity="0.03"/>
+  </g>
+
+  <!-- Label -->
+  <g transform="translate(40,820)">
+    <rect x="0" y="-40" width="520" height="36" rx="6" fill="#071431" opacity="0.6"/>
+    <text x="16" y="0" fill="#94a3b8" font-size="14" font-family="Inter, Arial, sans-serif">AI Referee — avatar with embedded tracking display</text>
+  </g>
+</svg>

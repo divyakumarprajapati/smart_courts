@@ -68,29 +68,49 @@ function App() {
               to="/computer-vision"
               className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block"
             >
+              <img
+                src="/3d-court-illustration.png"
+                alt="AI Referee"
+                className="w-full h-40 object-contain mb-4"
+              />
               <h3 className="font-bold text-xl mb-2">AI Referee</h3>
               <p className="text-gray-300">
-                Real-time ball & player detection, line-in/out decisions and
-                foul detection.
+                Real-time computer vision analysis of live games for precise
+                ball and player tracking, accurate line-in/out judgments, and
+                automated foul detection.
               </p>
             </Link>
+
             <Link
               to="/match-orchestration"
               className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block"
             >
+              <img
+                src="/match-orchestrations.png"
+                alt="Match Orchestration"
+                className="w-full h-40 object-contain mb-4"
+              />
               <h3 className="font-bold text-xl mb-2">Match Orchestration</h3>
               <p className="text-gray-300">
-                Start/stop rallies automatically and update scoreboards without
-                human intervention.
+                AI-powered automation to seamlessly start or stop rallies,
+                manage game flow, and update scoreboards in real time — no human
+                intervention required.
               </p>
             </Link>
+
             <Link
               to="/player-analytics"
               className="bg-gray-700 p-6 rounded-xl shadow-lg transform hover:scale-105 transition text-left block"
             >
+              <img
+                src="/plater-analytics-thumb.png"
+                alt="Player Analytics"
+                className="w-full h-40 object-contain mb-4"
+              />
               <h3 className="font-bold text-xl mb-2">Player Analytics</h3>
               <p className="text-gray-300">
-                Movement heatmaps, shot reaction times, tactical suggestions for
+                In-depth AI-driven insights including movement heatmaps, shot
+                reaction time analysis, and smart tactical recommendations for
                 coaches and players.
               </p>
             </Link>
@@ -143,33 +163,6 @@ function App() {
             score updates.
           </p>
           <SmartCourt />
-        </div>
-      </section>
-
-      {/* Business Model */}
-      <section className="py-12 px-6 bg-gray-900">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Business Model</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-800 p-6 rounded-xl">
-              <h3 className="font-bold mb-2">B2B Licensing</h3>
-              <p className="text-gray-300">
-                Hardware+software license for clubs and academies.
-              </p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-xl">
-              <h3 className="font-bold mb-2">Analytics Subscription</h3>
-              <p className="text-gray-300">
-                Monthly analytics per court with player insights.
-              </p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-xl">
-              <h3 className="font-bold mb-2">Enterprise</h3>
-              <p className="text-gray-300">
-                Multi-court cloud dashboards and coaching integrations.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
