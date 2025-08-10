@@ -78,9 +78,10 @@ export default function SmartCourt() {
       mesh.rotation.x = -Math.PI / 2;
       mesh.position.set(x, 0.02, z);
       scene.add(mesh);
+      return mesh;
     }
-    addMarker(playerA.position.x, playerA.position.z, 0x1849ff);
-    addMarker(playerB.position.x, playerB.position.z, 0xff1848);
+    const markerA = addMarker(playerA.position.x, playerA.position.z, 0x1849ff);
+    const markerB = addMarker(playerB.position.x, playerB.position.z, 0xff1848);
 
     const ballGeo = new THREE.SphereGeometry(0.22, 18, 18);
     const ballMat = new THREE.MeshStandardMaterial({
@@ -120,8 +121,25 @@ export default function SmartCourt() {
     const rallyZ = 7;
     let ballDirection = 1;
     let ballSpeed = 0.08 + Math.random() * 0.02;
+    let ballVX = 0; // horizontal velocity
     let isPaused = false;
     let scoreA = 0, scoreB = 0;
+
+    let markerPulseA = 0;
+    let markerPulseB = 0;
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function bumpScore(which) {
+      const el = which === "A" ? scoreARef.current : scoreBRef.current;
+      if (!el) return;
+      el.classList.add("transform", "transition-transform", "duration-300", "scale-125");
+      setTimeout(() => {
+        el.classList.remove("scale-125");
+      }, 320);
+    }
 
     function updateScores() {
       setScores({ a: scoreA, b: scoreB });
@@ -132,11 +150,13 @@ export default function SmartCourt() {
       if (stateRef.current) stateRef.current.textContent = "Point scored — updating";
       if (scoringPlayer === "A") scoreA++; else scoreB++;
       updateScores();
+      bumpScore(scoringPlayer);
 
       setTimeout(() => {
         ball.position.set(0, 0.2, 0);
         ballDirection = Math.random() > 0.5 ? 1 : -1;
         ballSpeed = 0.07 + Math.random() * 0.03;
+        ballVX = (Math.random() - 0.5) * 0.02;
 
         let countdown = 3;
         if (stateRef.current) stateRef.current.textContent = "Next rally in " + countdown;
@@ -162,26 +182,79 @@ export default function SmartCourt() {
       camera.lookAt(0, 0, 0);
 
       if (!isPaused) {
+        // Move players to track the ball on their side
+        const halfCourtX = courtW / 2 - 0.7;
+        if (ballDirection > 0) {
+          // Ball going to Player B
+          const targetX = clamp(ball.position.x, -halfCourtX, halfCourtX);
+          playerB.position.x += (targetX - playerB.position.x) * 0.08;
+        } else {
+          // Ball going to Player A
+          const targetX = clamp(ball.position.x, -halfCourtX, halfCourtX);
+          playerA.position.x += (targetX - playerA.position.x) * 0.08;
+        }
+
+        // Update markers to follow players and apply pulse
+        if (markerA) {
+          markerA.position.x = playerA.position.x;
+          const sA = 1 + Math.max(0, markerPulseA);
+          markerA.scale.set(sA, sA, 1);
+          markerPulseA = Math.max(0, markerPulseA - 0.05);
+        }
+        if (markerB) {
+          markerB.position.x = playerB.position.x;
+          const sB = 1 + Math.max(0, markerPulseB);
+          markerB.scale.set(sB, sB, 1);
+          markerPulseB = Math.max(0, markerPulseB - 0.05);
+        }
+
+        // Move ball
         ball.position.z += ballDirection * ballSpeed;
-        ball.position.x += Math.sin(ball.position.z * 0.2) * 0.01;
+        ball.position.x += ballVX;
+        ballVX *= 0.995; // slight damping to avoid runaway drift
+        const sideClamp = courtW / 2 - 0.25;
+        ball.position.x = clamp(ball.position.x, -sideClamp, sideClamp);
         ball.position.y = 0.2 + Math.abs(Math.sin(ball.position.z * 0.6)) * 1.1;
 
-        if (ball.position.z > rallyZ + 0.6) {
-          onPoint("A");
-        } else if (ball.position.z < -rallyZ - 0.6) {
-          onPoint("B");
+        // Determine hits/misses at players
+        const hitWindowZ = 0.8;
+        const reachX = 0.8;
+
+        if (ballDirection > 0) {
+          // Approaching Player B
+          if (ball.position.z >= playerB.position.z - hitWindowZ) {
+            const dx = Math.abs(ball.position.x - playerB.position.x);
+            if (dx <= reachX) {
+              // Hit by Player B
+              ballDirection = -1;
+              ballSpeed = 0.07 + Math.random() * 0.04;
+              ballVX = (ball.position.x - playerB.position.x) * 0.08 + (Math.random() - 0.5) * 0.02;
+              markerPulseB = 0.3;
+            }
+            // else: miss, let it pass to trigger point when beyond rallyZ
+          }
+          if (ball.position.z > rallyZ + 0.6) {
+            onPoint("A");
+          }
         } else {
-          if (ballDirection > 0 && ball.position.z >= playerB.position.z - 0.8) {
-            ballDirection = -1;
-            ball.position.x += (Math.random() - 0.5) * 2;
-            ballSpeed = 0.07 + Math.random() * 0.04;
-          } else if (ballDirection < 0 && ball.position.z <= playerA.position.z + 0.8) {
-            ballDirection = 1;
-            ball.position.x += (Math.random() - 0.5) * 2;
-            ballSpeed = 0.07 + Math.random() * 0.04;
+          // Approaching Player A
+          if (ball.position.z <= playerA.position.z + hitWindowZ) {
+            const dx = Math.abs(ball.position.x - playerA.position.x);
+            if (dx <= reachX) {
+              // Hit by Player A
+              ballDirection = 1;
+              ballSpeed = 0.07 + Math.random() * 0.04;
+              ballVX = (ball.position.x - playerA.position.x) * 0.08 + (Math.random() - 0.5) * 0.02;
+              markerPulseA = 0.3;
+            }
+            // else: miss, let it pass to trigger point when beyond rallyZ
+          }
+          if (ball.position.z < -rallyZ - 0.6) {
+            onPoint("B");
           }
         }
 
+        // Update trail
         trailPoints.push(ball.position.clone());
         if (trailPoints.length > maxTrail) trailPoints.shift();
         const positions = trailGeom.attributes.position.array;
