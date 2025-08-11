@@ -73,7 +73,7 @@ function PlayerAnalytics() {
             </ul>
           </div>
           <motion.img
-            src="/player-analysis.png"
+            src="/player-analytics.png"
             alt="Player analytics process diagram"
             className="rounded-lg shadow-lg"
             initial={{ opacity: 0, x: 50 }}
