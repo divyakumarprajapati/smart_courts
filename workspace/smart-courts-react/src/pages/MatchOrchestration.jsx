@@ -17,20 +17,6 @@ function MatchOrchestration() {
             </div>
           </div>
         </Link>
-        <div className="flex items-center gap-4">
-          <a className="text-gray-300 hover:text-white" href="/#how">
-            How it works
-          </a>
-          <a className="text-gray-300 hover:text-white" href="/#market">
-            Market
-          </a>
-          <Link
-            to="/"
-            className="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-500"
-          >
-            Home
-          </Link>
-        </div>
       </nav>
 
       {/* Hero */}
