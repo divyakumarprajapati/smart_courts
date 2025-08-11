@@ -83,7 +83,7 @@ function ComputerVision() {
           <motion.img
             src="/3d-court-illustration.png"
             alt="How it works diagram"
-            className="rounded-lg shadow-lg"
+            className="rounded-lg shadow-lg w-full h-72 md:h-96 object-contain"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -95,7 +95,7 @@ function ComputerVision() {
           <motion.img
             src="/game-changer.png"
             alt="3D AI referee concept"
-            className="rounded-lg shadow-lg order-2 md:order-1"
+            className="rounded-lg shadow-lg order-2 md:order-1 w-full h-72 md:h-96 object-contain"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -145,7 +145,7 @@ function ComputerVision() {
           <motion.img
             src="/industry-expansion-2D.png"
             alt="Cross-industry use cases"
-            className="rounded-lg shadow-lg"
+            className="rounded-lg shadow-lg w-full h-72 md:h-96 object-contain"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
