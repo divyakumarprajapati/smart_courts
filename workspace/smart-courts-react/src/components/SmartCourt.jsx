@@ -1,316 +1,824 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-export default function SmartCourt() {
-  const containerRef = useRef(null);
-  const scoreARef = useRef(null);
-  const scoreBRef = useRef(null);
-  const stateRef = useRef(null);
+const SmartCourt = () => {
+  const mountRef = useRef(null);
+  const [loading, setLoading] = useState(true);
+  const [currentAngle, setCurrentAngle] = useState("Primary Orbit");
+  const [scoreA, setScoreA] = useState(0);
+  const [scoreB, setScoreB] = useState(0);
+  const [currentTime, setCurrentTime] = useState("--:--:--");
 
-  const [scores, setScores] = useState({ a: 0, b: 0 });
+  const points = [0, 15, 30, 40, "Game"];
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    if (!mountRef.current) return;
+
+    // Core Setup
+    const app = mountRef.current;
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      powerPreference: "high-performance",
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    app.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    renderer.setSize(width, height);
-    renderer.setClearColor(0x0b1220, 1);
-    container.appendChild(renderer.domElement);
+    scene.fog = new THREE.Fog(0x04070c, 90, 220);
 
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-    camera.position.set(15, 14, 15);
-    camera.lookAt(0, 0, 0);
+    const camera = new THREE.PerspectiveCamera(
+      55,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
 
-    const onResize = () => {
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      renderer.setSize(w, h);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enabled = false;
+
+    // Clock/Loop
+    const clock = new THREE.Clock();
+    let elapsed = 0;
+    let lastFrameAt = performance.now();
+
+    function computeDt() {
+      const raw = clock.getDelta();
+      const dt = raw && raw > 0 ? raw : 1 / 60;
+      return Math.min(0.033, dt);
+    }
+
+    // Lighting
+    const hemi = new THREE.HemisphereLight(0xbfd8ff, 0x223344, 0.6);
+    scene.add(hemi);
+
+    const sun = new THREE.DirectionalLight(0xffffff, 1.15);
+    sun.position.set(-40, 60, 20);
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.camera.left = -80;
+    sun.shadow.camera.right = 80;
+    sun.shadow.camera.top = 80;
+    sun.shadow.camera.bottom = -80;
+    scene.add(sun);
+
+    // Court setup
+    const COURT = {
+      length: 78,
+      width: 36,
+      singlesWidth: 27,
+      serviceLine: 21,
+      netHeight: 3.5,
     };
-    window.addEventListener("resize", onResize);
+    const scale = 0.3;
+    const L = COURT.length * scale;
+    const W = COURT.singlesWidth * scale;
 
-    const courtW = 10, courtL = 20;
-    const courtGeometry = new THREE.PlaneGeometry(courtW, courtL);
-    const courtMaterial = new THREE.MeshStandardMaterial({
-      color: 0x0f6b3a,
-      metalness: 0.1,
-      roughness: 0.9,
-    });
-    const court = new THREE.Mesh(courtGeometry, courtMaterial);
-    court.rotation.x = -Math.PI / 2;
-    scene.add(court);
+    // Court texture
+    function makeCourtTexture() {
+      const px = 2048;
+      const py = 4096;
+      const c = document.createElement("canvas");
+      c.width = px;
+      c.height = py;
+      const ctx = c.getContext("2d");
+      ctx.fillStyle = "#19c8f4ff";
+      ctx.fillRect(0, 0, px, py);
+      ctx.strokeStyle = "#f8fbff";
+      ctx.lineWidth = 18;
+      ctx.lineCap = "square";
+      const padX = (px - px * (W / (COURT.width * scale))) * 0.5;
+      const padY = 120;
 
-    function addLine(p1, p2, color = 0xffffff) {
-      const pts = [new THREE.Vector3(...p1), new THREE.Vector3(...p2)];
-      const geom = new THREE.BufferGeometry().setFromPoints(pts);
-      const mat = new THREE.LineBasicMaterial({ color });
-      const line = new THREE.Line(geom, mat);
-      scene.add(line);
-    }
-    addLine([-courtW / 2, 0.01, -courtL / 2], [courtW / 2, 0.01, -courtL / 2]);
-    addLine([courtW / 2, 0.01, -courtL / 2], [courtW / 2, 0.01, courtL / 2]);
-    addLine([courtW / 2, 0.01, courtL / 2], [-courtW / 2, 0.01, courtL / 2]);
-    addLine([-courtW / 2, 0.01, courtL / 2], [-courtW / 2, 0.01, -courtL / 2]);
-    addLine([-courtW / 2, 0.01, 0], [courtW / 2, 0.01, 0], 0xffffff);
-
-    const playerGeo = new THREE.CylinderGeometry(0.5, 0.5, 1.6, 32);
-    const matBlue = new THREE.MeshStandardMaterial({ color: 0x2b6bff, metalness: 0.3, roughness: 0.6 });
-    const matRed = new THREE.MeshStandardMaterial({ color: 0xff416b, metalness: 0.3, roughness: 0.6 });
-
-    const playerA = new THREE.Mesh(playerGeo, matBlue);
-    playerA.position.set(-1.2, 0.8, -7);
-    scene.add(playerA);
-
-    const playerB = new THREE.Mesh(playerGeo, matRed);
-    playerB.position.set(1.2, 0.8, 7);
-    scene.add(playerB);
-
-    function addMarker(x, z, color = 0xffffff) {
-      const g = new THREE.CircleGeometry(0.6, 16);
-      const m = new THREE.MeshBasicMaterial({ color });
-      const mesh = new THREE.Mesh(g, m);
-      mesh.rotation.x = -Math.PI / 2;
-      mesh.position.set(x, 0.02, z);
-      scene.add(mesh);
-      return mesh;
-    }
-    const markerA = addMarker(playerA.position.x, playerA.position.z, 0x1849ff);
-    const markerB = addMarker(playerB.position.x, playerB.position.z, 0xff1848);
-
-    const ballGeo = new THREE.SphereGeometry(0.22, 18, 18);
-    const ballMat = new THREE.MeshStandardMaterial({
-      color: 0xffe400,
-      emissive: 0x222200,
-      metalness: 0.2,
-      roughness: 0.3,
-    });
-    const ball = new THREE.Mesh(ballGeo, ballMat);
-    ball.position.set(0, 0.2, 0);
-    scene.add(ball);
-
-    let trailPoints = [];
-    const maxTrail = 40;
-    const trailGeom = new THREE.BufferGeometry();
-    trailGeom.setAttribute("position", new THREE.BufferAttribute(new Float32Array(maxTrail * 3), 3));
-    const trailMat = new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 2, transparent: true, opacity: 0.9 });
-    const trailLine = new THREE.Line(trailGeom, trailMat);
-    scene.add(trailLine);
-
-    const dashedPts = [];
-    for (let z = -7; z <= 7; z += 1) dashedPts.push(new THREE.Vector3(0, 0.22, z));
-    const dashedGeom = new THREE.BufferGeometry().setFromPoints(dashedPts);
-    const dashedMat = new THREE.LineDashedMaterial({ color: 0xffffff, dashSize: 0.25, gapSize: 0.12 });
-    const dashedLine = new THREE.Line(dashedGeom, dashedMat);
-    dashedLine.computeLineDistances();
-    scene.add(dashedLine);
-
-    const ambient = new THREE.AmbientLight(0xffffff, 0.65);
-    scene.add(ambient);
-    const pl = new THREE.PointLight(0xffffff, 0.6);
-    pl.position.set(0, 12, 0);
-    scene.add(pl);
-
-    let angle = Math.PI / 6;
-
-    const rallyZ = 7;
-    let ballDirection = 1;
-    let ballSpeed = 0.08 + Math.random() * 0.02;
-    let ballVX = 0; // horizontal velocity
-    let isPaused = false;
-    let scoreA = 0, scoreB = 0;
-
-    let markerPulseA = 0;
-    let markerPulseB = 0;
-
-    function clamp(value, min, max) {
-      return Math.max(min, Math.min(max, value));
-    }
-
-    function bumpScore(which) {
-      const el = which === "A" ? scoreARef.current : scoreBRef.current;
-      if (!el) return;
-      el.classList.add("transform", "transition-transform", "duration-300", "scale-125");
-      setTimeout(() => {
-        el.classList.remove("scale-125");
-      }, 320);
-    }
-
-    function updateScores() {
-      setScores({ a: scoreA, b: scoreB });
-    }
-
-    function onPoint(scoringPlayer) {
-      isPaused = true;
-      if (stateRef.current) stateRef.current.textContent = "Point scored — updating";
-      if (scoringPlayer === "A") scoreA++; else scoreB++;
-      updateScores();
-      bumpScore(scoringPlayer);
-
-      setTimeout(() => {
-        ball.position.set(0, 0.2, 0);
-        ballDirection = Math.random() > 0.5 ? 1 : -1;
-        ballSpeed = 0.07 + Math.random() * 0.03;
-        ballVX = (Math.random() - 0.5) * 0.02;
-
-        let countdown = 3;
-        if (stateRef.current) stateRef.current.textContent = "Next rally in " + countdown;
-        const t = setInterval(() => {
-          countdown--;
-          if (countdown > 0) {
-            if (stateRef.current) stateRef.current.textContent = "Next rally in " + countdown;
-          } else {
-            clearInterval(t);
-            isPaused = false;
-            if (stateRef.current) stateRef.current.textContent = "Rally live";
-          }
-        }, 1000);
-      }, 700);
-    }
-
-    let rafId;
-    function animate() {
-      rafId = requestAnimationFrame(animate);
-      angle += 0.001;
-      camera.position.x = 15 * Math.cos(angle);
-      camera.position.z = 15 * Math.sin(angle);
-      camera.lookAt(0, 0, 0);
-
-      if (!isPaused) {
-        // Move players to track the ball on their side
-        const halfCourtX = courtW / 2 - 0.7;
-        if (ballDirection > 0) {
-          // Ball going to Player B
-          const targetX = clamp(ball.position.x, -halfCourtX, halfCourtX);
-          playerB.position.x += (targetX - playerB.position.x) * 0.08;
-        } else {
-          // Ball going to Player A
-          const targetX = clamp(ball.position.x, -halfCourtX, halfCourtX);
-          playerA.position.x += (targetX - playerA.position.x) * 0.08;
-        }
-
-        // Update markers to follow players and apply pulse
-        if (markerA) {
-          markerA.position.x = playerA.position.x;
-          const sA = 1 + Math.max(0, markerPulseA);
-          markerA.scale.set(sA, sA, 1);
-          markerPulseA = Math.max(0, markerPulseA - 0.05);
-        }
-        if (markerB) {
-          markerB.position.x = playerB.position.x;
-          const sB = 1 + Math.max(0, markerPulseB);
-          markerB.scale.set(sB, sB, 1);
-          markerPulseB = Math.max(0, markerPulseB - 0.05);
-        }
-
-        // Move ball
-        ball.position.z += ballDirection * ballSpeed;
-        ball.position.x += ballVX;
-        ballVX *= 0.995; // slight damping to avoid runaway drift
-        const sideClamp = courtW / 2 - 0.25;
-        ball.position.x = clamp(ball.position.x, -sideClamp, sideClamp);
-        ball.position.y = 0.2 + Math.abs(Math.sin(ball.position.z * 0.6)) * 1.1;
-
-        // Determine hits/misses at players
-        const hitWindowZ = 0.8;
-        const reachX = 0.8;
-
-        if (ballDirection > 0) {
-          // Approaching Player B
-          if (ball.position.z >= playerB.position.z - hitWindowZ) {
-            const dx = Math.abs(ball.position.x - playerB.position.x);
-            if (dx <= reachX) {
-              // Hit by Player B
-              ballDirection = -1;
-              ballSpeed = 0.07 + Math.random() * 0.04;
-              ballVX = (ball.position.x - playerB.position.x) * 0.08 + (Math.random() - 0.5) * 0.02;
-              markerPulseB = 0.3;
-            }
-            // else: miss, let it pass to trigger point when beyond rallyZ
-          }
-          if (ball.position.z > rallyZ + 0.6) {
-            onPoint("A");
-          }
-        } else {
-          // Approaching Player A
-          if (ball.position.z <= playerA.position.z + hitWindowZ) {
-            const dx = Math.abs(ball.position.x - playerA.position.x);
-            if (dx <= reachX) {
-              // Hit by Player A
-              ballDirection = 1;
-              ballSpeed = 0.07 + Math.random() * 0.04;
-              ballVX = (ball.position.x - playerA.position.x) * 0.08 + (Math.random() - 0.5) * 0.02;
-              markerPulseA = 0.3;
-            }
-            // else: miss, let it pass to trigger point when beyond rallyZ
-          }
-          if (ball.position.z < -rallyZ - 0.6) {
-            onPoint("B");
-          }
-        }
-
-        // Update trail
-        trailPoints.push(ball.position.clone());
-        if (trailPoints.length > maxTrail) trailPoints.shift();
-        const positions = trailGeom.attributes.position.array;
-        for (let i = 0; i < maxTrail; i++) {
-          const idx = i * 3;
-          const p = trailPoints[i] || new THREE.Vector3(ball.position.x, ball.position.y, ball.position.z);
-          positions[idx] = p.x;
-          positions[idx + 1] = p.y;
-          positions[idx + 2] = p.z;
-        }
-        trailGeom.attributes.position.needsUpdate = true;
+      function y(z) {
+        return padY + ((z + L / 2) * (py - padY * 2)) / L;
+      }
+      function x(v) {
+        return padX + ((v + W / 2) * (px - padX * 2)) / W;
       }
 
-      renderer.render(scene, camera);
+      ctx.strokeRect(
+        x(-W / 2),
+        y(-L / 2),
+        x(W / 2) - x(-W / 2),
+        y(L / 2) - y(-L / 2)
+      );
+
+      const serviceZ = COURT.serviceLine * scale;
+      ctx.beginPath();
+      ctx.moveTo(x(-W / 2), y(-serviceZ));
+      ctx.lineTo(x(W / 2), y(-serviceZ));
+      ctx.moveTo(x(-W / 2), y(serviceZ));
+      ctx.lineTo(x(W / 2), y(serviceZ));
+      ctx.moveTo(x(0), y(-serviceZ));
+      ctx.lineTo(x(0), y(serviceZ));
+      ctx.stroke();
+
+      ctx.lineWidth = 14;
+      ctx.beginPath();
+      ctx.moveTo(x(0) - 0, y(-L / 2));
+      ctx.lineTo(x(0) - 0, y(-L / 2) + 40);
+      ctx.moveTo(x(0) - 0, y(L / 2));
+      ctx.lineTo(x(0) - 0, y(L / 2) - 40);
+      ctx.stroke();
+
+      return new THREE.CanvasTexture(c);
     }
 
-    if (stateRef.current) stateRef.current.textContent = "Ready";
-    updateScores();
-    animate();
+    const courtGeom = new THREE.PlaneGeometry(W, L);
+    const courtMat = new THREE.MeshStandardMaterial({
+      map: makeCourtTexture(),
+      roughness: 0.9,
+      metalness: 0.0,
+    });
+    const court = new THREE.Mesh(courtGeom, courtMat);
+    court.rotation.x = -Math.PI / 2;
+    court.receiveShadow = true;
+    scene.add(court);
 
-    const clickHandler = () => {
-      if (!isPaused) return;
-      isPaused = false;
-      if (stateRef.current) stateRef.current.textContent = "Rally live";
+    // Floor
+    const floor = new THREE.Mesh(
+      new THREE.PlaneGeometry(400, 400),
+      new THREE.MeshStandardMaterial({ color: 0x0a0e15, roughness: 1 })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -0.02;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    // Net
+    const netWidth = W;
+    const netH = COURT.netHeight * scale;
+    const net = new THREE.Mesh(
+      new THREE.BoxGeometry(netWidth, netH, 0.05),
+      new THREE.MeshStandardMaterial({
+        color: 0x111111,
+        roughness: 0.6,
+        metalness: 0.1,
+      })
+    );
+    net.position.set(0, netH / 2, 0);
+    net.castShadow = true;
+    scene.add(net);
+    const netTape = new THREE.Mesh(
+      new THREE.BoxGeometry(netWidth, 0.08, 0.075),
+      new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.4 })
+    );
+    netTape.position.set(0, netH + 0.04, 0.02);
+    netTape.castShadow = true;
+    scene.add(netTape);
+
+    // Players
+    function makePlayer(primaryColor = 0xffffff, accent = 0x19c8ff) {
+      const g = new THREE.Group();
+      const bodyMat = new THREE.MeshStandardMaterial({
+        color: primaryColor,
+        roughness: 0.8,
+        metalness: 0.05,
+      });
+      const accentMat = new THREE.MeshStandardMaterial({
+        color: accent,
+        roughness: 0.6,
+      });
+
+      const torso = new THREE.Mesh(
+        new THREE.BoxGeometry(0.5, 1.1, 0.3),
+        bodyMat
+      );
+      torso.position.y = 1.4;
+      torso.castShadow = true;
+      g.add(torso);
+
+      const head = new THREE.Mesh(
+        new THREE.SphereGeometry(0.22, 24, 16),
+        accentMat
+      );
+      head.position.y = 2.2;
+      head.castShadow = true;
+      g.add(head);
+
+      const hip = new THREE.Object3D();
+      hip.position.y = 0.85;
+      g.add(hip);
+      function limb(mat) {
+        const u = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.55, 0.18), mat);
+        u.castShadow = true;
+        return u;
+      }
+      const legL = limb(bodyMat);
+      const legR = limb(bodyMat);
+      legL.position.set(-0.18, 0.55 / 2, 0);
+      legR.position.set(0.18, 0.55 / 2, 0);
+      hip.add(legL);
+      hip.add(legR);
+
+      const shoulder = new THREE.Object3D();
+      shoulder.position.y = 1.8;
+      g.add(shoulder);
+      const armLead = limb(bodyMat);
+      const armTrail = limb(bodyMat);
+      armLead.position.set(0.38, 0, 0);
+      armTrail.position.set(-0.38, 0, 0);
+      shoulder.add(armLead);
+      shoulder.add(armTrail);
+
+      const racket = new THREE.Group();
+      const grip = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.04, 0.05, 0.35, 12),
+        new THREE.MeshStandardMaterial({ color: 0x222222 })
+      );
+      grip.rotation.z = Math.PI / 2;
+      grip.position.set(0.18, -0.05, 0);
+      const headRing = new THREE.Mesh(
+        new THREE.TorusGeometry(0.22, 0.03, 10, 28),
+        new THREE.MeshStandardMaterial({ color: 0xdddddd })
+      );
+      headRing.rotation.y = Math.PI / 2;
+      headRing.position.set(0.42, 0.06, 0);
+      racket.add(grip);
+      racket.add(headRing);
+      armLead.add(racket);
+
+      g.userData = {
+        torso,
+        head,
+        hip,
+        shoulder,
+        legL,
+        legR,
+        armLead,
+        armTrail,
+      };
+      return g;
+    }
+
+    const playerA = makePlayer(0xffffff, 0x19c8ff);
+    const playerB = makePlayer(0x222222, 0xffe47a);
+    scene.add(playerA, playerB);
+
+    const START = {
+      A: new THREE.Vector3(0, 0, L / 2 - 2.5),
+      B: new THREE.Vector3(0, 0, -L / 2 + 2.5),
     };
-    container.addEventListener("click", clickHandler);
+    playerA.position.copy(START.A);
+    playerB.position.copy(START.B);
+    playerA.rotation.y = Math.PI;
+    playerB.rotation.y = 0;
 
+    // Ball
+    const ball = new THREE.Mesh(
+      new THREE.SphereGeometry(0.12, 20, 16),
+      new THREE.MeshStandardMaterial({
+        color: 0xfff65a,
+        emissive: 0x282600,
+        roughness: 0.5,
+      })
+    );
+    ball.castShadow = true;
+    scene.add(ball);
+
+    // Ball trail
+    const trailPool = [];
+    const maxTrail = 24;
+    const trailMat = new THREE.SpriteMaterial({
+      color: 0xffffcc,
+      transparent: true,
+      opacity: 0.7,
+    });
+    for (let i = 0; i < maxTrail; i++) {
+      const s = new THREE.Sprite(trailMat.clone());
+      s.scale.set(0.12, 0.12, 0.12);
+      s.material.opacity = 0;
+      scene.add(s);
+      trailPool.push(s);
+    }
+    let trailIndex = 0;
+
+    function leaveTrail(pos) {
+      const s = trailPool[(trailIndex = (trailIndex + 1) % maxTrail)];
+      s.position.copy(pos);
+      s.material.opacity = 0.7;
+      s.scale.set(0.16, 0.16, 0.16);
+      s.userData.life = 0.0;
+      s.material.needsUpdate = true;
+    }
+
+    function updateTrail(dt) {
+      for (const s of trailPool) {
+        const life = (s.userData.life || 0) + dt;
+        if (s.material.opacity > 0 || life > 0) {
+          s.userData.life = life;
+          const newOpacity = Math.max(0, 0.7 - s.userData.life * 1.8);
+          if (newOpacity !== s.material.opacity) {
+            s.material.opacity = newOpacity;
+            s.material.needsUpdate = true;
+          }
+          if (s.material.opacity === 0) {
+            s.userData.life = 0;
+          }
+          s.scale.multiplyScalar(0.995);
+        }
+      }
+    }
+
+    // Rally Timeline
+    const shotApices = [1.6, 1.8, 1.5, 1.7, 1.55, 1.75];
+    const rngXs = [-1.2, 1.4, 0.6, -0.8, 0.2, -0.3];
+
+    const rally = [];
+    const baseZ = L / 2 - 2.8;
+    for (let i = 0; i < 6; i++) {
+      const fromA = i % 2 === 0;
+      const start = new THREE.Vector3(
+        fromA ? 0.2 : rngXs[i] * 0.2,
+        1.0,
+        fromA ? baseZ - 0.6 : -baseZ + 0.6
+      );
+      const end = new THREE.Vector3(
+        rngXs[i],
+        0.0,
+        fromA ? -baseZ + 0.4 : baseZ - 0.4
+      );
+      rally.push({ start, end, apex: shotApices[i] });
+    }
+
+    let segmentIndex = 0;
+    let segmentT = 0;
+    let rallyEnded = false;
+    let scorer = 0;
+
+    function resetRally() {
+      playerA.position.copy(START.A);
+      playerB.position.copy(START.B);
+      playerA.rotation.y = Math.PI;
+      playerB.rotation.y = 0;
+      segmentIndex = 0;
+      segmentT = 0;
+      rallyEnded = false;
+      ball.position.copy(rally[0].start);
+      for (const s of trailPool) {
+        s.material.opacity = 0;
+        s.userData.life = 0;
+      }
+      leaveTrail(ball.position.clone());
+    }
+
+    function parabola(p0, p1, h, t) {
+      const mid = p0.clone().add(p1).multiplyScalar(0.5);
+      mid.y = h;
+      const a = p0.clone().multiplyScalar((1 - t) * (1 - t));
+      const b = mid.clone().multiplyScalar(2 * (1 - t) * t);
+      const c = p1.clone().multiplyScalar(t * t);
+      return a.add(b).add(c);
+    }
+
+    function animatePlayerTowards(player, target, dt) {
+      const speed = 1.8;
+      const pos2d = new THREE.Vector2(player.position.x, player.position.z);
+      const tgt2d = new THREE.Vector2(target.x, target.z);
+      const dir = tgt2d.clone().sub(pos2d);
+      const dist = dir.length();
+      if (dist > 0.02) {
+        dir.normalize();
+        pos2d.addScaledVector(dir, Math.min(dist, speed * dt));
+        player.position.x = pos2d.x;
+        player.position.z = pos2d.y;
+      }
+      player.rotation.y = Math.atan2(dir.x, dir.y);
+      const k = player.userData;
+      const t = elapsed * 6;
+      k.legL.rotation.x = Math.sin(t) * 0.3;
+      k.legR.rotation.x = Math.cos(t) * 0.3;
+      k.armLead.rotation.x = Math.cos(t + Math.PI) * 0.25;
+      k.armTrail.rotation.x = Math.sin(t + Math.PI) * 0.25;
+    }
+
+    function swing(player, phase) {
+      const k = player.userData;
+      const a = Math.sin(phase * Math.PI);
+      k.shoulder.rotation.y = THREE.MathUtils.lerp(-0.8, 1.0, a);
+      k.armLead.rotation.z = THREE.MathUtils.lerp(-0.4, 0.6, a);
+      k.torso.rotation.y = THREE.MathUtils.lerp(-0.2, 0.2, a);
+      k.head.rotation.y = THREE.MathUtils.lerp(-0.3, 0.3, a);
+    }
+
+    let localScoreA = 0,
+      localScoreB = 0;
+
+    function addPoint(winner) {
+      if (winner === 0) localScoreA = Math.min(localScoreA + 1, 4);
+      else localScoreB = Math.min(localScoreB + 1, 4);
+      setScoreA(localScoreA);
+      setScoreB(localScoreB);
+      if (localScoreA === 4 || localScoreB === 4) {
+        setTimeout(() => {
+          localScoreA = 0;
+          localScoreB = 0;
+          setScoreA(0);
+          setScoreB(0);
+        }, 1600);
+      }
+    }
+
+    // Camera setup
+    const camRig = new THREE.Object3D();
+    scene.add(camRig);
+    camera.position.set(12, 7, 18);
+    camera.lookAt(0, 1, 0);
+
+    const ANGLES = {
+      ORBIT: "Primary Orbit",
+      SIDELINE: "Sideline Dolly",
+      BASELINE: "Baseline Cam",
+      OVERHEAD: "Overhead",
+    };
+
+    let cutTimer = 0;
+    const CUT_INTERVAL = 8.5;
+
+    function driveCamera(dt) {
+      cutTimer += dt;
+      const cutPhase = cutTimer % (CUT_INTERVAL + 2.0);
+      if (cutPhase < CUT_INTERVAL) setCurrentAngle(ANGLES.ORBIT);
+      else {
+        const which = Math.floor((cutTimer / (CUT_INTERVAL + 2.0)) % 3);
+        setCurrentAngle(
+          [ANGLES.SIDELINE, ANGLES.BASELINE, ANGLES.OVERHEAD][which]
+        );
+      }
+
+      if (currentAngle === ANGLES.ORBIT) {
+        const t = elapsed * 0.12;
+        const r = 22;
+        const h = 8.5;
+        const cx = Math.cos(t) * r;
+        const cz = Math.sin(t) * r;
+        camera.position.lerp(new THREE.Vector3(cx, h, cz), 0.04);
+        camera.lookAt(0, 1.0, 0);
+      } else if (currentAngle === ANGLES.SIDELINE) {
+        const x = Math.sin(elapsed * 0.25) * (W * 0.6);
+        const pos = new THREE.Vector3(x, 6.2, 14.5);
+        camera.position.lerp(pos, 0.1);
+        camera.lookAt(0, 1.2, 0);
+      } else if (currentAngle === ANGLES.BASELINE) {
+        const z = L / 2 + 5 + Math.sin(elapsed * 0.5) * 1.2;
+        camera.position.lerp(new THREE.Vector3(0, 4.5, z), 0.08);
+        camera.lookAt(0, 1.1, 0);
+      } else if (currentAngle === ANGLES.OVERHEAD) {
+        camera.position.lerp(new THREE.Vector3(0, 25, 0.01), 0.1);
+        camera.lookAt(0, 0, 0);
+      }
+    }
+
+    resetRally();
+
+    function updateRally(dt) {
+      if (rallyEnded) return;
+      const seg = rally[segmentIndex];
+      const dur = 0.95;
+      segmentT += dt / dur;
+
+      const p = parabola(seg.start, seg.end, seg.apex, Math.min(segmentT, 1));
+      ball.position.copy(p);
+      leaveTrail(ball.position);
+
+      const hitter = segmentIndex % 2 === 0 ? playerA : playerB;
+      const receiver = segmentIndex % 2 === 0 ? playerB : playerA;
+      animatePlayerTowards(hitter, seg.start, dt);
+      animatePlayerTowards(receiver, seg.end, dt);
+
+      const swingT = Math.max(0, Math.min(1, (segmentT - 0.1) / 0.25));
+      swing(hitter, swingT);
+
+      if (segmentT >= 1) {
+        segmentIndex++;
+        if (segmentIndex >= rally.length) {
+          rallyEnded = true;
+          scorer = Math.random() < 0.5 ? 0 : 1;
+          addPoint(scorer);
+          setTimeout(() => {
+            resetRally();
+          }, 1200);
+        } else {
+          const next = rally[segmentIndex];
+          ball.position.copy(next.start);
+          segmentT = 0;
+        }
+      }
+    }
+
+    function step() {
+      const dt = computeDt();
+      elapsed += dt;
+      updateRally(dt);
+      updateTrail(dt);
+      driveCamera(dt);
+      renderer.render(scene, camera);
+      lastFrameAt = performance.now();
+    }
+    renderer.setAnimationLoop(step);
+
+    const intervalId = setInterval(() => {
+      if (performance.now() - lastFrameAt > 400) {
+        step();
+      }
+    }, 500);
+
+    function formatTime(d) {
+      const pad = (n) => String(n).padStart(2, "0");
+      return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(
+        d.getSeconds()
+      )}`;
+    }
+    const clockIntervalId = setInterval(() => {
+      setCurrentTime(formatTime(new Date()));
+    }, 1000);
+
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+    window.addEventListener("resize", handleResize);
+
+    const loadingTimeout = setTimeout(() => setLoading(false), 500);
+
+    // Cleanup function
     return () => {
-      cancelAnimationFrame(rafId);
-      container.removeEventListener("click", clickHandler);
-      window.removeEventListener("resize", onResize);
+      clearInterval(intervalId);
+      clearInterval(clockIntervalId);
+      clearTimeout(loadingTimeout);
+      window.removeEventListener("resize", handleResize);
       renderer.dispose();
-      container.innerHTML = "";
+      if (app && app.contains(renderer.domElement)) {
+        app.removeChild(renderer.domElement);
+      }
     };
   }, []);
 
   return (
-    <div className="relative">
-      <div className="absolute left-1/2 -translate-x-1/2 top-4 z-10 pointer-events-none">
-        <div className="bg-black/50 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-6 border border-white/10">
-          <div className="text-center">
-            <div className="text-xs text-gray-300">Player Blue</div>
-            <div ref={scoreARef} className="text-2xl font-bold text-blue-300">{scores.a}</div>
-          </div>
-          <div className="px-3 text-gray-200">|</div>
-          <div className="text-center">
-            <div className="text-xs text-gray-300">Player Red</div>
-            <div ref={scoreBRef} className="text-2xl font-bold text-red-300">{scores.b}</div>
-          </div>
-          <div ref={stateRef} className="text-sm text-gray-300 pl-4">Ready</div>
+    <div
+      style={{
+        position: "relative", // changed from "fixed"
+        width: "1200px", // set your desired width
+        height: "700px", // set your desired height
+        margin: "40px auto", // center on page, optional
+        overflow: "hidden",
+        background:
+          "radial-gradient(1200px 600px at 70% 20%, #0b0f16 0%, #05070b 60%, #020307 100%)",
+        color: "#e9eef5",
+        fontFamily:
+          'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"',
+        borderRadius: "18px", // optional, for rounded corners
+        boxShadow: "0 8px 40px rgba(0,0,0,0.35)", // optional, for effect
+      }}
+    >
+      <div ref={mountRef} style={{ width: "100%", height: "100%" }} />
+      <div
+        className="bug"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          letterSpacing: "0.4px",
+          fontSize: "12px",
+          background: "rgba(10,12,16,0.72)",
+          border: "1px solid rgba(255,255,255,0.09)",
+          borderRadius: "999px",
+          padding: "6px 10px",
+          boxShadow: "0 12px 40px rgba(0,0,0,0.45)",
+          position: "absolute",
+          left: 15,
+          right: 0,
+          top: 15,
+          pointerEvents: "none",
+          width: "200px",
+        }}
+      >
+        <div
+          className="dot"
+          style={{
+            width: "9px",
+            height: "9px",
+            borderRadius: "50%",
+            background: "#28d7ff",
+            boxShadow: "0 0 16px #28d7ff",
+          }}
+        ></div>
+        <div>ONTV • Tennis</div>
+        <div
+          className="clock"
+          style={{ opacity: 0.8, fontVariantNumeric: "tabular-nums" }}
+        >
+          {currentTime}
         </div>
       </div>
-      <div ref={containerRef} className="w-full h-[520px] rounded-xl shadow-2xl overflow-hidden border border-white/5" />
-      <div className="mt-4 text-gray-400 text-sm text-center">
-        This demo simulates an automated rally. Points are counted when the ball misses a player's side.
+      <div
+        className="angle-chip"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "6px",
+          background: "rgba(10,12,16,0.72)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: "999px",
+          padding: "6px 10px",
+          fontSize: "12px",
+          boxShadow: "0 12px 40px rgba(0,0,0,0.45)",
+          position: "absolute",
+          left: 230,
+          right: 0,
+          top: 15,
+          pointerEvents: "none",
+          width: "120px",
+        }}
+      >
+        <div
+          className="angle-dot"
+          style={{
+            width: "8px",
+            height: "8px",
+            borderRadius: "50%",
+            background: "#28d7ff",
+            boxShadow: "0 0 16px #28d7ff",
+          }}
+        ></div>
+        <span>{currentAngle}</span>
       </div>
+      <div
+        className="scoreboard"
+        style={{
+          marginLeft: "auto",
+          display: "flex",
+          gap: "12px",
+          alignItems: "center",
+          background: "rgba(10,12,16,0.72)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: "14px",
+          padding: "8px 10px",
+          boxShadow: "0 12px 40px rgba(0,0,0,0.45)",
+          backdropFilter: "blur(6px)",
+          position: "absolute",
+          right: 100,
+          top: 15,
+          pointerEvents: "none",
+          width: "180px",
+        }}
+      >
+        <div>
+          <div
+            className="title"
+            style={{
+              fontWeight: "800",
+              letterSpacing: "0.6px",
+              fontSize: "12px",
+              textTransform: "uppercase",
+              opacity: 0.8,
+            }}
+          >
+            Rally Score
+          </div>
+          <div
+            className="row"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "24px 1fr auto",
+              alignItems: "center",
+              gap: "10px",
+              padding: "6px 8px",
+              borderRadius: "10px",
+              background: "rgba(255,255,255,0.08)",
+            }}
+          >
+            <div className="seed" style={{ fontSize: "11px", opacity: 0.65 }}>
+              A
+            </div>
+            <div
+              className="name"
+              style={{ fontSize: "14px", fontWeight: "700" }}
+            >
+              Player A
+            </div>
+            <div
+              className="pts"
+              style={{
+                fontSize: "16px",
+                fontWeight: "900",
+                letterSpacing: "0.5px",
+                padding: "2px 8px",
+                borderRadius: "10px",
+                background: "rgba(255,255,255,0.06)",
+              }}
+            >
+              {points[scoreA]}
+            </div>
+          </div>
+          <div
+            className="row"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "24px 1fr auto",
+              alignItems: "center",
+              gap: "10px",
+              padding: "6px 8px",
+              borderRadius: "10px",
+            }}
+          >
+            <div className="seed" style={{ fontSize: "11px", opacity: 0.65 }}>
+              B
+            </div>
+            <div
+              className="name"
+              style={{ fontSize: "14px", fontWeight: "700" }}
+            >
+              Player B
+            </div>
+            <div
+              className="pts"
+              style={{
+                fontSize: "16px",
+                fontWeight: "900",
+                letterSpacing: "0.5px",
+                padding: "2px 8px",
+                borderRadius: "10px",
+                background: "rgba(255,255,255,0.06)",
+              }}
+            >
+              {points[scoreB]}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Ticker */}
+      <div
+        className="ticker"
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background:
+            "linear-gradient(90deg, rgba(40,215,255,0.15), rgba(40,215,255,0.03))",
+          borderTop: "1px solid rgba(255,255,255,0.08)",
+          display: "flex",
+          gap: "22px",
+          alignItems: "center",
+          padding: "10px 14px",
+          fontSize: "12px",
+          letterSpacing: "0.3px",
+          opacity: 0.9,
+        }}
+      >
+        <span
+          className="label"
+          style={{
+            fontWeight: "800",
+            textTransform: "uppercase",
+            opacity: 0.75,
+          }}
+        >
+          Angles
+        </span>
+        <span className="sep" style={{ opacity: 0.3 }}>
+          •
+        </span>{" "}
+        Orbit{" "}
+        <span className="sep" style={{ opacity: 0.3 }}>
+          •
+        </span>{" "}
+        Sideline{" "}
+        <span className="sep" style={{ opacity: 0.3 }}>
+          •
+        </span>{" "}
+        Baseline{" "}
+        <span className="sep" style={{ opacity: 0.3 }}>
+          •
+        </span>{" "}
+        Overhead
+      </div>
+
+      {/* Loading */}
+      {loading && (
+        <div
+          className="loading"
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#a9b7c6",
+            fontSize: "14px",
+            letterSpacing: "0.3px",
+          }}
+        >
+          Building scene…
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default SmartCourt;
