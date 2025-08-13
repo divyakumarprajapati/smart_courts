@@ -1,7 +1,28 @@
+import { useState } from "react";
 import SmartCourt from "./components/SmartCourt.jsx";
 import { Link } from "react-router-dom";
 
 function App() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch("http://localhost:5001/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name,
+        email: form.email,
+        message: form.message,
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
   return (
     <div>
       {/* NAV */}
@@ -24,8 +45,16 @@ function App() {
           <a className="text-gray-300 hover:text-white" href="#market">
             Market
           </a>
-          <button className="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-500">
-            Apply for Pilot
+          <button
+            className="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-500"
+            onClick={() =>
+              window.scrollTo({
+                top: document.getElementById("contact").offsetTop,
+                behavior: "smooth",
+              })
+            }
+          >
+            Contact Us
           </button>
         </div>
       </nav>
@@ -40,14 +69,14 @@ function App() {
             No referees. No interruptions. Just fair play — powered by computer
             vision and real-time orchestration.
           </p>
-          <div className="flex justify-center gap-4">
+          {/* <div className="flex justify-center gap-4">
             <button className="bg-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-500 transition">
               Join Early Access
             </button>
             <button className="border border-gray-600 px-6 py-3 rounded-lg text-gray-200 hover:bg-white/5 transition">
               Book a Demo
             </button>
-          </div>
+          </div> */}
         </div>
       </header>
 
@@ -165,54 +194,70 @@ function App() {
           <SmartCourt />
         </div>
       </section>
+      {/* CTA */}
+      <section id="contact" className="py-16 px-8 bg-gray-900 text-white">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12">
+          {/* Left Content */}
+          <div className="flex-1">
+            <h3 className="text-3xl font-bold mb-4">
+              Ready to automate your court?
+            </h3>
+            <ul className="list-disc list-inside text-lg text-gray-400 space-y-2 max-w-lg mx-auto text-left">
+              <li>Get instant match insights powered by AI</li>
+              <li>Reduce referee errors with real-time decisioning</li>
+              <li>Save time with automated game orchestration</li>
+              <li>Unlock player performance analytics for better coaching</li>
+            </ul>
+          </div>
 
-      {/* Business Model */}
-      <section className="py-12 px-6 bg-gray-900">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Business Model</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-800 p-6 rounded-xl">
-              <h3 className="font-bold mb-2">B2B Licensing</h3>
-              <p className="text-gray-300">
-                Hardware+software license for clubs and academies.
-              </p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-xl">
-              <h3 className="font-bold mb-2">Analytics Subscription</h3>
-              <p className="text-gray-300">
-                Monthly analytics per court with player insights.
-              </p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-xl">
-              <h3 className="font-bold mb-2">Enterprise</h3>
-              <p className="text-gray-300">
-                Multi-court cloud dashboards and coaching integrations.
-              </p>
-            </div>
+          {/* Right Contact Form */}
+          <div className="flex-1 p-6 rounded-lg shadow-lg">
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              <div>
+                <label className="block text-sm font-medium mb-1">Name</label>
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  className="w-full px-4 py-2 rounded-md bg-[#0d1117] border border-gray-700 text-white focus:outline-none focus:border-indigo-500"
+                  name="name"
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Email</label>
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  className="w-full px-4 py-2 rounded-md bg-[#0d1117] border border-gray-700 text-white focus:outline-none focus:border-indigo-500"
+                  name="email"
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Comments
+                </label>
+                <textarea
+                  rows="4"
+                  placeholder="Your message..."
+                  className="w-full px-4 py-2 rounded-md bg-[#0d1117] border border-gray-700 text-white focus:outline-none focus:border-indigo-500"
+                  name="message"
+                  onChange={handleChange}
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-indigo-600 hover:bg-indigo-500 py-2 rounded-md font-semibold transition"
+              >
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-12 px-6 bg-gradient-to-br from-blue-700 to-indigo-600 text-center">
-        <h3 className="text-2xl font-bold mb-3">
-          Ready to automate your court?
-        </h3>
-        <p className="text-gray-100 mb-6">
-          Apply for pilot programs and get early adopter benefits.
-        </p>
-        <div className="flex gap-4 justify-center">
-          <button className="bg-black/80 px-6 py-3 rounded-md font-semibold">
-            Apply for Pilot Program
-          </button>
-          <button className="border border-white/20 px-6 py-3 rounded-md">
-            Contact Sales
-          </button>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="py-6 bg-gray-950 text-center text-gray-400 text-sm">
+      <footer className="py-6 bg-gray-800 text-center text-gray-400 text-sm">
         © 2025 Smart Courts. All Rights Reserved.
       </footer>
     </div>
