@@ -21,7 +21,7 @@ function App() {
       }),
     });
     const data = await res.json();
-    console.log(data);
+    setForm({ name: "", email: "", message: "" });
   };
   return (
     <div>
@@ -221,6 +221,7 @@ function App() {
                   className="w-full px-4 py-2 rounded-md bg-[#0d1117] border border-gray-700 text-white focus:outline-none focus:border-indigo-500"
                   name="name"
                   onChange={handleChange}
+                  value={form.name}
                 />
               </div>
               <div>
@@ -231,6 +232,7 @@ function App() {
                   className="w-full px-4 py-2 rounded-md bg-[#0d1117] border border-gray-700 text-white focus:outline-none focus:border-indigo-500"
                   name="email"
                   onChange={handleChange}
+                  value={form.email}
                 />
               </div>
               <div>
@@ -243,6 +245,7 @@ function App() {
                   className="w-full px-4 py-2 rounded-md bg-[#0d1117] border border-gray-700 text-white focus:outline-none focus:border-indigo-500"
                   name="message"
                   onChange={handleChange}
+                  value={form.message}
                 />
               </div>
               <button
