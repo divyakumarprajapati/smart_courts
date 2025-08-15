@@ -22,7 +22,7 @@ const SmartCourt = () => {
       powerPreference: "high-performance",
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(1200, 700);
     renderer.shadowMap.enabled = true;
     app.appendChild(renderer.domElement);
 
@@ -169,78 +169,245 @@ const SmartCourt = () => {
     netTape.position.set(0, netH + 0.04, 0.02);
     netTape.castShadow = true;
     scene.add(netTape);
-
-    // Players
     function makePlayer(primaryColor = 0xffffff, accent = 0x19c8ff) {
       const g = new THREE.Group();
-      const bodyMat = new THREE.MeshStandardMaterial({
+
+      // Materials
+      const kit = new THREE.MeshStandardMaterial({
         color: primaryColor,
-        roughness: 0.8,
+        roughness: 0.85,
         metalness: 0.05,
       });
       const accentMat = new THREE.MeshStandardMaterial({
         color: accent,
         roughness: 0.6,
+        metalness: 0.05,
+      });
+      const skin = new THREE.MeshStandardMaterial({
+        color: 0xead1bd,
+        roughness: 0.95,
       });
 
-      const torso = new THREE.Mesh(
-        new THREE.BoxGeometry(0.5, 1.1, 0.3),
-        bodyMat
+      // Helpers
+      const cyl = (rTop, rBot, h, seg = 18) =>
+        new THREE.CylinderGeometry(rTop, rBot, h, seg);
+      const cap = (r = 0.1, h = 0.3, seg = 16) =>
+        new THREE.CapsuleGeometry(r, h, seg, seg);
+
+      // -------- Proportions (roughly human at ~1.75m total) --------
+      const shoulderW = 0.58;
+      const hipW = 0.38;
+      const torsoH = 1.05;
+      const legH = 0.95; // thigh+shin (knee in the middle)
+      const armH = 0.8; // upper+forearm (elbow in the middle)
+
+      // -------- Core --------
+      // Pelvis (slightly wedge-shaped) + torso (rounded box)
+      const pelvis = new THREE.Mesh(
+        new THREE.BoxGeometry(hipW, 0.25, 0.3),
+        kit
       );
-      torso.position.y = 1.4;
+      pelvis.castShadow = true;
+      pelvis.position.set(0, 1.15, 0);
+      g.add(pelvis);
+
+      const torso = new THREE.Mesh(
+        new THREE.CapsuleGeometry(0.26, torsoH * 0.45, 12, 18),
+        kit
+      );
       torso.castShadow = true;
+      torso.position.set(0, 1.65, 0);
       g.add(torso);
 
-      const head = new THREE.Mesh(
-        new THREE.SphereGeometry(0.22, 24, 16),
-        accentMat
-      );
-      head.position.y = 2.2;
+      // Neck + head (a touch forward)
+      const neck = new THREE.Mesh(cyl(0.06, 0.07, 0.1), skin);
+      neck.castShadow = true;
+      neck.position.set(0, 2.22, 0.02); // tiny forward bias
+      g.add(neck);
+
+      const head = new THREE.Mesh(new THREE.SphereGeometry(0.2, 24, 18), skin);
       head.castShadow = true;
+      head.position.set(0, 2.4, 0.04);
       g.add(head);
 
-      const hip = new THREE.Object3D();
-      hip.position.y = 0.85;
-      g.add(hip);
-      function limb(mat) {
-        const u = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.55, 0.18), mat);
-        u.castShadow = true;
-        return u;
-      }
-      const legL = limb(bodyMat);
-      const legR = limb(bodyMat);
-      legL.position.set(-0.18, 0.55 / 2, 0);
-      legR.position.set(0.18, 0.55 / 2, 0);
-      hip.add(legL);
-      hip.add(legR);
+      // Optional hair cap (comment out if not wanted)
+      const hair = new THREE.Mesh(
+        new THREE.SphereGeometry(
+          0.205,
+          24,
+          18,
+          0,
+          Math.PI * 2,
+          0,
+          Math.PI * 0.55
+        ),
+        new THREE.MeshStandardMaterial({ color: 0x30343b, roughness: 0.7 })
+      );
+      hair.position.copy(head.position);
+      hair.castShadow = true;
+      g.add(hair);
 
-      const shoulder = new THREE.Object3D();
-      shoulder.position.y = 1.8;
+      // -------- Shoulder & Hip Roots --------
+      const shoulder = new THREE.Group();
+      shoulder.position.set(0, 2.03, 0);
       g.add(shoulder);
-      const armLead = limb(bodyMat);
-      const armTrail = limb(bodyMat);
-      armLead.position.set(0.38, 0, 0);
-      armTrail.position.set(-0.38, 0, 0);
+
+      const hip = new THREE.Group();
+      hip.position.set(0, 1.2, 0);
+      g.add(hip);
+
+      // ========= ARMS =========
+      // Lead (right) arm
+      const armLead = new THREE.Group();
+      armLead.position.set(+shoulderW / 2, 0, 0);
       shoulder.add(armLead);
+
+      const upperArmLead = new THREE.Mesh(cyl(0.085, 0.095, armH * 0.5), kit);
+      upperArmLead.castShadow = true;
+      upperArmLead.position.set(0, -(armH * 0.25), 0);
+      armLead.add(upperArmLead);
+
+      const elbowLead = new THREE.Group(); // elbow pivot
+      elbowLead.position.set(0, -(armH * 0.5), 0);
+      armLead.add(elbowLead);
+
+      const forearmLead = new THREE.Mesh(cyl(0.07, 0.085, armH * 0.5), skin);
+      forearmLead.castShadow = true;
+      forearmLead.position.set(0, -(armH * 0.25), 0);
+      elbowLead.add(forearmLead);
+
+      const handLead = new THREE.Mesh(
+        new THREE.BoxGeometry(0.11, 0.1, 0.05),
+        skin
+      );
+      handLead.castShadow = true;
+      handLead.position.set(0, -(armH * 0.52), 0.02);
+      armLead.add(handLead); // attach at end; easy handle for racket
+
+      // Trail (left) arm
+      const armTrail = new THREE.Group();
+      armTrail.position.set(-shoulderW / 2, 0, 0);
       shoulder.add(armTrail);
 
+      const upperArmTrail = new THREE.Mesh(cyl(0.085, 0.095, armH * 0.5), kit);
+      upperArmTrail.castShadow = true;
+      upperArmTrail.position.set(0, -(armH * 0.25), 0);
+      armTrail.add(upperArmTrail);
+
+      const elbowTrail = new THREE.Group();
+      elbowTrail.position.set(0, -(armH * 0.5), 0);
+      armTrail.add(elbowTrail);
+
+      const forearmTrail = new THREE.Mesh(cyl(0.07, 0.085, armH * 0.5), skin);
+      forearmTrail.castShadow = true;
+      forearmTrail.position.set(0, -(armH * 0.25), 0);
+      elbowTrail.add(forearmTrail);
+
+      const handTrail = new THREE.Mesh(
+        new THREE.BoxGeometry(0.11, 0.1, 0.05),
+        skin
+      );
+      handTrail.castShadow = true;
+      handTrail.position.set(0, -(armH * 0.52), 0.02);
+      armTrail.add(handTrail);
+
+      // ========= LEGS =========
+      // “legL” = player’s right leg; “legR” = player’s left leg (keep your key names)
+      const legOffset = hipW / 2;
+
+      const legL = new THREE.Group(); // right leg group
+      legL.position.set(+legOffset, 0, 0);
+      hip.add(legL);
+
+      const thighL = new THREE.Mesh(cyl(0.11, 0.12, legH * 0.5), kit);
+      thighL.castShadow = true;
+      thighL.position.set(0, -(legH * 0.25), 0);
+      legL.add(thighL);
+
+      const kneeL = new THREE.Group();
+      kneeL.position.set(0, -(legH * 0.5), 0);
+      legL.add(kneeL);
+
+      const shinL = new THREE.Mesh(cyl(0.09, 0.105, legH * 0.5), kit);
+      shinL.castShadow = true;
+      shinL.position.set(0, -(legH * 0.25), 0);
+      kneeL.add(shinL);
+
+      const footL = new THREE.Mesh(
+        new THREE.BoxGeometry(0.28, 0.11, 0.15),
+        accentMat
+      );
+      footL.castShadow = true;
+      footL.position.set(0.06, -(legH * 0.52), 0.04);
+      footL.rotation.x = THREE.MathUtils.degToRad(8); // toe tilt
+      legL.add(footL);
+
+      const legR = new THREE.Group(); // left leg group
+      legR.position.set(-legOffset, 0, 0);
+      hip.add(legR);
+
+      const thighR = new THREE.Mesh(cyl(0.11, 0.12, legH * 0.5), kit);
+      thighR.castShadow = true;
+      thighR.position.set(0, -(legH * 0.25), 0);
+      legR.add(thighR);
+
+      const kneeR = new THREE.Group();
+      kneeR.position.set(0, -(legH * 0.5), 0);
+      legR.add(kneeR);
+
+      const shinR = new THREE.Mesh(cyl(0.09, 0.105, legH * 0.5), kit);
+      shinR.castShadow = true;
+      shinR.position.set(0, -(legH * 0.25), 0);
+      kneeR.add(shinR);
+
+      const footR = new THREE.Mesh(
+        new THREE.BoxGeometry(0.28, 0.11, 0.15),
+        accentMat
+      );
+      footR.castShadow = true;
+      footR.position.set(0.06, -(legH * 0.52), 0.04);
+      footR.rotation.x = THREE.MathUtils.degToRad(8);
+      legR.add(footR);
+
+      // Shorts overlay to break silhouette
+      const shorts = new THREE.Mesh(
+        new THREE.BoxGeometry(hipW * 0.95, 0.26, 0.32),
+        accentMat
+      );
+      shorts.castShadow = true;
+      shorts.position.set(0, 1.33, 0.01);
+      g.add(shorts);
+
+      // ========= Racket on lead hand =========
       const racket = new THREE.Group();
       const grip = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.04, 0.05, 0.35, 12),
+        new THREE.CylinderGeometry(0.04, 0.05, 0.35, 16),
         new THREE.MeshStandardMaterial({ color: 0x222222 })
       );
       grip.rotation.z = Math.PI / 2;
-      grip.position.set(0.18, -0.05, 0);
-      const headRing = new THREE.Mesh(
-        new THREE.TorusGeometry(0.22, 0.03, 10, 28),
-        new THREE.MeshStandardMaterial({ color: 0xdddddd })
-      );
-      headRing.rotation.y = Math.PI / 2;
-      headRing.position.set(0.42, 0.06, 0);
-      racket.add(grip);
-      racket.add(headRing);
-      armLead.add(racket);
+      grip.position.set(0.18, -0.02, 0);
 
+      const hoop = new THREE.Mesh(
+        new THREE.TorusGeometry(0.22, 0.03, 10, 28),
+        new THREE.MeshStandardMaterial({ color: 0xdddddd, roughness: 0.35 })
+      );
+      hoop.rotation.y = Math.PI / 2;
+      hoop.position.set(0.42, 0.06, 0);
+
+      racket.add(grip, hoop);
+      handLead.add(racket);
+
+      // -------- Natural default pose (subtle bends so it doesn't look rigid) --------
+      // External animation still rotates these same groups.
+      shoulder.rotation.z = THREE.MathUtils.degToRad(2);
+      armLead.rotation.x = THREE.MathUtils.degToRad(-10);
+      armTrail.rotation.x = THREE.MathUtils.degToRad(-6);
+      legL.rotation.x = THREE.MathUtils.degToRad(4);
+      legR.rotation.x = THREE.MathUtils.degToRad(-2);
+      torso.rotation.x = THREE.MathUtils.degToRad(-2);
+      head.rotation.x = THREE.MathUtils.degToRad(-3);
+
+      // Expose the same handles your code already uses.
       g.userData = {
         torso,
         head,
@@ -250,7 +417,15 @@ const SmartCourt = () => {
         legR,
         armLead,
         armTrail,
+        // Bonus finer controls if you want them later:
+        elbowLead,
+        elbowTrail,
+        kneeL,
+        kneeR,
+        handLead,
+        handTrail,
       };
+
       return g;
     }
 
@@ -564,7 +739,7 @@ const SmartCourt = () => {
         position: "relative", // changed from "fixed"
         width: "1200px", // set your desired width
         height: "700px", // set your desired height
-        margin: "40px auto", // center on page, optional
+        margin: "auto", // center on page, optional
         overflow: "hidden",
         background:
           "radial-gradient(1200px 600px at 70% 20%, #0b0f16 0%, #05070b 60%, #020307 100%)",
@@ -661,10 +836,10 @@ const SmartCourt = () => {
           boxShadow: "0 12px 40px rgba(0,0,0,0.45)",
           backdropFilter: "blur(6px)",
           position: "absolute",
-          right: 100,
+          right: 20,
           top: 15,
           pointerEvents: "none",
-          width: "180px",
+          width: "210px",
         }}
       >
         <div>
@@ -684,7 +859,7 @@ const SmartCourt = () => {
             className="row"
             style={{
               display: "grid",
-              gridTemplateColumns: "24px 1fr auto",
+              gridTemplateColumns: "1fr auto",
               alignItems: "center",
               gap: "10px",
               padding: "6px 8px",
@@ -692,9 +867,6 @@ const SmartCourt = () => {
               background: "rgba(255,255,255,0.08)",
             }}
           >
-            <div className="seed" style={{ fontSize: "11px", opacity: 0.65 }}>
-              A
-            </div>
             <div
               className="name"
               style={{ fontSize: "14px", fontWeight: "700" }}
@@ -719,16 +891,14 @@ const SmartCourt = () => {
             className="row"
             style={{
               display: "grid",
-              gridTemplateColumns: "24px 1fr auto",
+              gridTemplateColumns: "1fr auto",
               alignItems: "center",
               gap: "10px",
               padding: "6px 8px",
               borderRadius: "10px",
+              width: "190px",
             }}
           >
-            <div className="seed" style={{ fontSize: "11px", opacity: 0.65 }}>
-              B
-            </div>
             <div
               className="name"
               style={{ fontSize: "14px", fontWeight: "700" }}
@@ -744,6 +914,7 @@ const SmartCourt = () => {
                 padding: "2px 8px",
                 borderRadius: "10px",
                 background: "rgba(255,255,255,0.06)",
+                marginLeft: "auto",
               }}
             >
               {points[scoreB]}
