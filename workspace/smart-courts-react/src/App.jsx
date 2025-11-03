@@ -38,7 +38,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4">
           <a className="text-gray-300 hover:text-white" href="#how">
             How it works
           </a>
@@ -184,10 +184,10 @@ function App() {
       {/* 3D Court Section */}
       <section className="py-12 bg-gray-800">
         <div className="max-w-7xl mx-auto relative">
-          <h2 className="text-3xl font-bold mb-4 text-center">
+          <h2 className="hidden md:block text-3xl font-bold mb-4 text-center">
             Experience the Smart Court
           </h2>
-          <p className="text-center text-gray-300 mb-6">
+          <p className="hidden md:block text-center text-gray-300 mb-6">
             Interactive demo showing ball tracking, rally orchestration and live
             score updates.
           </p>
