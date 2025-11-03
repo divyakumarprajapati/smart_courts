@@ -182,9 +182,9 @@ function App() {
       </section>
 
       {/* 3D Court Section */}
-      <section className="py-12 bg-gray-800">
+      <section className="hidden md:block py-12 bg-gray-800">
         <div className="max-w-7xl mx-auto relative">
-          <h2 className="hidden md:block text-3xl font-bold mb-4 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-center">
             Experience the Smart Court
           </h2>
           <SmartCourt />
