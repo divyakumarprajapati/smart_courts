@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="768" viewBox="0 0 200 300">
+  <!-- Colors -->
+  <defs>
+    <style>
+      .blue { fill: #214F86; }  /* deep court blue */
+      .white { fill: #ffffff; }
+    </style>
+  </defs>
+
+  <!-- Outer blue rounded rectangle -->
+  <rect x="10" y="10" width="180" height="280" rx="40" class="blue"/>
+
+  <!-- Inner white margin to create the ring -->
+  <rect x="26" y="26" width="148" height="248" rx="28" class="white"/>
+
+  <!-- Inner blue court area -->
+  <rect x="40" y="40" width="120" height="220" rx="22" class="blue"/>
+
+  <!-- Court lines (white) -->
+  <!-- Top horizontal bar -->
+  <rect x="40" y="110" width="120" height="12" class="white"/>
+  <!-- Bottom horizontal bar -->
+  <rect x="40" y="188" width="120" height="12" class="white"/>
+  <!-- Center vertical bar (between the two horizontals) -->
+  <rect x="98" y="122" width="4" height="66" class="white"/>
+</svg>
