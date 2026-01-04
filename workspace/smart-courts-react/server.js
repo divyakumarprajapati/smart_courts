@@ -18,5 +18,5 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
-  console.log(`Serving Smart Courts React application`);
+  console.log(`Serving Court NG React application`);
 });

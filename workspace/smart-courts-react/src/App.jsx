@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SmartCourt from "./components/SmartCourt.jsx";
+import CourtNG from "./components/CourtNG.jsx";
 import { Link } from "react-router-dom";
 
 function App() {
@@ -29,10 +29,10 @@ function App() {
       <nav className="px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-md bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center font-bold">
-            SC
+            CNG
           </div>
           <div>
-            <div className="text-sm font-semibold">Smart Courts</div>
+            <div className="text-sm font-semibold">Court NG</div>
             <div className="text-xs text-gray-400">
               AI-Powered Sports Referee
             </div>
@@ -63,7 +63,7 @@ function App() {
       <header className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-gray-900 via-slate-900 to-black">
         <div className="max-w-4xl text-center px-6">
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4 glow">
-            Revolutionizing Sports with AI-Powered Smart Courts
+            Revolutionizing Sports with AI-Powered Court NG
           </h1>
           <p className="text-gray-300 mb-8 text-lg">
             No referees. No interruptions. Just fair play — powered by computer
@@ -88,7 +88,7 @@ function App() {
           </h2>
           <p className="text-gray-300 max-w-3xl mx-auto mb-10">
             Sports still rely on fallible human referees and manual
-            scorekeeping. Smart Courts automates match arbitration, orchestrates
+            scorekeeping. Court NG automates match arbitration, orchestrates
             rallies, and provides coaching-grade analytics — all from a simple
             camera setup.
           </p>
@@ -185,9 +185,9 @@ function App() {
       <section className="hidden md:block py-12 bg-gray-800">
         <div className="max-w-7xl mx-auto relative">
           <h2 className="text-3xl font-bold mb-4 text-center">
-            Experience the Smart Court
+            Experience Court NG
           </h2>
-          <SmartCourt />
+          <CourtNG />
         </div>
       </section>
       {/* CTA */}
@@ -257,7 +257,7 @@ function App() {
 
       {/* Footer */}
       <footer className="py-6 bg-gray-800 text-center text-gray-400 text-sm">
-        © 2025 Smart Courts. All Rights Reserved.
+        © 2025 Court NG. All Rights Reserved.
       </footer>
     </div>
   );
