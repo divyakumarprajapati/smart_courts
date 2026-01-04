@@ -11,7 +11,7 @@ function ComputerVision() {
             CNG
           </div>
           <div>
-            <div className="text-sm font-semibold">Court NG</div>
+            <div className="text-sm font-semibold">CourtNG</div>
             <div className="text-xs text-gray-400">
               AI-Powered Sports Referee
             </div>
