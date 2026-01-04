@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-const SmartCourt = () => {
+const CourtNG = () => {
   const mountRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [currentAngle, setCurrentAngle] = useState("Primary Orbit");
@@ -992,4 +992,4 @@ const SmartCourt = () => {
   );
 };
 
-export default SmartCourt;
+export default CourtNG;

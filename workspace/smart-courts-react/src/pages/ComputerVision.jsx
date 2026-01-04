@@ -8,10 +8,10 @@ function ComputerVision() {
       <nav className="px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-md bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center font-bold">
-            SC
+            CNG
           </div>
           <div>
-            <div className="text-sm font-semibold">Smart Courts</div>
+            <div className="text-sm font-semibold">Court NG</div>
             <div className="text-xs text-gray-400">
               AI-Powered Sports Referee
             </div>
