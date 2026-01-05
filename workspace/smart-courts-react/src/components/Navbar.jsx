@@ -57,33 +57,51 @@ const Navbar = () => {
                   className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-600 flex items-center justify-center font-bold text-white shadow-lg shadow-emerald-500/25 group-hover:shadow-emerald-500/40 transition-all duration-300"
                 >
                   <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
+                    width="26"
+                    height="26"
+                    viewBox="0 0 32 32"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path
-                      d="M12 2L2 7L12 12L22 7L12 2Z"
+                    {/* Court outline */}
+                    <rect
+                      x="4"
+                      y="7"
+                      width="24"
+                      height="18"
+                      rx="2"
                       stroke="white"
                       strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      fill="none"
+                      opacity="0.95"
                     />
-                    <path
-                      d="M2 17L12 22L22 17"
+                    {/* Center line */}
+                    <line
+                      x1="16"
+                      y1="7"
+                      x2="16"
+                      y2="25"
                       stroke="white"
                       strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      opacity="0.7"
                     />
-                    <path
-                      d="M2 12L12 17L22 12"
+                    {/* AI eye - center circle */}
+                    <circle
+                      cx="16"
+                      cy="16"
+                      r="5"
                       stroke="white"
                       strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      fill="none"
+                      opacity="0.95"
                     />
+                    {/* AI core - glowing center */}
+                    <circle cx="16" cy="16" r="2" fill="white" />
+                    {/* Neural nodes at corners */}
+                    <circle cx="7" cy="10" r="1.5" fill="white" opacity="0.8" />
+                    <circle cx="25" cy="10" r="1.5" fill="white" opacity="0.8" />
+                    <circle cx="7" cy="22" r="1.5" fill="white" opacity="0.8" />
+                    <circle cx="25" cy="22" r="1.5" fill="white" opacity="0.8" />
                   </svg>
                 </motion.div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
