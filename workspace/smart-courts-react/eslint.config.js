@@ -15,7 +15,10 @@ export default defineConfig([
     ],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
@@ -23,7 +26,14 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // Allow unused vars starting with uppercase (React components) or underscore
+      // Also allow motion import which is used as motion.div in JSX
+      'no-unused-vars': ['error', { 
+        varsIgnorePattern: '^[A-Z_]|^motion$',
+        argsIgnorePattern: '^_|Icon|Component',
+        ignoreRestSiblings: true,
+      }],
+      'react-hooks/exhaustive-deps': 'warn',
     },
   },
 ])
