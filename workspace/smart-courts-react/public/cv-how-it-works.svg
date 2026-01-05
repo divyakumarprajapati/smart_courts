@@ -1,0 +1,97 @@
+<svg width="600" height="500" viewBox="0 0 600 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cvBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d1fae5;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cvGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="500" rx="16" fill="url(#cvBg)"/>
+  
+  <!-- Grid -->
+  <pattern id="cvGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#10b981" stroke-opacity="0.08" stroke-width="1"/>
+  </pattern>
+  <rect width="600" height="500" fill="url(#cvGrid)"/>
+  
+  <!-- Court top view -->
+  <g transform="translate(150, 120)">
+    <rect width="300" height="200" rx="8" fill="white" stroke="#10b981" stroke-width="2" stroke-opacity="0.3"/>
+    <line x1="150" y1="0" x2="150" y2="200" stroke="#10b981" stroke-width="1" stroke-opacity="0.3"/>
+    <rect x="100" y="70" width="100" height="60" rx="4" fill="none" stroke="#10b981" stroke-width="1" stroke-opacity="0.3"/>
+    
+    <!-- Players -->
+    <circle cx="80" cy="100" r="12" fill="#10b981"/>
+    <circle cx="220" cy="100" r="12" fill="#06b6d4"/>
+    
+    <!-- Ball trajectory -->
+    <path d="M92 100 Q150 60 208 100" stroke="#f97316" stroke-width="2" stroke-dasharray="4,4" fill="none"/>
+    <circle cx="150" cy="70" r="6" fill="#f97316"/>
+  </g>
+  
+  <!-- Camera positions -->
+  <g transform="translate(100, 80)">
+    <rect width="40" height="28" rx="4" fill="url(#cvGreen)"/>
+    <circle cx="20" cy="14" r="8" fill="white" fill-opacity="0.3"/>
+    <circle cx="20" cy="14" r="5" fill="white"/>
+    <text x="20" y="45" font-family="system-ui" font-size="10" fill="#059669" text-anchor="middle">CAM 1</text>
+  </g>
+  
+  <g transform="translate(460, 80)">
+    <rect width="40" height="28" rx="4" fill="url(#cvGreen)"/>
+    <circle cx="20" cy="14" r="8" fill="white" fill-opacity="0.3"/>
+    <circle cx="20" cy="14" r="5" fill="white"/>
+    <text x="20" y="45" font-family="system-ui" font-size="10" fill="#059669" text-anchor="middle">CAM 2</text>
+  </g>
+  
+  <g transform="translate(100, 340)">
+    <rect width="40" height="28" rx="4" fill="url(#cvGreen)"/>
+    <circle cx="20" cy="14" r="8" fill="white" fill-opacity="0.3"/>
+    <circle cx="20" cy="14" r="5" fill="white"/>
+    <text x="20" y="45" font-family="system-ui" font-size="10" fill="#059669" text-anchor="middle">CAM 3</text>
+  </g>
+  
+  <g transform="translate(460, 340)">
+    <rect width="40" height="28" rx="4" fill="url(#cvGreen)"/>
+    <circle cx="20" cy="14" r="8" fill="white" fill-opacity="0.3"/>
+    <circle cx="20" cy="14" r="5" fill="white"/>
+    <text x="20" y="45" font-family="system-ui" font-size="10" fill="#059669" text-anchor="middle">CAM 4</text>
+  </g>
+  
+  <!-- Tracking lines -->
+  <line x1="120" y1="94" x2="200" y2="170" stroke="#10b981" stroke-width="1" stroke-dasharray="3,3" stroke-opacity="0.5"/>
+  <line x1="480" y1="94" x2="400" y2="170" stroke="#10b981" stroke-width="1" stroke-dasharray="3,3" stroke-opacity="0.5"/>
+  <line x1="120" y1="354" x2="200" y2="280" stroke="#10b981" stroke-width="1" stroke-dasharray="3,3" stroke-opacity="0.5"/>
+  <line x1="480" y1="354" x2="400" y2="280" stroke="#10b981" stroke-width="1" stroke-dasharray="3,3" stroke-opacity="0.5"/>
+  
+  <!-- Stats panel -->
+  <g transform="translate(200, 380)">
+    <rect width="200" height="80" rx="8" fill="white" stroke="#10b981" stroke-width="1" stroke-opacity="0.2"/>
+    <text x="100" y="25" font-family="system-ui" font-size="12" font-weight="600" fill="#0f172a" text-anchor="middle">Real-Time Detection</text>
+    <g transform="translate(20, 40)">
+      <circle r="4" fill="#10b981"/>
+      <text x="10" y="4" font-family="system-ui" font-size="10" fill="#64748b">Ball: Tracked</text>
+    </g>
+    <g transform="translate(100, 40)">
+      <circle r="4" fill="#10b981"/>
+      <text x="10" y="4" font-family="system-ui" font-size="10" fill="#64748b">Players: 2</text>
+    </g>
+    <g transform="translate(20, 60)">
+      <circle r="4" fill="#10b981"/>
+      <text x="10" y="4" font-family="system-ui" font-size="10" fill="#64748b">FPS: 120</text>
+    </g>
+    <g transform="translate(100, 60)">
+      <circle r="4" fill="#10b981"/>
+      <text x="10" y="4" font-family="system-ui" font-size="10" fill="#64748b">Latency: 28ms</text>
+    </g>
+  </g>
+  
+  <!-- Floating decorations -->
+  <circle cx="50" cy="50" r="20" fill="#10b981" fill-opacity="0.1"/>
+  <circle cx="550" cy="450" r="30" fill="#06b6d4" fill-opacity="0.1"/>
+</svg>

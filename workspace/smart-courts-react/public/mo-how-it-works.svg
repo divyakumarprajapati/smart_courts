@@ -1,0 +1,115 @@
+<svg width="600" height="500" viewBox="0 0 600 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="moBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff7ed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffedd5;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="moOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ea580c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="500" rx="16" fill="url(#moBg)"/>
+  
+  <!-- Grid -->
+  <pattern id="moGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#f97316" stroke-opacity="0.08" stroke-width="1"/>
+  </pattern>
+  <rect width="600" height="500" fill="url(#moGrid)"/>
+  
+  <!-- Flow steps -->
+  <!-- Step 1: Event Detection -->
+  <g transform="translate(80, 80)">
+    <rect width="180" height="90" rx="12" fill="white" stroke="#f97316" stroke-width="2"/>
+    <circle cx="30" cy="30" r="18" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+    <text x="30" y="35" font-family="system-ui" font-size="14" font-weight="700" fill="#f97316" text-anchor="middle">1</text>
+    <text x="60" y="30" font-family="system-ui" font-size="13" font-weight="600" fill="#0f172a">Event Detection</text>
+    <text x="60" y="48" font-family="system-ui" font-size="10" fill="#64748b">Ball in/out, faults</text>
+    <g transform="translate(15, 55)">
+      <rect width="150" height="6" rx="3" fill="#fff7ed"/>
+      <rect width="120" height="6" rx="3" fill="#f97316"/>
+    </g>
+    <text x="15" y="75" font-family="system-ui" font-size="9" fill="#64748b">Processing...</text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <path d="M270 125 L320 125" stroke="#f97316" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="320,120 330,125 320,130" fill="#f97316"/>
+  
+  <!-- Step 2: Rules Engine -->
+  <g transform="translate(340, 80)">
+    <rect width="180" height="90" rx="12" fill="white" stroke="#f97316" stroke-width="2"/>
+    <circle cx="30" cy="30" r="18" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+    <text x="30" y="35" font-family="system-ui" font-size="14" font-weight="700" fill="#f97316" text-anchor="middle">2</text>
+    <text x="60" y="30" font-family="system-ui" font-size="13" font-weight="600" fill="#0f172a">Rules Engine</text>
+    <text x="60" y="48" font-family="system-ui" font-size="10" fill="#64748b">Apply game logic</text>
+    <g transform="translate(15, 55)">
+      <circle r="4" fill="#10b981"/>
+      <text x="10" y="4" font-family="system-ui" font-size="9" fill="#64748b">Valid serve</text>
+    </g>
+    <g transform="translate(90, 55)">
+      <circle r="4" fill="#10b981"/>
+      <text x="10" y="4" font-family="system-ui" font-size="9" fill="#64748b">Score +1</text>
+    </g>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <path d="M430 180 L430 220" stroke="#f97316" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="425,220 430,230 435,220" fill="#f97316"/>
+  
+  <!-- Step 3: State Update -->
+  <g transform="translate(340, 240)">
+    <rect width="180" height="90" rx="12" fill="white" stroke="#f97316" stroke-width="2"/>
+    <circle cx="30" cy="30" r="18" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+    <text x="30" y="35" font-family="system-ui" font-size="14" font-weight="700" fill="#f97316" text-anchor="middle">3</text>
+    <text x="60" y="30" font-family="system-ui" font-size="13" font-weight="600" fill="#0f172a">State Update</text>
+    <text x="60" y="48" font-family="system-ui" font-size="10" fill="#64748b">Update match state</text>
+    <g transform="translate(15, 60)">
+      <rect width="70" height="20" rx="4" fill="#fff7ed" stroke="#f97316" stroke-width="1"/>
+      <text x="35" y="14" font-family="system-ui" font-size="11" font-weight="600" fill="#f97316" text-anchor="middle">15 - 12</text>
+    </g>
+    <g transform="translate(95, 60)">
+      <rect width="70" height="20" rx="4" fill="#10b981"/>
+      <text x="35" y="14" font-family="system-ui" font-size="10" fill="white" text-anchor="middle">Set 2</text>
+    </g>
+  </g>
+  
+  <!-- Arrow 3 -->
+  <path d="M330 285 L280 285" stroke="#f97316" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="280,280 270,285 280,290" fill="#f97316"/>
+  
+  <!-- Step 4: Broadcast -->
+  <g transform="translate(80, 240)">
+    <rect width="180" height="90" rx="12" fill="white" stroke="#f97316" stroke-width="2"/>
+    <circle cx="30" cy="30" r="18" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+    <text x="30" y="35" font-family="system-ui" font-size="14" font-weight="700" fill="#f97316" text-anchor="middle">4</text>
+    <text x="60" y="30" font-family="system-ui" font-size="13" font-weight="600" fill="#0f172a">Broadcast</text>
+    <text x="60" y="48" font-family="system-ui" font-size="10" fill="#64748b">Push to displays</text>
+    <!-- Device icons -->
+    <g transform="translate(20, 55)">
+      <rect width="30" height="20" rx="2" fill="#f97316"/>
+      <rect x="2" y="2" width="26" height="16" rx="1" fill="white"/>
+    </g>
+    <g transform="translate(60, 55)">
+      <rect width="16" height="24" rx="2" fill="#f97316"/>
+      <rect x="2" y="3" width="12" height="18" rx="1" fill="white"/>
+    </g>
+    <g transform="translate(90, 55)">
+      <rect width="50" height="20" rx="2" fill="#f97316"/>
+      <text x="25" y="14" font-family="system-ui" font-size="8" fill="white" text-anchor="middle">LED</text>
+    </g>
+  </g>
+  
+  <!-- Bottom: Latency indicator -->
+  <g transform="translate(150, 380)">
+    <rect width="300" height="80" rx="12" fill="white" stroke="#f97316" stroke-width="2"/>
+    <text x="150" y="30" font-family="system-ui" font-size="14" font-weight="700" fill="#0f172a" text-anchor="middle">Total Latency</text>
+    <text x="150" y="60" font-family="system-ui" font-size="28" font-weight="800" fill="#f97316" text-anchor="middle">&lt;30ms</text>
+  </g>
+  
+  <!-- Floating decorations -->
+  <circle cx="50" cy="400" r="25" fill="#f97316" fill-opacity="0.1"/>
+  <circle cx="550" cy="50" r="30" fill="#06b6d4" fill-opacity="0.1"/>
+</svg>

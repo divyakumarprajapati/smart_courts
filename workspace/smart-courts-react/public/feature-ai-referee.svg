@@ -1,0 +1,78 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#d1fae5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a7f3d0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="iconGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="courtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#34d399;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bgGrad1)"/>
+  
+  <!-- Grid pattern -->
+  <pattern id="grid1" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#10b981" stroke-opacity="0.1" stroke-width="1"/>
+  </pattern>
+  <rect width="800" height="450" fill="url(#grid1)"/>
+  
+  <!-- Court representation -->
+  <rect x="200" y="100" width="400" height="250" rx="8" fill="url(#courtGrad)" stroke="#10b981" stroke-width="2" stroke-opacity="0.3"/>
+  <line x1="400" y1="100" x2="400" y2="350" stroke="#10b981" stroke-width="2" stroke-opacity="0.3"/>
+  <circle cx="400" cy="225" r="40" fill="none" stroke="#10b981" stroke-width="2" stroke-opacity="0.3"/>
+  
+  <!-- Camera icons -->
+  <g transform="translate(150, 80)">
+    <rect width="50" height="35" rx="6" fill="url(#iconGrad1)"/>
+    <circle cx="25" cy="17" r="10" fill="white" fill-opacity="0.3"/>
+    <circle cx="25" cy="17" r="6" fill="white"/>
+  </g>
+  <g transform="translate(600, 80)">
+    <rect width="50" height="35" rx="6" fill="url(#iconGrad1)"/>
+    <circle cx="25" cy="17" r="10" fill="white" fill-opacity="0.3"/>
+    <circle cx="25" cy="17" r="6" fill="white"/>
+  </g>
+  <g transform="translate(150, 335)">
+    <rect width="50" height="35" rx="6" fill="url(#iconGrad1)"/>
+    <circle cx="25" cy="17" r="10" fill="white" fill-opacity="0.3"/>
+    <circle cx="25" cy="17" r="6" fill="white"/>
+  </g>
+  <g transform="translate(600, 335)">
+    <rect width="50" height="35" rx="6" fill="url(#iconGrad1)"/>
+    <circle cx="25" cy="17" r="10" fill="white" fill-opacity="0.3"/>
+    <circle cx="25" cy="17" r="6" fill="white"/>
+  </g>
+  
+  <!-- Tracking lines -->
+  <line x1="175" y1="97" x2="320" y2="180" stroke="#10b981" stroke-width="2" stroke-dasharray="5,5" stroke-opacity="0.5"/>
+  <line x1="625" y1="97" x2="480" y2="180" stroke="#10b981" stroke-width="2" stroke-dasharray="5,5" stroke-opacity="0.5"/>
+  
+  <!-- Ball -->
+  <circle cx="400" cy="225" r="12" fill="#f97316"/>
+  <circle cx="396" cy="221" r="4" fill="white" fill-opacity="0.5"/>
+  
+  <!-- Player dots -->
+  <circle cx="300" cy="200" r="15" fill="#10b981"/>
+  <circle cx="500" cy="250" r="15" fill="#06b6d4"/>
+  
+  <!-- AI Eye icon in center -->
+  <g transform="translate(370, 380)">
+    <circle cx="30" cy="20" r="25" fill="white" stroke="#10b981" stroke-width="2"/>
+    <circle cx="30" cy="20" r="15" fill="#10b981"/>
+    <circle cx="30" cy="20" r="8" fill="white"/>
+    <circle cx="33" cy="17" r="3" fill="#059669"/>
+  </g>
+  
+  <!-- Floating elements -->
+  <circle cx="100" cy="150" r="30" fill="#10b981" fill-opacity="0.1"/>
+  <circle cx="700" cy="300" r="40" fill="#06b6d4" fill-opacity="0.1"/>
+  <circle cx="650" cy="100" r="20" fill="#a855f7" fill-opacity="0.1"/>
+</svg>
