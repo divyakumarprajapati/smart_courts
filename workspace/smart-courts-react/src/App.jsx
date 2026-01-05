@@ -33,9 +33,11 @@ import {
   Star,
   Gauge,
   MonitorPlay,
+  Monitor,
 } from "lucide-react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CourtNG from "./components/CourtNG";
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, suffix = "", prefix = "" }) => {
@@ -679,6 +681,83 @@ function App() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 3D Court Demo Section */}
+      <section id="demo" className="py-24 relative overflow-hidden section-accent">
+        <BackgroundOrbs />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 badge badge-primary mb-4"
+            >
+              <Eye className="w-4 h-4" />
+              <span>Interactive Demo</span>
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
+            >
+              Explore the <span className="text-gradient">Smart Court</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-slate-600 text-lg max-w-2xl mx-auto"
+            >
+              Experience our multi-camera AI system in an interactive 3D environment. 
+              See how CourtNG tracks every movement in real-time.
+            </motion.p>
+          </div>
+
+          {/* 3D Court - Desktop Only */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="hidden md:block"
+          >
+            <div className="relative mx-auto">
+              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-purple-500/20 to-cyan-500/20 rounded-3xl blur-3xl opacity-50" />
+              <CourtNG />
+            </div>
+          </motion.div>
+
+          {/* Mobile Fallback */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="md:hidden"
+          >
+            <div className="relative rounded-2xl overflow-hidden aspect-video bg-gradient-to-br from-slate-100 to-slate-200 border border-slate-200 shadow-xl">
+              <img
+                src="/feature-ai-referee.svg"
+                alt="CourtNG Demo"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                <div className="text-center bg-white/90 backdrop-blur-sm rounded-xl px-6 py-4 shadow-lg">
+                  <Monitor className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
+                  <p className="text-slate-800 font-medium">View on desktop for 3D demo</p>
+                  <p className="text-slate-500 text-sm">Interactive experience available on larger screens</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
