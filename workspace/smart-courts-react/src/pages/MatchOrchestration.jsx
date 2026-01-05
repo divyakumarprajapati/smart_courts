@@ -28,8 +28,8 @@ const FeatureItem = ({ icon: IconComponent, title, description }) => (
     className="flex gap-4"
   >
     <div className="flex-shrink-0">
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/30 flex items-center justify-center">
-        <IconComponent className="w-5 h-5 text-purple-400" />
+      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/30 flex items-center justify-center">
+        <IconComponent className="w-5 h-5 text-orange-400" />
       </div>
     </div>
     <div>
@@ -47,8 +47,8 @@ const BenefitCard = ({ icon: IconComponent, title, description }) => (
     viewport={{ once: true }}
     className="glass-card rounded-2xl p-6 text-center"
   >
-    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/30 flex items-center justify-center mx-auto mb-4">
-      <IconComponent className="w-7 h-7 text-purple-400" />
+    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/30 flex items-center justify-center mx-auto mb-4">
+      <IconComponent className="w-7 h-7 text-orange-400" />
     </div>
     <h4 className="text-white font-bold text-lg mb-2">{title}</h4>
     <p className="text-gray-400 text-sm">{description}</p>
@@ -113,7 +113,7 @@ function MatchOrchestration() {
   ];
 
   return (
-    <div className="bg-[#030712] text-white min-h-screen">
+    <div className="bg-[#0a0a0a] text-white min-h-screen">
       <Navbar />
 
       {/* Hero Section */}
@@ -122,7 +122,7 @@ function MatchOrchestration() {
         <div className="absolute inset-0 bg-gradient-radial" />
         
         {/* Floating Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl animate-float-delayed" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
@@ -242,9 +242,9 @@ function MatchOrchestration() {
                   alt="Match Orchestration Workflow"
                   className="w-full h-auto rounded-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
               </div>
-              <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-3xl blur-3xl opacity-30 -z-10" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 to-amber-500/20 rounded-3xl blur-3xl opacity-30 -z-10" />
             </motion.div>
           </div>
         </div>
@@ -323,7 +323,7 @@ function MatchOrchestration() {
                   "Zero training needed for venue operators",
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle2 className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-orange-400 flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
