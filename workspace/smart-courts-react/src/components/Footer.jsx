@@ -54,33 +54,51 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
                 <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 32 32"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    d="M12 2L2 7L12 12L22 7L12 2Z"
+                  {/* Court outline */}
+                  <rect
+                    x="4"
+                    y="7"
+                    width="24"
+                    height="18"
+                    rx="2"
                     stroke="white"
                     strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    fill="none"
+                    opacity="0.95"
                   />
-                  <path
-                    d="M2 17L12 22L22 17"
+                  {/* Center line */}
+                  <line
+                    x1="16"
+                    y1="7"
+                    x2="16"
+                    y2="25"
                     stroke="white"
                     strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    opacity="0.7"
                   />
-                  <path
-                    d="M2 12L12 17L22 12"
+                  {/* AI eye - center circle */}
+                  <circle
+                    cx="16"
+                    cy="16"
+                    r="5"
                     stroke="white"
                     strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    fill="none"
+                    opacity="0.95"
                   />
+                  {/* AI core - glowing center */}
+                  <circle cx="16" cy="16" r="2" fill="white" />
+                  {/* Neural nodes at corners */}
+                  <circle cx="7" cy="10" r="1.5" fill="white" opacity="0.8" />
+                  <circle cx="25" cy="10" r="1.5" fill="white" opacity="0.8" />
+                  <circle cx="7" cy="22" r="1.5" fill="white" opacity="0.8" />
+                  <circle cx="25" cy="22" r="1.5" fill="white" opacity="0.8" />
                 </svg>
               </div>
               <div>

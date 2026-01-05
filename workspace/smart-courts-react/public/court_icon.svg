@@ -1,26 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="768" viewBox="0 0 200 300">
-  <!-- Colors -->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
   <defs>
-    <style>
-      .blue { fill: #214F86; }  /* deep court blue */
-      .white { fill: #ffffff; }
-    </style>
+    <linearGradient id="courtGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+    <linearGradient id="aiGlowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+    <filter id="glowEffect" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-
-  <!-- Outer blue rounded rectangle -->
-  <rect x="10" y="10" width="180" height="280" rx="40" class="blue"/>
-
-  <!-- Inner white margin to create the ring -->
-  <rect x="26" y="26" width="148" height="248" rx="28" class="white"/>
-
-  <!-- Inner blue court area -->
-  <rect x="40" y="40" width="120" height="220" rx="22" class="blue"/>
-
-  <!-- Court lines (white) -->
-  <!-- Top horizontal bar -->
-  <rect x="40" y="110" width="120" height="12" class="white"/>
-  <!-- Bottom horizontal bar -->
-  <rect x="40" y="188" width="120" height="12" class="white"/>
-  <!-- Center vertical bar (between the two horizontals) -->
-  <rect x="98" y="122" width="4" height="66" class="white"/>
+  
+  <!-- Background rounded square -->
+  <rect x="32" y="32" width="448" height="448" rx="80" fill="url(#courtGradient)"/>
+  
+  <!-- Subtle inner shadow/highlight -->
+  <rect x="32" y="32" width="448" height="448" rx="80" fill="none" stroke="white" stroke-width="2" opacity="0.2"/>
+  
+  <!-- Court outline - stylized rectangle representing a sports court -->
+  <rect x="80" y="120" width="352" height="272" rx="24" stroke="white" stroke-width="16" fill="none" opacity="0.95"/>
+  
+  <!-- Court center line (vertical divider) -->
+  <line x1="256" y1="120" x2="256" y2="392" stroke="white" stroke-width="16" opacity="0.7"/>
+  
+  <!-- AI Eye - center circle representing computer vision -->
+  <circle cx="256" cy="256" r="72" stroke="white" stroke-width="16" fill="none" opacity="0.95"/>
+  
+  <!-- AI Core - inner glowing dot representing intelligence -->
+  <circle cx="256" cy="256" r="32" fill="url(#aiGlowGradient)" filter="url(#glowEffect)"/>
+  <circle cx="256" cy="256" r="24" fill="white"/>
+  
+  <!-- Neural network sensor nodes at corners -->
+  <circle cx="104" cy="144" r="20" fill="white" opacity="0.85" filter="url(#softGlow)"/>
+  <circle cx="408" cy="144" r="20" fill="white" opacity="0.85" filter="url(#softGlow)"/>
+  <circle cx="104" cy="368" r="20" fill="white" opacity="0.85" filter="url(#softGlow)"/>
+  <circle cx="408" cy="368" r="20" fill="white" opacity="0.85" filter="url(#softGlow)"/>
+  
+  <!-- Connection lines from AI core to sensor nodes (neural network effect) -->
+  <line x1="256" y1="256" x2="104" y2="144" stroke="white" stroke-width="4" opacity="0.3"/>
+  <line x1="256" y1="256" x2="408" y2="144" stroke="white" stroke-width="4" opacity="0.3"/>
+  <line x1="256" y1="256" x2="104" y2="368" stroke="white" stroke-width="4" opacity="0.3"/>
+  <line x1="256" y1="256" x2="408" y2="368" stroke="white" stroke-width="4" opacity="0.3"/>
 </svg>
