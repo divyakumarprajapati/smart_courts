@@ -46,7 +46,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
               <div className="relative">
-                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700 flex items-center justify-center font-bold text-white shadow-lg group-hover:shadow-blue-500/30 transition-shadow duration-300">
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-600 flex items-center justify-center font-bold text-white shadow-lg group-hover:shadow-emerald-500/30 transition-shadow duration-300">
                   <svg
                     width="24"
                     height="24"
@@ -77,7 +77,7 @@ const Navbar = () => {
                     />
                   </svg>
                 </div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
               </div>
               <div>
                 <div className="text-lg font-bold text-white tracking-tight">

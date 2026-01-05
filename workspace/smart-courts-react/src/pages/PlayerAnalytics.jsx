@@ -28,8 +28,8 @@ const FeatureItem = ({ icon: IconComponent, title, description }) => (
     className="flex gap-4"
   >
     <div className="flex-shrink-0">
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-teal-500/20 border border-cyan-500/30 flex items-center justify-center">
-        <IconComponent className="w-5 h-5 text-cyan-400" />
+      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 flex items-center justify-center">
+        <IconComponent className="w-5 h-5 text-violet-400" />
       </div>
     </div>
     <div>
@@ -47,8 +47,8 @@ const BenefitCard = ({ icon: IconComponent, title, description }) => (
     viewport={{ once: true }}
     className="glass-card rounded-2xl p-6 text-center"
   >
-    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/20 to-teal-500/20 border border-cyan-500/30 flex items-center justify-center mx-auto mb-4">
-      <IconComponent className="w-7 h-7 text-cyan-400" />
+    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 flex items-center justify-center mx-auto mb-4">
+      <IconComponent className="w-7 h-7 text-violet-400" />
     </div>
     <h4 className="text-white font-bold text-lg mb-2">{title}</h4>
     <p className="text-gray-400 text-sm">{description}</p>
@@ -63,7 +63,7 @@ const StatCard = ({ value, label }) => (
     viewport={{ once: true }}
     className="glass-card rounded-xl p-4 text-center"
   >
-    <div className="text-2xl font-bold text-cyan-400 mb-1">{value}</div>
+    <div className="text-2xl font-bold text-violet-400 mb-1">{value}</div>
     <div className="text-gray-400 text-sm">{label}</div>
   </motion.div>
 );
@@ -131,7 +131,7 @@ function PlayerAnalytics() {
   ];
 
   return (
-    <div className="bg-[#030712] text-white min-h-screen">
+    <div className="bg-[#0a0a0a] text-white min-h-screen">
       <Navbar />
 
       {/* Hero Section */}
@@ -140,7 +140,7 @@ function PlayerAnalytics() {
         <div className="absolute inset-0 bg-gradient-radial" />
         
         {/* Floating Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl animate-float-delayed" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
@@ -273,9 +273,9 @@ function PlayerAnalytics() {
                   alt="Player Analytics Dashboard"
                   className="w-full h-auto rounded-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
               </div>
-              <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 to-teal-500/20 rounded-3xl blur-3xl opacity-30 -z-10" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-3xl blur-3xl opacity-30 -z-10" />
             </motion.div>
           </div>
         </div>
@@ -355,7 +355,7 @@ function PlayerAnalytics() {
                   "Faster identification of strengths and weak spots",
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-violet-400 flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -431,13 +431,13 @@ function PlayerAnalytics() {
                 { category: "Game Stats", metrics: ["Points Won", "Rally Length", "Ace Count", "Break Points"] },
               ].map((section, index) => (
                 <div key={index}>
-                  <h4 className="text-cyan-400 font-semibold mb-4 text-sm uppercase tracking-wider">
+                  <h4 className="text-violet-400 font-semibold mb-4 text-sm uppercase tracking-wider">
                     {section.category}
                   </h4>
                   <ul className="space-y-2">
                     {section.metrics.map((metric, i) => (
                       <li key={i} className="flex items-center gap-2 text-gray-400 text-sm">
-                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-violet-500" />
                         {metric}
                       </li>
                     ))}

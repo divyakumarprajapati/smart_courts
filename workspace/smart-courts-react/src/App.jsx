@@ -81,19 +81,19 @@ const FeatureCard = ({ icon: IconComponent, title, description, link, image, del
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4">
               <div className="icon-box">
-                <IconComponent className="w-5 h-5 text-blue-400" />
+                <IconComponent className="w-5 h-5 text-emerald-400" />
               </div>
             </div>
           </div>
 
           {/* Content */}
-          <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
+          <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors duration-300">
             {title}
           </h3>
           <p className="text-gray-400 leading-relaxed mb-4">{description}</p>
 
           {/* Link */}
-          <div className="flex items-center gap-2 text-blue-400 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+          <div className="flex items-center gap-2 text-emerald-400 font-medium text-sm group-hover:gap-3 transition-all duration-300">
             <span>Learn more</span>
             <ArrowRight className="w-4 h-4" />
           </div>
@@ -107,8 +107,8 @@ const FeatureCard = ({ icon: IconComponent, title, description, link, image, del
 const CapabilityItem = ({ icon: IconComponent, title, description }) => (
   <div className="flex gap-4">
     <div className="flex-shrink-0">
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/30 flex items-center justify-center">
-        <IconComponent className="w-5 h-5 text-blue-400" />
+      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 flex items-center justify-center">
+        <IconComponent className="w-5 h-5 text-emerald-400" />
       </div>
     </div>
     <div>
@@ -227,7 +227,7 @@ function App() {
   ];
 
   return (
-    <div className="bg-[#030712] text-white min-h-screen overflow-x-hidden">
+    <div className="bg-[#0a0a0a] text-white min-h-screen overflow-x-hidden">
       <Navbar />
 
       {/* Hero Section */}
@@ -241,8 +241,8 @@ function App() {
         <div className="absolute inset-0 bg-gradient-radial" />
         
         {/* Floating Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-float-delayed" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-float-delayed" />
         <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-float-slow" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -354,7 +354,7 @@ function App() {
 
       {/* Features Section */}
       <section id="features" className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-950/10 to-transparent" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Section Header */}
@@ -401,7 +401,7 @@ function App() {
 
       {/* How It Works Section */}
       <section id="how-it-works" className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/20 via-transparent to-purple-950/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/20 via-transparent to-purple-950/20" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -465,9 +465,9 @@ function App() {
                 {/* Architecture Diagram */}
                 <div className="space-y-4">
                   {/* Vision Module */}
-                  <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-blue-500/10 to-transparent border border-blue-500/20">
-                    <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                      <Eye className="w-6 h-6 text-blue-400" />
+                  <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-emerald-500/10 to-transparent border border-emerald-500/20">
+                    <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+                      <Eye className="w-6 h-6 text-emerald-400" />
                     </div>
                     <div className="flex-1">
                       <div className="text-white font-semibold">Vision Module</div>
@@ -478,13 +478,13 @@ function App() {
 
                   {/* Arrow */}
                   <div className="flex justify-center">
-                    <div className="w-0.5 h-6 bg-gradient-to-b from-blue-500 to-purple-500" />
+                    <div className="w-0.5 h-6 bg-gradient-to-b from-emerald-500 to-cyan-500" />
                   </div>
 
                   {/* Game Logic */}
                   <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-purple-500/10 to-transparent border border-purple-500/20">
-                    <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
-                      <Brain className="w-6 h-6 text-purple-400" />
+                    <div className="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+                      <Brain className="w-6 h-6 text-cyan-400" />
                     </div>
                     <div className="flex-1">
                       <div className="text-white font-semibold">Game Logic Engine</div>
@@ -525,7 +525,7 @@ function App() {
               </div>
 
               {/* Glow Effect */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-3xl blur-3xl opacity-50 -z-10" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-purple-500/20 to-cyan-500/20 rounded-3xl blur-3xl opacity-50 -z-10" />
             </motion.div>
           </div>
         </div>
@@ -575,7 +575,7 @@ function App() {
             className="hidden md:block"
           >
             <div className="relative mx-auto">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-3xl blur-3xl opacity-30" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-purple-500/20 to-cyan-500/20 rounded-3xl blur-3xl opacity-30" />
               <CourtNG />
             </div>
           </motion.div>
@@ -609,7 +609,7 @@ function App() {
 
       {/* Market Stats Section */}
       <section id="market" className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-950/10 to-transparent" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-16">
@@ -655,7 +655,7 @@ function App() {
                 viewport={{ once: true }}
                 className="glass-card rounded-2xl p-6 text-center"
               >
-                <div className="stat-number text-blue-400 mb-2">
+                <div className="stat-number text-emerald-400 mb-2">
                   <AnimatedCounter
                     end={stat.value}
                     suffix={stat.suffix}
@@ -804,13 +804,13 @@ function App() {
 
       {/* CTA / Contact Section */}
       <section id="contact" className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-950/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/20 via-transparent to-transparent" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="glass-card rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden relative">
             {/* Background decoration */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
             <div className="grid lg:grid-cols-2 gap-12 relative">
               {/* Left Content */}
@@ -860,7 +860,7 @@ function App() {
                     "Priority access to new features",
                   ].map((item, index) => (
                     <li key={index} className="flex items-center gap-3 text-gray-300">
-                      <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}

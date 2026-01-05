@@ -25,7 +25,7 @@ const Footer = () => {
   return (
     <footer className="relative bg-gradient-to-b from-gray-900 to-[#030712] pt-20 pb-8">
       {/* Top gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
@@ -33,7 +33,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-600 flex items-center justify-center">
                 <svg
                   width="20"
                   height="20"
