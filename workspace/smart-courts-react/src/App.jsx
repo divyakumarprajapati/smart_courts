@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import {
-  Play,
   ChevronRight,
   Eye,
   Brain,
@@ -27,19 +26,16 @@ import {
   Rocket,
   Timer,
   Award,
-  Layers,
-  MonitorPlay,
   Camera,
-  Wifi,
   Server,
   PlayCircle,
   ChevronDown,
   Star,
   Gauge,
+  MonitorPlay,
 } from "lucide-react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import CourtNG from "./components/CourtNG";
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, suffix = "", prefix = "" }) => {
@@ -363,7 +359,7 @@ function App() {
       description:
         "Real-time computer vision for precise ball tracking, line-in/out judgments, and automated foul detection with sub-second accuracy.",
       link: "/computer-vision",
-      image: "/3d-court-illustration.png",
+      image: "/feature-ai-referee.svg",
       color: "emerald",
     },
     {
@@ -372,7 +368,7 @@ function App() {
       description:
         "Intelligent automation to manage rallies, validate serves, update scores, and control game flow — zero human intervention required.",
       link: "/match-orchestration",
-      image: "/match-orchestrations.png",
+      image: "/feature-match-orchestration.svg",
       color: "cyan",
     },
     {
@@ -381,7 +377,7 @@ function App() {
       description:
         "Deep performance insights with movement heatmaps, shot analysis, reaction times, and tactical recommendations for players and coaches.",
       link: "/player-analytics",
-      image: "/plater-analytics-thumb.png",
+      image: "/feature-player-analytics.svg",
       color: "purple",
     },
   ];
@@ -683,115 +679,6 @@ function App() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Video Showcase Section */}
-      <section id="demo" className="py-24 relative overflow-hidden section-accent">
-        <BackgroundOrbs />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 badge badge-primary mb-4"
-            >
-              <Play className="w-4 h-4" />
-              <span>See It In Action</span>
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
-            >
-              Experience <span className="text-gradient">CourtNG</span> Live
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-slate-600 text-lg max-w-2xl mx-auto"
-            >
-              Watch our AI system track players, follow the ball, and make real-time decisions 
-              with multiple camera angles.
-            </motion.p>
-          </div>
-
-          {/* Video Player Mockup */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="relative max-w-4xl mx-auto"
-          >
-            <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-purple-500/20 rounded-3xl blur-2xl opacity-60" />
-            <div className="relative video-preview rounded-2xl overflow-hidden bg-slate-900 aspect-video">
-              {/* Video Placeholder with Play Button */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900">
-                <img
-                  src="/3d-court-illustration.png"
-                  alt="CourtNG Demo"
-                  className="w-full h-full object-cover opacity-60"
-                />
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-20 h-20 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-2xl group"
-                >
-                  <Play className="w-8 h-8 text-emerald-600 ml-1 group-hover:scale-110 transition-transform" />
-                </motion.button>
-              </div>
-              
-              {/* Video Controls Bar */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <div className="flex items-center gap-4">
-                  <Play className="w-5 h-5 text-white" />
-                  <div className="flex-1 h-1 bg-white/30 rounded-full overflow-hidden">
-                    <div className="w-1/3 h-full bg-emerald-500 rounded-full" />
-                  </div>
-                  <span className="text-white text-sm">2:34 / 5:00</span>
-                </div>
-              </div>
-
-              {/* Live Stats Overlay */}
-              <div className="absolute top-4 left-4 flex gap-2">
-                <div className="badge bg-red-500 text-white border-none text-xs">
-                  <span className="w-2 h-2 bg-white rounded-full animate-pulse mr-1" />
-                  LIVE
-                </div>
-                <div className="badge bg-white/20 backdrop-blur text-white border-none text-xs">
-                  AI Active
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* 3D Court Demo - Desktop Only */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-16 hidden md:block"
-          >
-            <div className="text-center mb-8">
-              <h3 className="text-xl font-bold text-slate-800 mb-2">Interactive 3D Court View</h3>
-              <p className="text-slate-600">Explore our multi-camera setup in 3D</p>
-            </div>
-            <div className="relative mx-auto">
-              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/10 via-purple-500/10 to-cyan-500/10 rounded-3xl blur-2xl" />
-              <CourtNG />
-            </div>
-          </motion.div>
         </div>
       </section>
 
