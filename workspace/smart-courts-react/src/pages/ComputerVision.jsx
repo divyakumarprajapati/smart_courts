@@ -273,7 +273,7 @@ function ComputerVision() {
               <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 rounded-3xl blur-2xl opacity-50" />
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/3d-court-illustration.png"
+                  src="/cv-how-it-works.svg"
                   alt="Computer Vision System"
                   className="w-full h-auto rounded-2xl"
                 />
@@ -305,7 +305,7 @@ function ComputerVision() {
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl opacity-50" />
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/game-changer.png"
+                  src="/cv-game-changer.svg"
                   alt="Game Changer AI"
                   className="w-full h-auto rounded-2xl"
                 />

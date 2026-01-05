@@ -1,0 +1,102 @@
+<svg width="600" height="500" viewBox="0 0 600 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gcBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#faf5ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f3e8ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gcPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="500" rx="16" fill="url(#gcBg)"/>
+  
+  <!-- Grid -->
+  <pattern id="gcGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#a855f7" stroke-opacity="0.08" stroke-width="1"/>
+  </pattern>
+  <rect width="600" height="500" fill="url(#gcGrid)"/>
+  
+  <!-- Central AI Brain -->
+  <g transform="translate(250, 180)">
+    <circle r="60" fill="white" stroke="#a855f7" stroke-width="2"/>
+    <circle r="45" fill="#faf5ff" stroke="#a855f7" stroke-width="1" stroke-opacity="0.5"/>
+    <!-- Brain icon -->
+    <path d="M-15 -10 Q-25 -20 -20 -30 Q-10 -35 0 -30 Q10 -35 20 -30 Q25 -20 15 -10" stroke="#a855f7" stroke-width="2" fill="none"/>
+    <path d="M-15 -10 Q-20 0 -15 10 Q-10 15 0 15 Q10 15 15 10 Q20 0 15 -10" stroke="#a855f7" stroke-width="2" fill="none"/>
+    <circle cx="0" cy="-5" r="5" fill="#a855f7"/>
+  </g>
+  
+  <!-- Connecting elements -->
+  <!-- Input: Vision -->
+  <g transform="translate(50, 100)">
+    <rect width="120" height="70" rx="8" fill="white" stroke="#10b981" stroke-width="2"/>
+    <rect x="10" y="12" width="30" height="22" rx="4" fill="#10b981"/>
+    <circle cx="25" cy="23" r="6" fill="white"/>
+    <text x="50" y="28" font-family="system-ui" font-size="11" font-weight="600" fill="#0f172a">Vision</text>
+    <text x="50" y="42" font-family="system-ui" font-size="9" fill="#64748b">60-120 FPS</text>
+  </g>
+  <path d="M170 135 L220 200" stroke="#10b981" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Input: Events -->
+  <g transform="translate(50, 280)">
+    <rect width="120" height="70" rx="8" fill="white" stroke="#06b6d4" stroke-width="2"/>
+    <rect x="10" y="12" width="30" height="22" rx="4" fill="#06b6d4"/>
+    <path d="M18 18 L32 18 M25 18 L25 30" stroke="white" stroke-width="2"/>
+    <text x="50" y="28" font-family="system-ui" font-size="11" font-weight="600" fill="#0f172a">Events</text>
+    <text x="50" y="42" font-family="system-ui" font-size="9" fill="#64748b">Real-time</text>
+  </g>
+  <path d="M170 315 L220 250" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Output: Decisions -->
+  <g transform="translate(430, 100)">
+    <rect width="120" height="70" rx="8" fill="white" stroke="#f97316" stroke-width="2"/>
+    <rect x="10" y="12" width="30" height="22" rx="4" fill="#f97316"/>
+    <path d="M18 23 L25 30 L32 18" stroke="white" stroke-width="2" fill="none"/>
+    <text x="50" y="28" font-family="system-ui" font-size="11" font-weight="600" fill="#0f172a">Decisions</text>
+    <text x="50" y="42" font-family="system-ui" font-size="9" fill="#64748b">&lt;30ms</text>
+  </g>
+  <path d="M380 200 L430 135" stroke="#f97316" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Output: Analytics -->
+  <g transform="translate(430, 280)">
+    <rect width="120" height="70" rx="8" fill="white" stroke="#ec4899" stroke-width="2"/>
+    <rect x="10" y="12" width="30" height="22" rx="4" fill="#ec4899"/>
+    <rect x="15" y="26" width="6" height="6" fill="white"/>
+    <rect x="22" y="22" width="6" height="10" fill="white"/>
+    <rect x="29" y="18" width="6" height="14" fill="white"/>
+    <text x="50" y="28" font-family="system-ui" font-size="11" font-weight="600" fill="#0f172a">Analytics</text>
+    <text x="50" y="42" font-family="system-ui" font-size="9" fill="#64748b">50+ metrics</text>
+  </g>
+  <path d="M380 250 L430 315" stroke="#ec4899" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+  </defs>
+  
+  <!-- Bottom stats -->
+  <g transform="translate(150, 400)">
+    <rect width="300" height="60" rx="8" fill="white" stroke="#a855f7" stroke-width="1" stroke-opacity="0.3"/>
+    <g transform="translate(30, 20)">
+      <text font-family="system-ui" font-size="18" font-weight="700" fill="#a855f7">99.9%</text>
+      <text y="18" font-family="system-ui" font-size="10" fill="#64748b">Accuracy</text>
+    </g>
+    <g transform="translate(130, 20)">
+      <text font-family="system-ui" font-size="18" font-weight="700" fill="#a855f7">24/7</text>
+      <text y="18" font-family="system-ui" font-size="10" fill="#64748b">Uptime</text>
+    </g>
+    <g transform="translate(220, 20)">
+      <text font-family="system-ui" font-size="18" font-weight="700" fill="#a855f7">0</text>
+      <text y="18" font-family="system-ui" font-size="10" fill="#64748b">Human Bias</text>
+    </g>
+  </g>
+  
+  <!-- Floating decorations -->
+  <circle cx="550" cy="50" r="25" fill="#a855f7" fill-opacity="0.1"/>
+  <circle cx="50" cy="450" r="30" fill="#10b981" fill-opacity="0.1"/>
+</svg>

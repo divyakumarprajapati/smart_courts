@@ -292,7 +292,7 @@ function PlayerAnalytics() {
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-violet-500/20 rounded-3xl blur-2xl opacity-50" />
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/player-analytics.png"
+                  src="/pa-how-it-works.svg"
                   alt="Player Analytics Dashboard"
                   className="w-full h-auto rounded-2xl"
                 />
@@ -324,7 +324,7 @@ function PlayerAnalytics() {
               <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/20 to-green-500/20 rounded-3xl blur-2xl opacity-50" />
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/player-analytics-benefits.png"
+                  src="/pa-benefits.svg"
                   alt="Player Analytics Benefits"
                   className="w-full h-auto rounded-2xl"
                 />

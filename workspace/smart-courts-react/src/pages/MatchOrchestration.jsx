@@ -260,7 +260,7 @@ function MatchOrchestration() {
               <div className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 to-amber-500/20 rounded-3xl blur-2xl opacity-50" />
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/match-orchestration-how.png"
+                  src="/mo-how-it-works.svg"
                   alt="Match Orchestration Workflow"
                   className="w-full h-auto rounded-2xl"
                 />
@@ -292,7 +292,7 @@ function MatchOrchestration() {
               <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-3xl blur-2xl opacity-50" />
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/match-orchestration-benefits.png"
+                  src="/mo-benefits.svg"
                   alt="Match Orchestration Benefits"
                   className="w-full h-auto rounded-2xl"
                 />
