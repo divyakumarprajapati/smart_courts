@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Twitter, Mail, MapPin, ArrowUpRight, Youtube, Github } from "lucide-react";
+import {
+  Linkedin,
+  Twitter,
+  Mail,
+  MapPin,
+  ArrowUpRight,
+  Youtube,
+  Github,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 const Footer = () => {
@@ -78,13 +86,13 @@ const Footer = () => {
               <div>
                 <div className="text-lg font-bold text-slate-800">CourtNG</div>
                 <div className="text-xs text-slate-500">
-                  Intelligent Court Systems
+                  The Next Generation of Courts
                 </div>
               </div>
             </Link>
             <p className="text-slate-600 text-sm leading-relaxed mb-6 max-w-xs">
-              Transforming sports courts into intelligent, automated environments
-              that see, think, decide, and assist — powered by AI.
+              Transforming sports courts into intelligent, automated
+              environments that see, think, decide, and assist — powered by AI.
             </p>
             <div className="flex items-center gap-2">
               {socialLinks.map((social, index) => (
@@ -184,8 +192,12 @@ const Footer = () => {
         <div className="py-8 border-b border-slate-200">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
-              <h4 className="text-slate-800 font-semibold mb-1">Stay Updated</h4>
-              <p className="text-slate-500 text-sm">Get the latest news and updates from CourtNG</p>
+              <h4 className="text-slate-800 font-semibold mb-1">
+                Stay Updated
+              </h4>
+              <p className="text-slate-500 text-sm">
+                Get the latest news and updates from CourtNG
+              </p>
             </div>
             <div className="flex gap-2 w-full md:w-auto">
               <input
@@ -211,10 +223,16 @@ const Footer = () => {
             <span>Building the future of sports, one court at a time.</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-slate-500 hover:text-emerald-600 text-sm transition-colors">
+            <a
+              href="#"
+              className="text-slate-500 hover:text-emerald-600 text-sm transition-colors"
+            >
               Privacy Policy
             </a>
-            <a href="#" className="text-slate-500 hover:text-emerald-600 text-sm transition-colors">
+            <a
+              href="#"
+              className="text-slate-500 hover:text-emerald-600 text-sm transition-colors"
+            >
               Terms of Service
             </a>
             <span className="text-slate-400 text-sm">

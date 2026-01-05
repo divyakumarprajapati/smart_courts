@@ -43,9 +43,7 @@ const Navbar = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled 
-            ? "navbar-scrolled py-3" 
-            : "navbar py-4"
+          isScrolled ? "navbar-scrolled py-3" : "navbar py-4"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +51,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
               <div className="relative">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-600 flex items-center justify-center font-bold text-white shadow-lg shadow-emerald-500/25 group-hover:shadow-emerald-500/40 transition-all duration-300"
@@ -95,7 +93,7 @@ const Navbar = () => {
                   CourtNG
                 </div>
                 <div className="text-xs text-slate-500 font-medium">
-                  Intelligent Court Systems
+                  The Next Generation of Courts
                 </div>
               </div>
             </Link>
