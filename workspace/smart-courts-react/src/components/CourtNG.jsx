@@ -191,7 +191,7 @@ const CourtNG = () => {
       // Helpers
       const cyl = (rTop, rBot, h, seg = 18) =>
         new THREE.CylinderGeometry(rTop, rBot, h, seg);
-      const cap = (r = 0.1, h = 0.3, seg = 16) =>
+      const _cap = (r = 0.1, h = 0.3, seg = 16) =>
         new THREE.CapsuleGeometry(r, h, seg, seg);
 
       // -------- Proportions (roughly human at ~1.75m total) --------
