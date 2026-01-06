@@ -366,9 +366,9 @@ function App() {
     },
     {
       icon: Brain,
-      title: "Play Without Interruptions",
+      title: "Your Personal AI Referee",
       description:
-        "Start playing instantly with automatic scoring, serve validation, and game flow — no setup, no scorekeepers, no hassle. Just step on and play.",
+        "Walk onto the court and it greets you. It watches every rally, calls every line, announces the score, and officiates your entire match — like having a professional referee just for you.",
       link: "/match-orchestration",
       image: "/feature-match-orchestration.svg",
       color: "cyan",

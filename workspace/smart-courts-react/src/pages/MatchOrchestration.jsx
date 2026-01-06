@@ -66,56 +66,56 @@ function MatchOrchestration() {
   const howItWorks = [
     {
       icon: Brain,
-      title: "Knows the Rules",
-      description: "The court understands your sport and applies the rules automatically — no manual input needed.",
+      title: "It Greets You",
+      description: "Step on the court and it recognizes you. \"Ready to play?\" — just like that, your match begins.",
     },
     {
       icon: Shield,
-      title: "Validates Your Serves",
-      description: "Foot faults and service violations are caught instantly, keeping the game fair.",
+      title: "It Watches Every Rally",
+      description: "From serve to finish, the court tracks the ball, calls the lines, and catches every fault — nothing slips by.",
     },
     {
       icon: Timer,
-      title: "Updates Scores Instantly",
-      description: "Every point is tracked and displayed immediately — no delays, no mistakes.",
+      title: "It Announces the Score",
+      description: "\"15-love\" — you hear it clearly after every point. No need to remember or ask \"what's the score?\"",
     },
     {
       icon: Radio,
-      title: "Everyone Stays in Sync",
-      description: "Scoreboards, your phone, and spectators all see the same score in real-time.",
+      title: "It Runs Your Whole Match",
+      description: "Sets, games, tiebreakers, match point — the court manages it all and announces key moments.",
     },
   ];
 
   const benefits = [
     {
       icon: Zap,
-      title: "Instant Score Updates",
-      description: "See the score change the moment the point ends — no waiting.",
+      title: "Calls Every Line",
+      description: "In or out — the court sees it and calls it instantly. No debates, ever.",
     },
     {
       icon: Gauge,
-      title: "Always Accurate",
-      description: "No human errors or missed points. Every rally counts correctly.",
+      title: "Never Misses a Point",
+      description: "Every rally is tracked, every point counted. The court doesn't blink.",
     },
     {
       icon: Monitor,
-      title: "Clear Scoreboards",
-      description: "Large displays show the score so everyone knows where things stand.",
+      title: "Shows the Score Clearly",
+      description: "Big, bright displays keep you and spectators informed at all times.",
     },
     {
       icon: Smartphone,
-      title: "Follow on Your Phone",
-      description: "Watch the score from anywhere — courtside or remotely.",
+      title: "Talks to Your Phone",
+      description: "Friends watching remotely? They can follow along live.",
     },
     {
       icon: Bell,
-      title: "Audio Announcements",
-      description: "Hear when points are scored and when serves are faulted.",
+      title: "Speaks Out Loud",
+      description: "\"Fault!\" \"Out!\" \"Game, set, match!\" — clear voice announcements keep the game flowing.",
     },
     {
       icon: Workflow,
-      title: "Handles Complex Scoring",
-      description: "Sets, games, tiebreakers, and deuce — all managed automatically.",
+      title: "Knows All the Rules",
+      description: "Deuce, advantage, tiebreakers — the court handles every situation correctly.",
     },
   ];
 
@@ -156,8 +156,8 @@ function MatchOrchestration() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6"
           >
-            <span className="text-slate-800">Just Walk On </span>
-            <span className="text-gradient-warm">and Play</span>
+            <span className="text-slate-800">A Court That </span>
+            <span className="text-gradient-warm">Knows You</span>
           </motion.h1>
 
           <motion.p
@@ -166,9 +166,10 @@ function MatchOrchestration() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            No scorekeepers, no setup, no hassle. The court handles everything — 
-            scoring, serve tracking, and game flow — so you spend your time 
-            playing, not managing.
+            Imagine walking onto a court that greets you, knows your game, and 
+            officiates every rally. It calls the lines, announces the score, 
+            and runs your match from first serve to final point — like having 
+            your own professional referee, every time you play.
           </motion.p>
 
           <motion.div
@@ -220,7 +221,7 @@ function MatchOrchestration() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl font-bold mb-6 text-slate-800"
               >
-                How Your Game <span className="text-gradient-warm">Runs Itself</span>
+                Like Having Your Own <span className="text-gradient-warm">Personal Referee</span>
               </motion.h2>
 
               <motion.p
@@ -230,8 +231,9 @@ function MatchOrchestration() {
                 viewport={{ once: true }}
                 className="text-slate-600 text-lg mb-10"
               >
-                Step on the court and start playing. The score tracks itself, 
-                serves are validated, and you never have to ask "what&apos;s the score?" again.
+                The court is always watching, always ready. It sees every serve, 
+                tracks every rally, and calls every line — so you can focus 
+                completely on your game.
               </motion.p>
 
               <div className="space-y-4">
@@ -319,7 +321,7 @@ function MatchOrchestration() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl font-bold mb-6 text-slate-800"
               >
-                Why You&apos;ll <span className="text-gradient-cool">Love This</span>
+                The Feeling of <span className="text-gradient-cool">Playing Pro</span>
               </motion.h2>
 
               <motion.p
@@ -329,9 +331,9 @@ function MatchOrchestration() {
                 viewport={{ once: true }}
                 className="text-slate-600 text-lg mb-8"
               >
-                No more pausing to update the score. No more debates about 
-                who&apos;s serving. Just continuous, focused play with everything 
-                handled in the background.
+                You know that feeling when you watch a pro match? The crisp line calls, 
+                the clear score announcements, the seamless flow? That&apos;s what 
+                every game feels like on a smart court.
               </motion.p>
 
               <motion.ul
@@ -342,10 +344,10 @@ function MatchOrchestration() {
                 className="space-y-4"
               >
                 {[
-                  "The score updates automatically — no more losing track",
-                  "Every rally is counted correctly, even in long matches",
-                  "Friends and family can follow along on their phones",
-                  "Works right away — no apps to download or setup to do",
+                  "Walk on, and the court is ready for you — \"Let's play!\"",
+                  "Every close call is made instantly and fairly",
+                  "Hear the score announced after each point",
+                  "Your match feels official, professional, exciting",
                 ].map((item, index) => (
                   <motion.li 
                     key={index} 
@@ -375,7 +377,7 @@ function MatchOrchestration() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold mb-4 text-slate-800"
             >
-              Everything You <span className="text-gradient">Need to Play</span>
+              Your Court <span className="text-gradient">Does It All</span>
             </motion.h2>
 
             <motion.p
@@ -385,8 +387,8 @@ function MatchOrchestration() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              From casual games to competitive matches, the court keeps track 
-              of everything so you can stay focused on playing.
+              From the moment you step on to the final handshake, the court 
+              officiates your entire match with professionalism and precision.
             </motion.p>
           </div>
 
@@ -413,11 +415,11 @@ function MatchOrchestration() {
             
             <div className="relative">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-slate-800">
-                Ready to Just Play?
+                Ready to Meet Your Court?
               </h2>
               <p className="text-slate-600 text-lg mb-8 max-w-xl mx-auto">
-                Sign up to be first in line when self-managing courts 
-                become available. More playing, less managing.
+                Be among the first to experience a court that greets you, 
+                officiates for you, and makes every game feel special.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }}>
