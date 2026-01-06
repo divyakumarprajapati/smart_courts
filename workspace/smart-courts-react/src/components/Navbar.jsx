@@ -57,7 +57,7 @@ const Navbar = () => {
                   className="w-11 h-11 rounded-xl overflow-hidden shadow-lg shadow-emerald-500/25 group-hover:shadow-emerald-500/40 transition-all duration-300"
                 >
                   <img
-                    src="/court_icon.svg"
+                    src="/court_icon_new.svg"
                     alt="CourtNG Logo"
                     className="w-full h-full"
                   />

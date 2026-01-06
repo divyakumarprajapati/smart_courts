@@ -54,7 +54,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-emerald-500/20">
                 <img
-                  src="/court_icon.svg"
+                  src="/court_icon_new.svg"
                   alt="CourtNG Logo"
                   className="w-full h-full"
                 />
