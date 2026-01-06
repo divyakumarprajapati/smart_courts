@@ -74,10 +74,15 @@ const AnimatedCounter = ({ end, suffix = "", prefix = "" }) => {
 };
 
 // Floating Particle Component
-const FloatingParticle = ({ delay = 0, duration = 8, size = 4, color = "emerald" }) => (
+const FloatingParticle = ({
+  delay = 0,
+  duration = 8,
+  size = 4,
+  color = "emerald",
+}) => (
   <motion.div
     initial={{ opacity: 0, y: 100 }}
-    animate={{ 
+    animate={{
       opacity: [0, 0.6, 0],
       y: [-20, -150],
       x: [0, Math.random() * 100 - 50],
@@ -89,8 +94,8 @@ const FloatingParticle = ({ delay = 0, duration = 8, size = 4, color = "emerald"
       ease: "easeOut",
     }}
     className={`absolute w-${size} h-${size} rounded-full bg-${color}-500/30`}
-    style={{ 
-      width: size, 
+    style={{
+      width: size,
       height: size,
       left: `${Math.random() * 100}%`,
       bottom: 0,
@@ -102,7 +107,7 @@ const FloatingParticle = ({ delay = 0, duration = 8, size = 4, color = "emerald"
 const BackgroundOrbs = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
     <motion.div
-      animate={{ 
+      animate={{
         scale: [1, 1.2, 1],
         opacity: [0.3, 0.5, 0.3],
       }}
@@ -110,7 +115,7 @@ const BackgroundOrbs = () => (
       className="absolute top-1/4 -left-32 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl"
     />
     <motion.div
-      animate={{ 
+      animate={{
         scale: [1.2, 1, 1.2],
         opacity: [0.2, 0.4, 0.2],
       }}
@@ -118,7 +123,7 @@ const BackgroundOrbs = () => (
       className="absolute top-1/2 -right-32 w-80 h-80 bg-cyan-400/20 rounded-full blur-3xl"
     />
     <motion.div
-      animate={{ 
+      animate={{
         scale: [1, 1.3, 1],
         opacity: [0.2, 0.3, 0.2],
       }}
@@ -129,7 +134,15 @@ const BackgroundOrbs = () => (
 );
 
 // Feature Card Component
-const FeatureCard = ({ icon: IconComponent, title, description, link, image, delay, color = "emerald" }) => {
+const FeatureCard = ({
+  icon: IconComponent,
+  title,
+  description,
+  link,
+  image,
+  delay,
+  color = "emerald",
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -148,7 +161,7 @@ const FeatureCard = ({ icon: IconComponent, title, description, link, image, del
             />
             <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4">
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 className={`icon-box bg-gradient-to-br from-${color}-500/20 to-${color}-600/20 border-${color}-500/30`}
               >
@@ -226,7 +239,7 @@ const SolutionCard = ({ icon: IconComponent, title, description, index }) => (
 
 // Capability Item
 const CapabilityItem = ({ icon: IconComponent, title, description }) => (
-  <motion.div 
+  <motion.div
     whileHover={{ x: 10 }}
     className="flex gap-4 p-4 rounded-xl bg-white/50 border border-slate-200/50 hover:bg-white hover:shadow-lg hover:border-emerald-200 transition-all duration-300"
   >
@@ -258,7 +271,9 @@ const RoadmapItem = ({ phase, title, items, status, index }) => {
       viewport={{ once: true }}
       className="relative pl-10"
     >
-      <div className={`absolute left-0 top-1 w-4 h-4 rounded-full ${statusColors[status]} shadow-lg z-10`} />
+      <div
+        className={`absolute left-0 top-1 w-4 h-4 rounded-full ${statusColors[status]} shadow-lg z-10`}
+      />
       <div className="glass-card-elevated rounded-xl p-6">
         <div className="flex items-center gap-3 mb-3">
           <span className="badge badge-primary text-xs">{phase}</span>
@@ -272,8 +287,15 @@ const RoadmapItem = ({ phase, title, items, status, index }) => {
         <h4 className="text-lg font-bold text-slate-800 mb-3">{title}</h4>
         <ul className="space-y-2">
           {items.map((item, i) => (
-            <li key={i} className="flex items-center gap-2 text-slate-600 text-sm">
-              <CheckCircle2 className={`w-4 h-4 ${status === "completed" ? "text-emerald-500" : "text-slate-400"}`} />
+            <li
+              key={i}
+              className="flex items-center gap-2 text-slate-600 text-sm"
+            >
+              <CheckCircle2
+                className={`w-4 h-4 ${
+                  status === "completed" ? "text-emerald-500" : "text-slate-400"
+                }`}
+              />
               {item}
             </li>
           ))}
@@ -291,22 +313,25 @@ const TypingText = ({ texts }) => {
 
   useEffect(() => {
     const currentText = texts[currentIndex];
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        if (displayText.length < currentText.length) {
-          setDisplayText(currentText.slice(0, displayText.length + 1));
+    const timeout = setTimeout(
+      () => {
+        if (!isDeleting) {
+          if (displayText.length < currentText.length) {
+            setDisplayText(currentText.slice(0, displayText.length + 1));
+          } else {
+            setTimeout(() => setIsDeleting(true), 2000);
+          }
         } else {
-          setTimeout(() => setIsDeleting(true), 2000);
+          if (displayText.length > 0) {
+            setDisplayText(displayText.slice(0, -1));
+          } else {
+            setIsDeleting(false);
+            setCurrentIndex((prev) => (prev + 1) % texts.length);
+          }
         }
-      } else {
-        if (displayText.length > 0) {
-          setDisplayText(displayText.slice(0, -1));
-        } else {
-          setIsDeleting(false);
-          setCurrentIndex((prev) => (prev + 1) % texts.length);
-        }
-      }
-    }, isDeleting ? 50 : 100);
+      },
+      isDeleting ? 50 : 100
+    );
 
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentIndex, texts]);
@@ -357,27 +382,27 @@ function App() {
   const features = [
     {
       icon: Eye,
-      title: "AI Referee System",
+      title: "Never Argue a Call Again",
       description:
-        "Real-time computer vision for precise ball tracking, line-in/out judgments, and automated foul detection with sub-second accuracy.",
+        "Get instant, precise in/out decisions on every shot. No more disputed line calls or waiting for referees — just fair, accurate officiating you can trust.",
       link: "/computer-vision",
       image: "/feature-ai-referee.svg",
       color: "emerald",
     },
     {
       icon: Brain,
-      title: "Match Orchestration",
+      title: "Your Personal AI Referee",
       description:
-        "Intelligent automation to manage rallies, validate serves, update scores, and control game flow — zero human intervention required.",
+        "Walk onto the court and it greets you. It watches every rally, calls every line, announces the score, and officiates your entire match — like having a professional referee just for you.",
       link: "/match-orchestration",
       image: "/feature-match-orchestration.svg",
       color: "cyan",
     },
     {
       icon: BarChart3,
-      title: "Player Analytics",
+      title: "See Your Game Like Never Before",
       description:
-        "Deep performance insights with movement heatmaps, shot analysis, reaction times, and tactical recommendations for players and coaches.",
+        "Discover where you excel and where to improve. Get personalized insights on your movement, shots, and tactics that help you level up your game.",
       link: "/player-analytics",
       image: "/feature-player-analytics.svg",
       color: "purple",
@@ -385,56 +410,109 @@ function App() {
   ];
 
   const problems = [
-    { icon: AlertTriangle, title: "Manual Scoring & Refereeing", description: "Human errors and inconsistencies affect game fairness" },
-    { icon: XCircle, title: "No Real-Time Insights", description: "Players and viewers miss valuable performance data" },
-    { icon: Users, title: "High Human Dependency", description: "Requires multiple staff for basic court operations" },
-    { icon: Activity, title: "Inconsistent Experience", description: "Quality varies significantly across different venues" },
+    {
+      icon: AlertTriangle,
+      title: "Frustrating Call Disputes",
+      description:
+        "You've lost points to bad calls or spent more time arguing than playing",
+    },
+    {
+      icon: Users,
+      title: "Always Waiting for Referees",
+      description:
+        "Can't start your game until someone's available to keep score",
+    },
+    {
+      icon: XCircle,
+      title: "No Way to Track Progress",
+      description:
+        "You want to improve but have no data on what's working and what's not",
+    },
+    {
+      icon: Activity,
+      title: "Inconsistent Playing Experience",
+      description:
+        "Every venue feels different, making it hard to stay in your groove",
+    },
   ];
 
   const solutions = [
-    { icon: Eye, title: "AI-Powered Vision", description: "Computer vision detects every event with precision" },
-    { icon: Zap, title: "Instant Decisions", description: "Sub-30ms latency for real-time decision making" },
-    { icon: Target, title: "Rule Automation", description: "Configurable rule engine for any sport" },
-    { icon: BarChart3, title: "Rich Analytics", description: "Comprehensive data for performance improvement" },
+    {
+      icon: Eye,
+      title: "Fair, Instant Calls",
+      description: "Every line call is accurate and immediate — no debates",
+    },
+    {
+      icon: Zap,
+      title: "The Court Officiates for You",
+      description: "Walk on and play — the court greets you and runs your game",
+    },
+    {
+      icon: Target,
+      title: "Your Performance, Measured",
+      description:
+        "Get feedback on every shot and see exactly how you're improving over time",
+    },
+    {
+      icon: BarChart3,
+      title: "Personalized Insights",
+      description: "Get recommendations tailored to your game",
+    },
   ];
 
   const stats = [
-    { value: 24, suffix: "B", prefix: "$", label: "Sports Tech Market", icon: TrendingUp },
+    {
+      value: 24,
+      suffix: "B",
+      prefix: "$",
+      label: "Sports Tech Market",
+      icon: TrendingUp,
+    },
     { value: 13, suffix: "%", label: "Annual Growth Rate", icon: Gauge },
     { value: 12, suffix: "K+", label: "Target Courts in India", icon: Target },
-    { value: 30, suffix: "ms", prefix: "<", label: "Decision Latency", icon: Timer },
+    {
+      value: 30,
+      suffix: "ms",
+      prefix: "<",
+      label: "Decision Latency",
+      icon: Timer,
+    },
   ];
 
   const capabilities = [
     {
       icon: Camera,
-      title: "Multi-Camera Vision",
-      description: "60-120 FPS synchronized capture with object detection and tracking.",
+      title: "See Every Angle",
+      description:
+        "Multiple cameras capture your game from all sides — nothing gets missed.",
     },
     {
       icon: Cpu,
-      title: "Edge Computing",
-      description: "On-premise AI inference with NVIDIA Jetson-class hardware.",
+      title: "Instant Processing",
+      description:
+        "Decisions happen in milliseconds, right on the court, no delays.",
     },
     {
       icon: Shield,
-      title: "Rule Engine",
-      description: "Configurable logic per sport with probabilistic edge-case handling.",
+      title: "Fair for Every Sport",
+      description: "Rules are automatically applied correctly for your game.",
     },
     {
       icon: MonitorPlay,
-      title: "Real-Time Feedback",
-      description: "Live scoreboards, audio cues, instant replays, and highlights.",
+      title: "Hear the Score Called Out",
+      description:
+        '"15-love!" — the court announces every point and key moments of your match.',
     },
     {
       icon: Globe,
-      title: "Multi-Sport Ready",
-      description: "Scalable from badminton to tennis, basketball, and beyond.",
+      title: "Play Your Sport",
+      description:
+        "Works for badminton, tennis, pickleball, and more sports coming.",
     },
     {
       icon: Server,
-      title: "Data Pipeline",
-      description: "Structured analytics with optional cloud sync for insights.",
+      title: "Your Stats, Your Way",
+      description: "Access your performance data anytime, anywhere.",
     },
   ];
 
@@ -450,33 +528,53 @@ function App() {
       phase: "Phase 1",
       title: "Foundation",
       status: "completed",
-      items: ["Core vision models", "Basic rule engine", "Single-sport support", "Local deployment"],
+      items: [
+        "Accurate line calls",
+        "Automatic scoring",
+        "Badminton support",
+        "Works offline",
+      ],
     },
     {
       phase: "Phase 2",
-      title: "Enhancement",
+      title: "More for You",
       status: "current",
-      items: ["Multi-camera support", "Advanced analytics", "Cloud sync", "Mobile app"],
+      items: [
+        "Better court coverage",
+        "Detailed player stats",
+        "Save your matches",
+        "Mobile app access",
+      ],
     },
     {
       phase: "Phase 3",
-      title: "Expansion",
+      title: "More Sports",
       status: "upcoming",
-      items: ["Multi-sport support", "League integration", "AI officiating v2", "Broadcasting tools"],
+      items: [
+        "Tennis & pickleball",
+        "Join local leagues",
+        "Smarter officiating",
+        "Watch live matches",
+      ],
     },
     {
       phase: "Phase 4",
-      title: "Scale",
+      title: "Play Anywhere",
       status: "upcoming",
-      items: ["Global deployment", "Player rankings", "Community features", "API ecosystem"],
+      items: [
+        "Courts worldwide",
+        "Track your ranking",
+        "Find players & matches",
+        "Connect with apps",
+      ],
     },
   ];
 
   const typingTexts = [
-    "Smart Sports Courts",
-    "AI-Powered Officiating",
+    "Courts That Run Games",
+    "Courts That Coaches You",
+    "Every Call, Instant & Fair",
     "Real-Time Analytics",
-    "Automated Game Flow",
   ];
 
   return (
@@ -492,15 +590,23 @@ function App() {
         {/* Animated Background */}
         <BackgroundOrbs />
         <div className="absolute inset-0 bg-grid-light opacity-50" />
-        
+
         {/* Floating Particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(20)].map((_, i) => (
-            <FloatingParticle key={i} delay={i * 0.5} duration={8 + Math.random() * 4} size={4 + Math.random() * 4} />
+            <FloatingParticle
+              key={i}
+              delay={i * 0.5}
+              duration={8 + Math.random() * 4}
+              size={4 + Math.random() * 4}
+            />
           ))}
         </div>
 
-        <motion.div style={{ y: heroY }} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <motion.div
+          style={{ y: heroY }}
+          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+        >
           <div className="text-center max-w-4xl mx-auto">
             {/* Badge */}
             <motion.div
@@ -518,7 +624,7 @@ function App() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6"
+              className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold leading-tight mb-6"
             >
               <span className="text-slate-800">The Operating System for </span>
               <br />
@@ -532,9 +638,10 @@ function App() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed"
             >
-              Transform any court into an intelligent, automated environment. 
-              AI-powered officiating, real-time analytics, and seamless game management — 
-              no referees needed.
+              Walk onto a court that greets you, officiates your game, and calls
+              every line. It announces the score, tracks your stats, and runs
+              your match end-to-end — like having a professional referee who
+              never misses a thing.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -580,7 +687,9 @@ function App() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="mt-16 pt-8 border-t border-slate-200"
             >
-              <p className="text-slate-500 text-sm mb-6">Designed for the future of sports</p>
+              <p className="text-slate-500 text-sm mb-6">
+                Designed for the future of sports
+              </p>
               <div className="flex flex-wrap items-center justify-center gap-8">
                 {targetUsers.map((user, index) => (
                   <motion.div
@@ -611,7 +720,11 @@ function App() {
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
             className="flex flex-col items-center gap-2 cursor-pointer"
-            onClick={() => document.getElementById("problems").scrollIntoView({ behavior: "smooth" })}
+            onClick={() =>
+              document
+                .getElementById("problems")
+                .scrollIntoView({ behavior: "smooth" })
+            }
           >
             <span className="text-slate-500 text-sm">Scroll to explore</span>
             <ChevronDown className="w-5 h-5 text-emerald-600" />
@@ -640,7 +753,8 @@ function App() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              Traditional Courts Are <span className="text-gradient-warm">Falling Behind</span>
+              Playing Shouldn&apos;t Be{" "}
+              <span className="text-gradient-warm">This Hard</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -649,8 +763,8 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              Today&apos;s sports courts face critical limitations that restrict scalability, 
-              accuracy, and engagement.
+              You just want to play, compete, and get better. But too often, the
+              experience gets in the way.
             </motion.p>
           </div>
 
@@ -659,7 +773,9 @@ function App() {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="line-decoration bg-gradient-to-r from-red-500 to-orange-500" />
-                <h3 className="text-xl font-bold text-slate-800">Current Problems</h3>
+                <h3 className="text-xl font-bold text-slate-800">
+                  Sound Familiar?
+                </h3>
               </div>
               <div className="space-y-4">
                 {problems.map((problem, index) => (
@@ -672,7 +788,9 @@ function App() {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="line-decoration" />
-                <h3 className="text-xl font-bold text-slate-800">Our Solutions</h3>
+                <h3 className="text-xl font-bold text-slate-800">
+                  Here&apos;s How It Changes
+                </h3>
               </div>
               <div className="space-y-4">
                 {solutions.map((solution, index) => (
@@ -706,7 +824,8 @@ function App() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              Everything Your <span className="text-gradient">Court Needs</span>
+              Everything You Need to{" "}
+              <span className="text-gradient">Play Better</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -715,8 +834,8 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              A complete AI-first operating system that automates officiating, 
-              orchestrates gameplay, and delivers actionable insights.
+              Step onto a court that takes care of the details so you can focus
+              on playing, competing, and improving.
             </motion.p>
           </div>
 
@@ -730,9 +849,12 @@ function App() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 relative overflow-hidden bg-white">
+      <section
+        id="how-it-works"
+        className="py-24 relative overflow-hidden bg-white"
+      >
         <div className="absolute inset-0 bg-dots-light opacity-30" />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left Content */}
@@ -754,7 +876,8 @@ function App() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-slate-800"
               >
-                AI That <span className="text-gradient-cool">Sees, Thinks, and Decides</span>
+                Your Game,{" "}
+                <span className="text-gradient-cool">Instantly Understood</span>
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -763,9 +886,10 @@ function App() {
                 viewport={{ once: true }}
                 className="text-slate-600 text-lg mb-10"
               >
-                CourtNG combines computer vision, intelligent rule engines, and 
-                edge computing to create a seamless, automated court experience 
-                with sub-30ms decision latency.
+                The moment you step on, the court comes alive. It watches every
+                rally, calls \"Out!\" or \"In!\" instantly, announces the score
+                after each point, and manages your entire match — from first
+                serve to \"Game, set, match!\"
               </motion.p>
 
               <div className="space-y-4">
@@ -796,7 +920,7 @@ function App() {
                 {/* Architecture Diagram */}
                 <div className="space-y-4">
                   {/* Vision Module */}
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.02 }}
                     className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-emerald-50 to-transparent border border-emerald-200/50"
                   >
@@ -804,8 +928,12 @@ function App() {
                       <Eye className="w-6 h-6 text-emerald-600" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-slate-800 font-semibold">Vision Module</div>
-                      <div className="text-slate-500 text-sm">Object detection & tracking</div>
+                      <div className="text-slate-800 font-semibold">
+                        Vision Module
+                      </div>
+                      <div className="text-slate-500 text-sm">
+                        Object detection & tracking
+                      </div>
                     </div>
                     <div className="badge badge-success text-xs">Active</div>
                   </motion.div>
@@ -816,7 +944,7 @@ function App() {
                   </div>
 
                   {/* Game Logic */}
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.02 }}
                     className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-purple-50 to-transparent border border-purple-200/50"
                   >
@@ -824,8 +952,12 @@ function App() {
                       <Brain className="w-6 h-6 text-purple-600" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-slate-800 font-semibold">Game Logic Engine</div>
-                      <div className="text-slate-500 text-sm">Rule processing & decisions</div>
+                      <div className="text-slate-800 font-semibold">
+                        Game Logic Engine
+                      </div>
+                      <div className="text-slate-500 text-sm">
+                        Rule processing & decisions
+                      </div>
                     </div>
                     <div className="badge badge-success text-xs">Active</div>
                   </motion.div>
@@ -836,7 +968,7 @@ function App() {
                   </div>
 
                   {/* Analytics */}
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.02 }}
                     className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-cyan-50 to-transparent border border-cyan-200/50"
                   >
@@ -844,26 +976,34 @@ function App() {
                       <BarChart3 className="w-6 h-6 text-cyan-600" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-slate-800 font-semibold">Analytics Module</div>
-                      <div className="text-slate-500 text-sm">Performance insights & data</div>
+                      <div className="text-slate-800 font-semibold">
+                        Analytics Module
+                      </div>
+                      <div className="text-slate-500 text-sm">
+                        Performance insights & data
+                      </div>
                     </div>
                     <div className="badge badge-success text-xs">Active</div>
                   </motion.div>
 
                   {/* Stats */}
                   <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200 mt-4">
-                    <motion.div 
+                    <motion.div
                       whileHover={{ scale: 1.05 }}
                       className="text-center p-4 rounded-xl bg-emerald-50"
                     >
-                      <div className="text-2xl font-bold text-emerald-600">&lt;30ms</div>
+                      <div className="text-2xl font-bold text-emerald-600">
+                        &lt;30ms
+                      </div>
                       <div className="text-slate-500 text-sm">Latency</div>
                     </motion.div>
-                    <motion.div 
+                    <motion.div
                       whileHover={{ scale: 1.05 }}
                       className="text-center p-4 rounded-xl bg-cyan-50"
                     >
-                      <div className="text-2xl font-bold text-cyan-600">99.9%</div>
+                      <div className="text-2xl font-bold text-cyan-600">
+                        99.9%
+                      </div>
                       <div className="text-slate-500 text-sm">Accuracy</div>
                     </motion.div>
                   </div>
@@ -875,9 +1015,12 @@ function App() {
       </section>
 
       {/* Vision Section */}
-      <section id="vision" className="py-24 relative overflow-hidden section-accent">
+      <section
+        id="vision"
+        className="py-24 relative overflow-hidden section-accent"
+      >
         <BackgroundOrbs />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-16">
             <motion.div
@@ -897,7 +1040,7 @@ function App() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              Powering the Future of <span className="text-gradient">Play</span>
+              The Future of <span className="text-gradient">Your Game</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -906,8 +1049,9 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-3xl mx-auto"
             >
-              Our long-term goal is to become the default intelligence platform for sports courts globally — 
-              similar to how operating systems power devices. CourtNG aims to power play itself.
+              Imagine stepping onto any court and hearing \"Ready to play?\" The
+              court knows who you are, officiates your entire match, and gives
+              you pro-level analytics after. That&apos;s every game, everywhere.
             </motion.p>
           </div>
 
@@ -916,20 +1060,23 @@ function App() {
             {[
               {
                 icon: Eye,
-                title: "See",
-                description: "Multi-camera computer vision captures every moment with precision",
+                title: "It Sees Everything",
+                description:
+                  "Every ball, every line, every movement — the court watches like a hawk and never blinks",
                 color: "emerald",
               },
               {
                 icon: Brain,
-                title: "Think",
-                description: "AI processes data in real-time to understand game context",
+                title: "It Knows the Rules",
+                description:
+                  "Foot faults, let serves, line calls — the court knows your sport inside and out",
                 color: "purple",
               },
               {
                 icon: Zap,
-                title: "Decide",
-                description: "Intelligent rule engine makes instant, accurate decisions",
+                title: "It Speaks Up",
+                description:
+                  '"Out!" "Fault!" "30-15!" — instant voice calls keep your game flowing smoothly',
                 color: "cyan",
               },
             ].map((item, index) => (
@@ -942,13 +1089,15 @@ function App() {
                 whileHover={{ y: -8 }}
                 className="glass-card-elevated rounded-2xl p-8 text-center group"
               >
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className={`w-16 h-16 rounded-2xl bg-gradient-to-br from-${item.color}-100 to-${item.color}-200 flex items-center justify-center mx-auto mb-6 shadow-lg`}
                 >
                   <item.icon className={`w-8 h-8 text-${item.color}-600`} />
                 </motion.div>
-                <h3 className="text-2xl font-bold text-slate-800 mb-3">{item.title}</h3>
+                <h3 className="text-2xl font-bold text-slate-800 mb-3">
+                  {item.title}
+                </h3>
                 <p className="text-slate-600">{item.description}</p>
               </motion.div>
             ))}
@@ -974,14 +1123,14 @@ function App() {
                 viewport={{ once: true }}
                 className="text-2xl sm:text-3xl font-bold text-slate-800"
               >
-                Our Journey to Transform Sports
+                What&apos;s Coming for You
               </motion.h3>
             </div>
 
             <div className="relative">
               {/* Timeline Line */}
               <div className="absolute left-[1.45rem] top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-500 via-cyan-500 to-purple-500 hidden md:block" />
-              
+
               <div className="grid md:grid-cols-2 gap-6">
                 {roadmap.map((item, index) => (
                   <RoadmapItem key={index} {...item} index={index} />
@@ -995,7 +1144,7 @@ function App() {
       {/* Market Stats Section */}
       <section id="market" className="py-24 relative bg-white">
         <div className="absolute inset-0 bg-grid-light opacity-30" />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-16">
             <motion.div
@@ -1015,7 +1164,7 @@ function App() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              A Massive, <span className="text-gradient">Growing Market</span>
+              Join the <span className="text-gradient">CourtNG Movement</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -1024,8 +1173,8 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              The sports technology industry is experiencing explosive growth. 
-              CourtNG is positioned to capture significant market share across multiple segments.
+              Players everywhere are discovering a better way to play. Be among
+              the first to experience courts that work for you.
             </motion.p>
           </div>
 
@@ -1041,7 +1190,7 @@ function App() {
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="glass-card-elevated rounded-2xl p-6 text-center group"
               >
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center mx-auto mb-4"
                 >
@@ -1054,7 +1203,9 @@ function App() {
                     prefix={stat.prefix}
                   />
                 </div>
-                <div className="text-slate-500 text-sm font-medium">{stat.label}</div>
+                <div className="text-slate-500 text-sm font-medium">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -1070,22 +1221,25 @@ function App() {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  title: "Initial Focus",
+                  title: "For Players",
                   icon: Target,
-                  description: "Badminton & tennis clubs, training academies, and indoor sports centers where automation creates immediate ROI.",
+                  description:
+                    "Practice and compete with instant feedback. Track your progress over time and improve faster than ever before.",
                 },
                 {
-                  title: "Expansion Path",
+                  title: "For Coaches",
                   icon: Rocket,
-                  description: "Multi-sport support, league integration, broadcast partnerships, and community features on our roadmap.",
+                  description:
+                    "Get detailed data on your players. Build training plans based on real performance metrics, not guesswork.",
                 },
                 {
-                  title: "Competitive Edge",
+                  title: "For Venues",
                   icon: Award,
-                  description: "Edge-first architecture, sport-agnostic design, and full automation set us apart from traditional solutions.",
+                  description:
+                    "Attract more players with premium technology. Run more games with less staff and stand out from the competition.",
                 },
               ].map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   whileHover={{ y: -4 }}
                   className="text-center md:text-left"
@@ -1094,7 +1248,9 @@ function App() {
                     <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
                       <item.icon className="w-5 h-5 text-emerald-600" />
                     </div>
-                    <h4 className="text-slate-800 font-bold text-lg">{item.title}</h4>
+                    <h4 className="text-slate-800 font-bold text-lg">
+                      {item.title}
+                    </h4>
                   </div>
                   <p className="text-slate-600">{item.description}</p>
                 </motion.div>
@@ -1118,10 +1274,18 @@ function App() {
             >
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: CheckCircle2, text: "Zero Referee Dependency", color: "emerald" },
-                  { icon: Clock, text: "Sub-30ms Decisions", color: "purple" },
-                  { icon: Globe, text: "Multi-Sport Ready", color: "cyan" },
-                  { icon: Shield, text: "99.9% Accuracy", color: "orange" },
+                  {
+                    icon: CheckCircle2,
+                    text: "Play Without Referees",
+                    color: "emerald",
+                  },
+                  { icon: Clock, text: "Instant Decisions", color: "purple" },
+                  { icon: Globe, text: "Your Sport, Covered", color: "cyan" },
+                  {
+                    icon: Shield,
+                    text: "Calls You Can Trust",
+                    color: "orange",
+                  },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -1132,7 +1296,7 @@ function App() {
                     whileHover={{ y: -4, scale: 1.02 }}
                     className="glass-card-elevated rounded-xl p-6"
                   >
-                    <motion.div 
+                    <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       className={`w-12 h-12 rounded-xl bg-${item.color}-100 flex items-center justify-center mb-3`}
                     >
@@ -1163,7 +1327,8 @@ function App() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-slate-800"
               >
-                Built Different, <span className="text-gradient">Built Better</span>
+                Built for{" "}
+                <span className="text-gradient">Players Like You</span>
               </motion.h2>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -1173,16 +1338,21 @@ function App() {
                 className="space-y-4 text-slate-600"
               >
                 <p>
-                  Traditional sports rely on fallible human referees, manual scorekeeping, 
-                  and offer no real-time insights. CourtNG changes everything.
+                  Picture this: You walk onto the court and it greets you by
+                  name. \"Ready when you are.\" You serve, and after a long
+                  rally — \"Out! 15-love.\" The court saw it, called it, and
+                  updated the score. You just play.
                 </p>
                 <p>
-                  Our AI-first platform doesn&apos;t just automate — it transforms. Every match 
-                  becomes a data-rich experience. Every decision is consistent, instant, and fair.
+                  No more pausing to remember the score. No more debates about
+                  close calls. No more waiting for someone to officiate. The
+                  court handles everything with the precision of a professional
+                  referee.
                 </p>
                 <p>
-                  Think of CourtNG as the operating system for sports courts — just as iOS 
-                  powers iPhones, CourtNG powers intelligent play.
+                  After the match, you see your stats, watch replays of key
+                  points, and understand exactly how you played. This is what
+                  every game should feel like.
                 </p>
               </motion.div>
 
@@ -1213,9 +1383,12 @@ function App() {
       </section>
 
       {/* 3D Court Demo Section */}
-      <section id="demo" className="py-24 relative overflow-hidden section-accent">
+      <section
+        id="demo"
+        className="py-24 relative overflow-hidden section-accent"
+      >
         <BackgroundOrbs />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-12">
             <motion.div
@@ -1235,7 +1408,7 @@ function App() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              Explore the <span className="text-gradient">Smart Court</span>
+              See It in <span className="text-gradient">Action</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -1244,8 +1417,9 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              Experience our multi-camera AI system in an interactive 3D environment. 
-              See how CourtNG tracks every movement in real-time.
+              See how the court watches your game from every angle, tracks every
+              shot, and officiates every rally — all happening invisibly so you
+              can just play.
             </motion.p>
           </div>
 
@@ -1280,8 +1454,12 @@ function App() {
               <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                 <div className="text-center bg-white/90 backdrop-blur-sm rounded-xl px-6 py-4 shadow-lg">
                   <Monitor className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
-                  <p className="text-slate-800 font-medium">View on desktop for 3D demo</p>
-                  <p className="text-slate-500 text-sm">Interactive experience available on larger screens</p>
+                  <p className="text-slate-800 font-medium">
+                    View on desktop for 3D demo
+                  </p>
+                  <p className="text-slate-500 text-sm">
+                    Interactive experience available on larger screens
+                  </p>
                 </div>
               </div>
             </div>
@@ -1292,9 +1470,9 @@ function App() {
       {/* CTA / Contact Section */}
       <section id="contact" className="py-24 relative bg-white">
         <div className="absolute inset-0 bg-gradient-radial-light" />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -1325,7 +1503,7 @@ function App() {
                   viewport={{ once: true }}
                   className="text-3xl sm:text-4xl font-bold mb-6 text-slate-800"
                 >
-                  Ready to Transform Your Court?
+                  Ready to Play Smarter?
                 </motion.h2>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -1334,8 +1512,9 @@ function App() {
                   viewport={{ once: true }}
                   className="text-slate-600 text-lg mb-8"
                 >
-                  Join our early access program and be among the first to experience 
-                  the future of intelligent sports courts.
+                  Be among the first to experience the future of playing. Sign
+                  up now and we&apos;ll let you know when CourtNG is available
+                  near you.
                 </motion.p>
 
                 <motion.ul
@@ -1346,14 +1525,14 @@ function App() {
                   className="space-y-4"
                 >
                   {[
-                    "Instant match insights powered by AI",
-                    "Eliminate referee errors with real-time decisions",
-                    "Automated game orchestration saves time",
-                    "Unlock player performance analytics",
-                    "Priority access to new features",
+                    "A court that greets you and runs your match end-to-end",
+                    'Instant line calls — "Out!" "In!" — called out loud',
+                    "Score announced after every point, automatically",
+                    "Your stats and highlights after every game",
+                    "Be first to experience the future of playing",
                   ].map((item, index) => (
-                    <motion.li 
-                      key={index} 
+                    <motion.li
+                      key={index}
                       whileHover={{ x: 5 }}
                       className="flex items-center gap-3 text-slate-700"
                     >
