@@ -80,61 +80,61 @@ function PlayerAnalytics() {
   const howItWorks = [
     {
       icon: LineChart,
-      title: "Trajectory Clustering",
-      description: "Advanced rally segmentation for precise shot labeling and pattern recognition.",
+      title: "Every Shot Analyzed",
+      description: "See which shots win points and which ones let you down.",
     },
     {
       icon: Activity,
-      title: "Pose Analysis",
-      description: "Quantified footwork metrics, reach analysis, and recovery time measurements.",
+      title: "Your Movement Tracked",
+      description: "Understand how you move — speed, positioning, and court coverage.",
     },
     {
       icon: PieChart,
-      title: "Heatmap Generation",
-      description: "Visual representation of player strengths, weaknesses, and court coverage.",
+      title: "Visual Heatmaps",
+      description: "See where you&apos;re strongest and where you&apos;re leaving gaps.",
     },
     {
       icon: TrendingUp,
-      title: "Performance Benchmarking",
-      description: "Compare against skill tiers and personal history to track improvement.",
+      title: "Track Your Progress",
+      description: "Compare your performance over time and see how you&apos;re improving.",
     },
     {
       icon: Timer,
-      title: "Real-Time Dashboards",
-      description: "Interactive dashboards that update in near real-time during matches.",
+      title: "Insights After Every Match",
+      description: "Get your stats immediately — no waiting, no manual tracking.",
     },
   ];
 
   const benefits = [
     {
       icon: Target,
-      title: "Data-Driven Feedback",
-      description: "Objective insights replace guesswork for measurable improvement.",
+      title: "Know What to Practice",
+      description: "Clear data shows exactly what&apos;s working and what needs attention.",
     },
     {
       icon: TrendingUp,
-      title: "Custom Training Plans",
-      description: "AI-generated recommendations based on performance trends.",
+      title: "Personalized Suggestions",
+      description: "Get recommendations tailored to your game and skill level.",
     },
     {
       icon: Users,
-      title: "Shareable Reports",
-      description: "Export analytics for coaches, recruiters, and team reviews.",
+      title: "Share with Your Coach",
+      description: "Send your stats to coaches for better, more focused training.",
     },
     {
       icon: Zap,
-      title: "API Integration",
-      description: "Connect with apps and broadcast systems via our REST APIs.",
+      title: "Works with Your Apps",
+      description: "Connect to fitness and sports apps you already use.",
     },
     {
       icon: Crosshair,
-      title: "Shot Analysis",
-      description: "Detailed breakdown of shot types, speeds, and placement accuracy.",
+      title: "Understand Your Shots",
+      description: "See shot speed, placement, and which types win you points.",
     },
     {
       icon: Activity,
-      title: "Movement Tracking",
-      description: "Distance covered, speed variations, and court positioning data.",
+      title: "See How You Move",
+      description: "Track distance, speed, and where you spend time on court.",
     },
   ];
 
@@ -175,8 +175,8 @@ function PlayerAnalytics() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6"
           >
-            <span className="text-slate-800">Data-Powered </span>
-            <span className="text-gradient-cool">Performance</span>
+            <span className="text-slate-800">See How You&apos;re </span>
+            <span className="text-gradient-cool">Really Playing</span>
           </motion.h1>
 
           <motion.p
@@ -185,9 +185,9 @@ function PlayerAnalytics() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            Actionable insights from movement, shots, and tactics — empowering 
-            players and coaches to improve with data-backed precision and 
-            AI-driven recommendations.
+            Stop guessing what to work on. Get clear insights into your strengths, 
+            weaknesses, and progress over time — so every practice session 
+            counts and you improve faster.
           </motion.p>
 
           <motion.div
@@ -252,7 +252,7 @@ function PlayerAnalytics() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl font-bold mb-6 text-slate-800"
               >
-                Deep Performance <span className="text-gradient-cool">Insights</span>
+                Understand Your <span className="text-gradient-cool">Game Better</span>
               </motion.h2>
 
               <motion.p
@@ -262,8 +262,8 @@ function PlayerAnalytics() {
                 viewport={{ once: true }}
                 className="text-slate-600 text-lg mb-10"
               >
-                Our AI analyzes every aspect of player performance — from footwork 
-                to shot selection — providing actionable insights that drive real improvement.
+                Ever wonder why you win some matches easily and struggle in others? 
+                Your analytics reveal patterns you can&apos;t see just by playing.
               </motion.p>
 
               <div className="space-y-4">
@@ -351,7 +351,7 @@ function PlayerAnalytics() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl font-bold mb-6 text-slate-800"
               >
-                Transform Training & <span className="text-gradient">Performance</span>
+                Improve <span className="text-gradient">Faster</span>
               </motion.h2>
 
               <motion.p
@@ -361,9 +361,8 @@ function PlayerAnalytics() {
                 viewport={{ once: true }}
                 className="text-slate-600 text-lg mb-8"
               >
-                Replace subjective coaching with objective data. Our analytics 
-                help players identify strengths, address weaknesses, and track 
-                progress over time.
+                When you know exactly what to work on, you stop wasting time. 
+                Focus your practice on what actually matters for your game.
               </motion.p>
 
               <motion.ul
@@ -374,11 +373,11 @@ function PlayerAnalytics() {
                 className="space-y-4"
               >
                 {[
-                  "Objective, data-driven feedback for measurable improvement",
-                  "Customized training plans based on performance trends",
-                  "Shareable reports for coaches, recruiters, and scouts",
-                  "Integration-ready APIs for apps and broadcasts",
-                  "Faster identification of strengths and weak spots",
+                  "See real numbers on your improvement, not just feelings",
+                  "Get practice recommendations based on your actual weaknesses",
+                  "Share progress with your coach between sessions",
+                  "Connect your data to other fitness apps you use",
+                  "Discover patterns in your game you never noticed before",
                 ].map((item, index) => (
                   <motion.li 
                     key={index} 
@@ -408,7 +407,7 @@ function PlayerAnalytics() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold mb-4 text-slate-800"
             >
-              Complete Analytics <span className="text-gradient-cool">Suite</span>
+              All the Insights <span className="text-gradient-cool">You Need</span>
             </motion.h2>
 
             <motion.p
@@ -418,8 +417,8 @@ function PlayerAnalytics() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              Everything players and coaches need to understand performance 
-              and drive continuous improvement.
+              Whether you&apos;re tracking your own progress or coaching others, 
+              these tools help you understand the game at a deeper level.
             </motion.p>
           </div>
 
@@ -448,7 +447,7 @@ function PlayerAnalytics() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold mb-4 text-slate-800"
             >
-              Metrics That <span className="text-gradient">Matter</span>
+              What You&apos;ll <span className="text-gradient">Learn</span>
             </motion.h2>
           </div>
 
@@ -461,10 +460,10 @@ function PlayerAnalytics() {
           >
             <div className="grid md:grid-cols-4 gap-6">
               {[
-                { category: "Movement", metrics: ["Distance Covered", "Top Speed", "Average Speed", "Recovery Time"], color: "purple" },
-                { category: "Shot Analysis", metrics: ["Shot Speed", "Placement %", "Winner Ratio", "Error Rate"], color: "emerald" },
-                { category: "Positioning", metrics: ["Court Coverage", "Net Approaches", "Baseline Time", "Hot Zones"], color: "cyan" },
-                { category: "Game Stats", metrics: ["Points Won", "Rally Length", "Ace Count", "Break Points"], color: "orange" },
+                { category: "How You Move", metrics: ["Distance covered per match", "Your top speed", "How quickly you recover", "Time spent moving"], color: "purple" },
+                { category: "Your Shots", metrics: ["Shot speed trends", "Where you place the ball", "Which shots win points", "Unforced error patterns"], color: "emerald" },
+                { category: "Court Position", metrics: ["Areas you cover well", "Where you leave gaps", "Net vs baseline time", "Your strongest zones"], color: "cyan" },
+                { category: "Match Performance", metrics: ["Points won per serve", "Average rally length", "Clutch performance", "Scoring patterns"], color: "orange" },
               ].map((section, index) => (
                 <div key={index}>
                   <h4 className={`text-${section.color}-600 font-semibold mb-4 text-sm uppercase tracking-wider`}>
@@ -500,11 +499,11 @@ function PlayerAnalytics() {
             
             <div className="relative">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-slate-800">
-                Ready to Unlock Your Potential?
+                Ready to Level Up Your Game?
               </h2>
               <p className="text-slate-600 text-lg mb-8 max-w-xl mx-auto">
-                Join our early access program and start training with 
-                professional-grade analytics.
+                Be among the first to get personalized insights that show you 
+                exactly how to improve. Sign up for early access.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }}>

@@ -66,56 +66,56 @@ function MatchOrchestration() {
   const howItWorks = [
     {
       icon: Brain,
-      title: "Event-Driven Rules Engine",
-      description: "Vision events trigger a sophisticated rules engine modeling rally state & possession in real-time.",
+      title: "Knows the Rules",
+      description: "The court understands your sport and applies the rules automatically — no manual input needed.",
     },
     {
       icon: Shield,
-      title: "Service Validation",
-      description: "AI analysis of foot placement, contact height, and timing ensures legal serve verification.",
+      title: "Validates Your Serves",
+      description: "Foot faults and service violations are caught instantly, keeping the game fair.",
     },
     {
       icon: Timer,
-      title: "Instant Fault Detection",
-      description: "Faults and out-of-play instantly stop rallies and update scores with zero delay.",
+      title: "Updates Scores Instantly",
+      description: "Every point is tracked and displayed immediately — no delays, no mistakes.",
     },
     {
       icon: Radio,
-      title: "Real-Time Broadcasting",
-      description: "LED scoreboards and mobile apps updated instantly via WebSocket events.",
+      title: "Everyone Stays in Sync",
+      description: "Scoreboards, your phone, and spectators all see the same score in real-time.",
     },
   ];
 
   const benefits = [
     {
       icon: Zap,
-      title: "Sub-Second Updates",
-      description: "Score changes and officiating decisions happen in under 30ms.",
+      title: "Instant Score Updates",
+      description: "See the score change the moment the point ends — no waiting.",
     },
     {
       icon: Gauge,
-      title: "Flawless Accuracy",
-      description: "AI ensures consistent, bias-free calls for every rally.",
+      title: "Always Accurate",
+      description: "No human errors or missed points. Every rally counts correctly.",
     },
     {
       icon: Monitor,
-      title: "Scoreboard Integration",
-      description: "Seamless connection to LED displays and broadcast systems.",
+      title: "Clear Scoreboards",
+      description: "Large displays show the score so everyone knows where things stand.",
     },
     {
       icon: Smartphone,
-      title: "Mobile Ready",
-      description: "Players and spectators get live updates on their devices.",
+      title: "Follow on Your Phone",
+      description: "Watch the score from anywhere — courtside or remotely.",
     },
     {
       icon: Bell,
-      title: "Audio Feedback",
-      description: "Clear audio cues for serves, faults, and score changes.",
+      title: "Audio Announcements",
+      description: "Hear when points are scored and when serves are faulted.",
     },
     {
       icon: Workflow,
-      title: "Game Flow Control",
-      description: "Automated management of sets, games, and tiebreakers.",
+      title: "Handles Complex Scoring",
+      description: "Sets, games, tiebreakers, and deuce — all managed automatically.",
     },
   ];
 
@@ -156,8 +156,8 @@ function MatchOrchestration() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6"
           >
-            <span className="text-slate-800">Zero Human </span>
-            <span className="text-gradient-warm">Intervention</span>
+            <span className="text-slate-800">Just Walk On </span>
+            <span className="text-gradient-warm">and Play</span>
           </motion.h1>
 
           <motion.p
@@ -166,9 +166,9 @@ function MatchOrchestration() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            Automate rally detection, service validation, and scoring for 
-            seamless, dispute-free gameplay — all in real-time with AI-powered 
-            match management.
+            No scorekeepers, no setup, no hassle. The court handles everything — 
+            scoring, serve tracking, and game flow — so you spend your time 
+            playing, not managing.
           </motion.p>
 
           <motion.div
@@ -220,7 +220,7 @@ function MatchOrchestration() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl font-bold mb-6 text-slate-800"
               >
-                Intelligent Game <span className="text-gradient-warm">Management</span>
+                How Your Game <span className="text-gradient-warm">Runs Itself</span>
               </motion.h2>
 
               <motion.p
@@ -230,8 +230,8 @@ function MatchOrchestration() {
                 viewport={{ once: true }}
                 className="text-slate-600 text-lg mb-10"
               >
-                Our AI orchestration engine manages every aspect of the game — from 
-                serve validation to score updates — without any human intervention.
+                Step on the court and start playing. The score tracks itself, 
+                serves are validated, and you never have to ask "what&apos;s the score?" again.
               </motion.p>
 
               <div className="space-y-4">
@@ -319,7 +319,7 @@ function MatchOrchestration() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl font-bold mb-6 text-slate-800"
               >
-                Why This Changes <span className="text-gradient-cool">Everything</span>
+                Why You&apos;ll <span className="text-gradient-cool">Love This</span>
               </motion.h2>
 
               <motion.p
@@ -329,9 +329,9 @@ function MatchOrchestration() {
                 viewport={{ once: true }}
                 className="text-slate-600 text-lg mb-8"
               >
-                With AI-powered match orchestration, we deliver bias-free, 
-                high-speed officiating and open new doors for player analytics 
-                and broadcast enhancement.
+                No more pausing to update the score. No more debates about 
+                who&apos;s serving. Just continuous, focused play with everything 
+                handled in the background.
               </motion.p>
 
               <motion.ul
@@ -342,10 +342,10 @@ function MatchOrchestration() {
                 className="space-y-4"
               >
                 {[
-                  "Sub-second score updates and officiating decisions",
-                  "Flawless accuracy for every rally without disputes",
-                  "Seamless scoreboard and broadcast integration",
-                  "Zero training needed for venue operators",
+                  "The score updates automatically — no more losing track",
+                  "Every rally is counted correctly, even in long matches",
+                  "Friends and family can follow along on their phones",
+                  "Works right away — no apps to download or setup to do",
                 ].map((item, index) => (
                   <motion.li 
                     key={index} 
@@ -375,7 +375,7 @@ function MatchOrchestration() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold mb-4 text-slate-800"
             >
-              Complete Automation <span className="text-gradient">Suite</span>
+              Everything You <span className="text-gradient">Need to Play</span>
             </motion.h2>
 
             <motion.p
@@ -385,8 +385,8 @@ function MatchOrchestration() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              Everything you need to run matches without human intervention — 
-              all powered by AI and integrated seamlessly.
+              From casual games to competitive matches, the court keeps track 
+              of everything so you can stay focused on playing.
             </motion.p>
           </div>
 
@@ -413,11 +413,11 @@ function MatchOrchestration() {
             
             <div className="relative">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-slate-800">
-                Ready to Automate Your Games?
+                Ready to Just Play?
               </h2>
               <p className="text-slate-600 text-lg mb-8 max-w-xl mx-auto">
-                Join our early access program and experience seamless, 
-                automated match orchestration for your venue.
+                Sign up to be first in line when self-managing courts 
+                become available. More playing, less managing.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }}>

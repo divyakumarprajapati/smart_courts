@@ -357,27 +357,27 @@ function App() {
   const features = [
     {
       icon: Eye,
-      title: "AI Referee System",
+      title: "Never Argue a Call Again",
       description:
-        "Real-time computer vision for precise ball tracking, line-in/out judgments, and automated foul detection with sub-second accuracy.",
+        "Get instant, precise in/out decisions on every shot. No more disputed line calls or waiting for referees — just fair, accurate officiating you can trust.",
       link: "/computer-vision",
       image: "/feature-ai-referee.svg",
       color: "emerald",
     },
     {
       icon: Brain,
-      title: "Match Orchestration",
+      title: "Play Without Interruptions",
       description:
-        "Intelligent automation to manage rallies, validate serves, update scores, and control game flow — zero human intervention required.",
+        "Start playing instantly with automatic scoring, serve validation, and game flow — no setup, no scorekeepers, no hassle. Just step on and play.",
       link: "/match-orchestration",
       image: "/feature-match-orchestration.svg",
       color: "cyan",
     },
     {
       icon: BarChart3,
-      title: "Player Analytics",
+      title: "See Your Game Like Never Before",
       description:
-        "Deep performance insights with movement heatmaps, shot analysis, reaction times, and tactical recommendations for players and coaches.",
+        "Discover where you excel and where to improve. Get personalized insights on your movement, shots, and tactics that help you level up your game.",
       link: "/player-analytics",
       image: "/feature-player-analytics.svg",
       color: "purple",
@@ -385,17 +385,17 @@ function App() {
   ];
 
   const problems = [
-    { icon: AlertTriangle, title: "Manual Scoring & Refereeing", description: "Human errors and inconsistencies affect game fairness" },
-    { icon: XCircle, title: "No Real-Time Insights", description: "Players and viewers miss valuable performance data" },
-    { icon: Users, title: "High Human Dependency", description: "Requires multiple staff for basic court operations" },
-    { icon: Activity, title: "Inconsistent Experience", description: "Quality varies significantly across different venues" },
+    { icon: AlertTriangle, title: "Frustrating Call Disputes", description: "You've lost points to bad calls or spent more time arguing than playing" },
+    { icon: XCircle, title: "No Way to Track Progress", description: "You want to improve but have no data on what's working and what's not" },
+    { icon: Users, title: "Always Waiting for Courts", description: "Finding referees or scorekeepers delays your games" },
+    { icon: Activity, title: "Inconsistent Playing Experience", description: "Every venue feels different, making it hard to stay in your groove" },
   ];
 
   const solutions = [
-    { icon: Eye, title: "AI-Powered Vision", description: "Computer vision detects every event with precision" },
-    { icon: Zap, title: "Instant Decisions", description: "Sub-30ms latency for real-time decision making" },
-    { icon: Target, title: "Rule Automation", description: "Configurable rule engine for any sport" },
-    { icon: BarChart3, title: "Rich Analytics", description: "Comprehensive data for performance improvement" },
+    { icon: Eye, title: "Fair, Instant Calls", description: "Every line call is accurate and immediate — no debates" },
+    { icon: Zap, title: "Play Anytime, Instantly", description: "Walk on, start playing — everything else is handled" },
+    { icon: Target, title: "Your Performance, Measured", description: "See exactly how you're improving over time" },
+    { icon: BarChart3, title: "Personalized Insights", description: "Get recommendations tailored to your game" },
   ];
 
   const stats = [
@@ -408,33 +408,33 @@ function App() {
   const capabilities = [
     {
       icon: Camera,
-      title: "Multi-Camera Vision",
-      description: "60-120 FPS synchronized capture with object detection and tracking.",
+      title: "See Every Angle",
+      description: "Multiple cameras capture your game from all sides — nothing gets missed.",
     },
     {
       icon: Cpu,
-      title: "Edge Computing",
-      description: "On-premise AI inference with NVIDIA Jetson-class hardware.",
+      title: "Instant Processing",
+      description: "Decisions happen in milliseconds, right on the court, no delays.",
     },
     {
       icon: Shield,
-      title: "Rule Engine",
-      description: "Configurable logic per sport with probabilistic edge-case handling.",
+      title: "Fair for Every Sport",
+      description: "Rules are automatically applied correctly for your game.",
     },
     {
       icon: MonitorPlay,
-      title: "Real-Time Feedback",
-      description: "Live scoreboards, audio cues, instant replays, and highlights.",
+      title: "Know the Score Instantly",
+      description: "Live scoreboards update automatically with audio cues for calls.",
     },
     {
       icon: Globe,
-      title: "Multi-Sport Ready",
-      description: "Scalable from badminton to tennis, basketball, and beyond.",
+      title: "Play Your Sport",
+      description: "Works for badminton, tennis, pickleball, and more sports coming.",
     },
     {
       icon: Server,
-      title: "Data Pipeline",
-      description: "Structured analytics with optional cloud sync for insights.",
+      title: "Your Stats, Your Way",
+      description: "Access your performance data anytime, anywhere.",
     },
   ];
 
@@ -450,25 +450,25 @@ function App() {
       phase: "Phase 1",
       title: "Foundation",
       status: "completed",
-      items: ["Core vision models", "Basic rule engine", "Single-sport support", "Local deployment"],
+      items: ["Accurate line calls", "Automatic scoring", "Badminton support", "Works offline"],
     },
     {
       phase: "Phase 2",
-      title: "Enhancement",
+      title: "More for You",
       status: "current",
-      items: ["Multi-camera support", "Advanced analytics", "Cloud sync", "Mobile app"],
+      items: ["Better court coverage", "Detailed player stats", "Save your matches", "Mobile app access"],
     },
     {
       phase: "Phase 3",
-      title: "Expansion",
+      title: "More Sports",
       status: "upcoming",
-      items: ["Multi-sport support", "League integration", "AI officiating v2", "Broadcasting tools"],
+      items: ["Tennis & pickleball", "Join local leagues", "Smarter officiating", "Watch live matches"],
     },
     {
       phase: "Phase 4",
-      title: "Scale",
+      title: "Play Anywhere",
       status: "upcoming",
-      items: ["Global deployment", "Player rankings", "Community features", "API ecosystem"],
+      items: ["Courts worldwide", "Track your ranking", "Find players & matches", "Connect with apps"],
     },
   ];
 
@@ -532,9 +532,9 @@ function App() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed"
             >
-              Transform any court into an intelligent, automated environment. 
-              AI-powered officiating, real-time analytics, and seamless game management — 
-              no referees needed.
+              Play without waiting for referees. Get instant, accurate calls every time. 
+              Track your performance and improve faster — all automatically, 
+              so you can focus on what matters: the game.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -640,7 +640,7 @@ function App() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              Traditional Courts Are <span className="text-gradient-warm">Falling Behind</span>
+              Playing Shouldn&apos;t Be <span className="text-gradient-warm">This Hard</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -649,8 +649,8 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              Today&apos;s sports courts face critical limitations that restrict scalability, 
-              accuracy, and engagement.
+              You just want to play, compete, and get better. But too often, the experience 
+              gets in the way.
             </motion.p>
           </div>
 
@@ -659,7 +659,7 @@ function App() {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="line-decoration bg-gradient-to-r from-red-500 to-orange-500" />
-                <h3 className="text-xl font-bold text-slate-800">Current Problems</h3>
+                <h3 className="text-xl font-bold text-slate-800">Sound Familiar?</h3>
               </div>
               <div className="space-y-4">
                 {problems.map((problem, index) => (
@@ -672,7 +672,7 @@ function App() {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="line-decoration" />
-                <h3 className="text-xl font-bold text-slate-800">Our Solutions</h3>
+                <h3 className="text-xl font-bold text-slate-800">Here&apos;s How It Changes</h3>
               </div>
               <div className="space-y-4">
                 {solutions.map((solution, index) => (
@@ -706,7 +706,7 @@ function App() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              Everything Your <span className="text-gradient">Court Needs</span>
+              Everything You Need to <span className="text-gradient">Play Better</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -715,8 +715,8 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              A complete AI-first operating system that automates officiating, 
-              orchestrates gameplay, and delivers actionable insights.
+              Step onto a court that takes care of the details so you can focus 
+              on playing, competing, and improving.
             </motion.p>
           </div>
 
@@ -754,7 +754,7 @@ function App() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-slate-800"
               >
-                AI That <span className="text-gradient-cool">Sees, Thinks, and Decides</span>
+                Your Game, <span className="text-gradient-cool">Instantly Understood</span>
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -763,9 +763,9 @@ function App() {
                 viewport={{ once: true }}
                 className="text-slate-600 text-lg mb-10"
               >
-                CourtNG combines computer vision, intelligent rule engines, and 
-                edge computing to create a seamless, automated court experience 
-                with sub-30ms decision latency.
+                Every shot, every move, every point — captured and processed in real-time. 
+                You get instant calls, live scores, and insights while you play, 
+                without any setup or waiting.
               </motion.p>
 
               <div className="space-y-4">
@@ -897,7 +897,7 @@ function App() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              Powering the Future of <span className="text-gradient">Play</span>
+              The Future of <span className="text-gradient">Your Game</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -906,8 +906,8 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-3xl mx-auto"
             >
-              Our long-term goal is to become the default intelligence platform for sports courts globally — 
-              similar to how operating systems power devices. CourtNG aims to power play itself.
+              Imagine walking onto any court and immediately getting professional-level officiating 
+              and analytics. That&apos;s the future we&apos;re building — for every player, at every level.
             </motion.p>
           </div>
 
@@ -916,20 +916,20 @@ function App() {
             {[
               {
                 icon: Eye,
-                title: "See",
-                description: "Multi-camera computer vision captures every moment with precision",
+                title: "Every Shot Seen",
+                description: "Nothing escapes the cameras — every ball, every line, every move is tracked",
                 color: "emerald",
               },
               {
                 icon: Brain,
-                title: "Think",
-                description: "AI processes data in real-time to understand game context",
+                title: "Every Play Understood",
+                description: "The AI knows the game as well as any referee and never loses focus",
                 color: "purple",
               },
               {
                 icon: Zap,
-                title: "Decide",
-                description: "Intelligent rule engine makes instant, accurate decisions",
+                title: "Every Call Instant",
+                description: "Decisions are made in milliseconds — before you even finish your swing",
                 color: "cyan",
               },
             ].map((item, index) => (
@@ -974,7 +974,7 @@ function App() {
                 viewport={{ once: true }}
                 className="text-2xl sm:text-3xl font-bold text-slate-800"
               >
-                Our Journey to Transform Sports
+                What&apos;s Coming for You
               </motion.h3>
             </div>
 
@@ -1015,7 +1015,7 @@ function App() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              A Massive, <span className="text-gradient">Growing Market</span>
+              Join the <span className="text-gradient">Smart Court Movement</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -1024,8 +1024,8 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              The sports technology industry is experiencing explosive growth. 
-              CourtNG is positioned to capture significant market share across multiple segments.
+              Players everywhere are discovering a better way to play. 
+              Be among the first to experience courts that work for you.
             </motion.p>
           </div>
 
@@ -1070,19 +1070,19 @@ function App() {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  title: "Initial Focus",
+                  title: "For Players",
                   icon: Target,
-                  description: "Badminton & tennis clubs, training academies, and indoor sports centers where automation creates immediate ROI.",
+                  description: "Practice and compete with instant feedback. Track your progress over time and improve faster than ever before.",
                 },
                 {
-                  title: "Expansion Path",
+                  title: "For Coaches",
                   icon: Rocket,
-                  description: "Multi-sport support, league integration, broadcast partnerships, and community features on our roadmap.",
+                  description: "Get detailed data on your players. Build training plans based on real performance metrics, not guesswork.",
                 },
                 {
-                  title: "Competitive Edge",
+                  title: "For Venues",
                   icon: Award,
-                  description: "Edge-first architecture, sport-agnostic design, and full automation set us apart from traditional solutions.",
+                  description: "Attract more players with premium technology. Run more games with less staff and stand out from the competition.",
                 },
               ].map((item, index) => (
                 <motion.div 
@@ -1118,10 +1118,10 @@ function App() {
             >
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: CheckCircle2, text: "Zero Referee Dependency", color: "emerald" },
-                  { icon: Clock, text: "Sub-30ms Decisions", color: "purple" },
-                  { icon: Globe, text: "Multi-Sport Ready", color: "cyan" },
-                  { icon: Shield, text: "99.9% Accuracy", color: "orange" },
+                  { icon: CheckCircle2, text: "Play Without Referees", color: "emerald" },
+                  { icon: Clock, text: "Instant Decisions", color: "purple" },
+                  { icon: Globe, text: "Your Sport, Covered", color: "cyan" },
+                  { icon: Shield, text: "Calls You Can Trust", color: "orange" },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -1163,7 +1163,7 @@ function App() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-slate-800"
               >
-                Built Different, <span className="text-gradient">Built Better</span>
+                Built for <span className="text-gradient">Players Like You</span>
               </motion.h2>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -1173,16 +1173,16 @@ function App() {
                 className="space-y-4 text-slate-600"
               >
                 <p>
-                  Traditional sports rely on fallible human referees, manual scorekeeping, 
-                  and offer no real-time insights. CourtNG changes everything.
+                  You deserve fair calls on every shot. You deserve to know how you&apos;re 
+                  improving. You deserve to spend your time playing, not waiting.
                 </p>
                 <p>
-                  Our AI-first platform doesn&apos;t just automate — it transforms. Every match 
-                  becomes a data-rich experience. Every decision is consistent, instant, and fair.
+                  With CourtNG, every match feels like playing at a professional venue. 
+                  Accurate calls, automatic scoring, and insights that help you get better.
                 </p>
                 <p>
-                  Think of CourtNG as the operating system for sports courts — just as iOS 
-                  powers iPhones, CourtNG powers intelligent play.
+                  Whether you&apos;re training, competing casually, or pushing for your next level, 
+                  the court now works as hard as you do.
                 </p>
               </motion.div>
 
@@ -1235,7 +1235,7 @@ function App() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              Explore the <span className="text-gradient">Smart Court</span>
+              See It in <span className="text-gradient">Action</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -1244,8 +1244,8 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              Experience our multi-camera AI system in an interactive 3D environment. 
-              See how CourtNG tracks every movement in real-time.
+              Explore how a smart court sees your game. Every camera angle, every tracking point 
+              — all working together so you can focus on playing.
             </motion.p>
           </div>
 
@@ -1325,7 +1325,7 @@ function App() {
                   viewport={{ once: true }}
                   className="text-3xl sm:text-4xl font-bold mb-6 text-slate-800"
                 >
-                  Ready to Transform Your Court?
+                  Ready to Play Smarter?
                 </motion.h2>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -1334,8 +1334,8 @@ function App() {
                   viewport={{ once: true }}
                   className="text-slate-600 text-lg mb-8"
                 >
-                  Join our early access program and be among the first to experience 
-                  the future of intelligent sports courts.
+                  Be among the first to experience the future of playing. 
+                  Sign up now and we&apos;ll let you know when smart courts are available near you.
                 </motion.p>
 
                 <motion.ul
@@ -1346,11 +1346,11 @@ function App() {
                   className="space-y-4"
                 >
                   {[
-                    "Instant match insights powered by AI",
-                    "Eliminate referee errors with real-time decisions",
-                    "Automated game orchestration saves time",
-                    "Unlock player performance analytics",
-                    "Priority access to new features",
+                    "Fair, accurate calls on every shot",
+                    "Automatic scoring so you can focus on playing",
+                    "Track your improvement over time",
+                    "Get insights to level up your game",
+                    "Early access to new features before anyone else",
                   ].map((item, index) => (
                     <motion.li 
                       key={index} 

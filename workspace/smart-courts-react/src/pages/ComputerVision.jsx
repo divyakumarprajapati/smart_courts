@@ -74,60 +74,60 @@ function ComputerVision() {
   const howItWorks = [
     {
       icon: Camera,
-      title: "Multi-View Capture",
-      description: "60-120 FPS synchronized cameras with precise timestamps for complete court coverage.",
+      title: "Full Court Coverage",
+      description: "Multiple cameras watch the entire court from every angle — no blind spots.",
     },
     {
       icon: Cpu,
-      title: "Edge AI Processing",
-      description: "On-device AI performs pose estimation & ball tracking in under 30ms latency.",
+      title: "Instant Recognition",
+      description: "The AI identifies where the ball lands before you even look up.",
     },
     {
       icon: Target,
-      title: "Homography Mapping",
-      description: "Precise boundary detection with sub-pixel accuracy for in/out judgments.",
+      title: "Precise Line Calls",
+      description: "Millimeter-level accuracy means the right call, every single time.",
     },
     {
       icon: Shield,
-      title: "Temporal Logic",
-      description: "Confidence-scored foul identification using multi-frame analysis.",
+      title: "Fair Foul Detection",
+      description: "Fouls and violations are caught consistently — no missed calls.",
     },
     {
       icon: Zap,
-      title: "Structured Events",
-      description: "Edge compute streams secure events while keeping video data local.",
+      title: "Your Privacy Protected",
+      description: "Video stays on the court. Only game events and stats are shared.",
     },
   ];
 
   const industries = [
     {
       icon: Factory,
-      title: "Manufacturing",
-      items: ["Instant defect detection", "Automated quality checks", "Production line monitoring"],
+      title: "Training Academies",
+      items: ["Track student progress automatically", "Record and review sessions", "Compare against benchmarks"],
       gradient: "bg-gradient-to-br from-orange-500 to-red-500",
     },
     {
       icon: ShieldCheck,
-      title: "Security",
-      items: ["Live threat alerts", "Suspicious activity recognition", "Perimeter monitoring"],
+      title: "Tournament Organizers",
+      items: ["Professional officiating at every court", "Instant replays for challenges", "Live stats for broadcasts"],
       gradient: "bg-gradient-to-br from-red-500 to-pink-500",
     },
     {
       icon: ShoppingCart,
-      title: "Retail",
-      items: ["Customer movement heatmaps", "Queue length tracking", "Inventory monitoring"],
+      title: "Sports Clubs",
+      items: ["Give members a premium experience", "Run more courts with less staff", "Attract serious players"],
       gradient: "bg-gradient-to-br from-purple-500 to-indigo-500",
     },
     {
       icon: Car,
-      title: "Traffic",
-      items: ["Real-time congestion alerts", "Pedestrian safety monitoring", "Incident detection"],
+      title: "Corporate Venues",
+      items: ["Easy-to-use for all skill levels", "Self-service court booking", "Engagement analytics"],
       gradient: "bg-gradient-to-br from-emerald-500 to-cyan-500",
     },
     {
       icon: Heart,
-      title: "Healthcare",
-      items: ["Posture tracking for rehab", "Patient fall detection", "Movement analysis"],
+      title: "Rehabilitation Centers",
+      items: ["Monitor patient movement safely", "Track recovery progress", "Objective assessment data"],
       gradient: "bg-gradient-to-br from-green-500 to-emerald-500",
     },
   ];
@@ -169,8 +169,8 @@ function ComputerVision() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6"
           >
-            <span className="text-slate-800">AI That </span>
-            <span className="text-gradient">Sees Everything</span>
+            <span className="text-slate-800">Every Shot </span>
+            <span className="text-gradient">Called Correctly</span>
           </motion.h1>
 
           <motion.p
@@ -179,9 +179,9 @@ function ComputerVision() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            Real-time AI vision system that tracks every ball, player, and boundary 
-            with sub-second accuracy — enabling automated refereeing, match orchestration, 
-            and next-generation sports analytics.
+            No more disputed line calls or waiting for a referee&apos;s decision. 
+            Our AI sees every ball and every boundary, giving you instant, accurate 
+            calls so you can focus on playing your best.
           </motion.p>
 
           <motion.div
@@ -233,7 +233,7 @@ function ComputerVision() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl font-bold mb-6 text-slate-800"
               >
-                Precision Vision at the <span className="text-gradient">Edge</span>
+                How You Get <span className="text-gradient">Perfect Calls</span>
               </motion.h2>
 
               <motion.p
@@ -243,8 +243,9 @@ function ComputerVision() {
                 viewport={{ once: true }}
                 className="text-slate-600 text-lg mb-10"
               >
-                Our multi-camera system captures every moment with military-grade precision, 
-                processing everything locally for instant decisions without cloud dependency.
+                The moment the ball lands, you know if it&apos;s in or out. 
+                No debates, no uncertainty — just clear, fair officiating that 
+                lets everyone focus on the game.
               </motion.p>
 
               <div className="space-y-4">
@@ -332,7 +333,7 @@ function ComputerVision() {
                 viewport={{ once: true }}
                 className="text-3xl sm:text-4xl font-bold mb-6 text-slate-800"
               >
-                Why This Changes <span className="text-gradient-cool">Everything</span>
+                Why Players <span className="text-gradient-cool">Love This</span>
               </motion.h2>
 
               <motion.p
@@ -342,9 +343,9 @@ function ComputerVision() {
                 viewport={{ once: true }}
                 className="text-slate-600 text-lg mb-8"
               >
-                By combining low-latency edge AI with high-fidelity tracking, we 
-                eliminate human bias, speed up officiating, and unlock entirely 
-                new layers of insight for coaches, broadcasters, and fans.
+                Imagine never losing a point to a bad call. Imagine every close shot 
+                being judged fairly and instantly. That&apos;s what you get when 
+                AI handles the officiating.
               </motion.p>
 
               <motion.ul
@@ -355,10 +356,10 @@ function ComputerVision() {
                 className="space-y-4"
               >
                 {[
-                  "Sub-second decision-making for professional-level accuracy",
-                  "Scalable from pro leagues to grassroots sports",
-                  "Modular integration with any scoreboard or broadcast system",
-                  "Privacy-first design with local processing",
+                  "Every line call is accurate and instant — no more arguments",
+                  "Same professional-quality officiating at any venue",
+                  "See replays of close calls when you want them",
+                  "Your video stays private — only you decide what to share",
                 ].map((item, index) => (
                   <motion.li 
                     key={index} 
@@ -399,7 +400,7 @@ function ComputerVision() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              Beyond <span className="text-gradient">Sports</span>
+              Perfect for <span className="text-gradient">Your Venue</span>
             </motion.h2>
 
             <motion.p
@@ -409,8 +410,8 @@ function ComputerVision() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              Our AI vision technology can revolutionize multiple industries, 
-              opening B2B revenue streams far beyond sports.
+              Whether you run a training academy, sports club, or tournament venue, 
+              smart officiating makes your courts more valuable.
             </motion.p>
           </div>
 
@@ -437,11 +438,11 @@ function ComputerVision() {
             
             <div className="relative">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-slate-800">
-                Ready to See the Future?
+                Ready for Fair, Instant Calls?
               </h2>
               <p className="text-slate-600 text-lg mb-8 max-w-xl mx-auto">
-                Join our early access program and experience the power of 
-                AI-driven computer vision for your court.
+                Be among the first to experience courts where every call is accurate, 
+                every time. Sign up and we&apos;ll notify you when it&apos;s available.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }}>
