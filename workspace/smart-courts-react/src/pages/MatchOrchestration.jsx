@@ -333,7 +333,7 @@ function MatchOrchestration() {
               >
                 You know that feeling when you watch a pro match? The crisp line calls, 
                 the clear score announcements, the seamless flow? That&apos;s what 
-                every game feels like on a smart court.
+                every game feels like with CourtNG.
               </motion.p>
 
               <motion.ul

@@ -1015,7 +1015,7 @@ function App() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-slate-800"
             >
-              Join the <span className="text-gradient">Smart Court Movement</span>
+              Join the <span className="text-gradient">CourtNG Movement</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -1337,7 +1337,7 @@ function App() {
                   className="text-slate-600 text-lg mb-8"
                 >
                   Be among the first to experience the future of playing. 
-                  Sign up now and we&apos;ll let you know when smart courts are available near you.
+                  Sign up now and we&apos;ll let you know when CourtNG is available near you.
                 </motion.p>
 
                 <motion.ul
