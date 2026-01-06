@@ -473,10 +473,10 @@ function App() {
   ];
 
   const typingTexts = [
-    "Courts That Talk to You",
-    "Your Personal AI Referee",
-    "Games That Run Themselves",
+    "Courts That Run Games",
+    "Courts That Coach You",
     "Every Call, Instant & Fair",
+    "Real-Time Analytics",
   ];
 
   return (
