@@ -15,9 +15,9 @@ const Footer = () => {
 
   const footerLinks = {
     product: [
-      { name: "AI Referee", href: "/computer-vision" },
-      { name: "Match Orchestration", href: "/match-orchestration" },
-      { name: "Player Analytics", href: "/player-analytics" },
+      { name: "Fair Line Calls", href: "/computer-vision" },
+      { name: "Your AI Referee", href: "/match-orchestration" },
+      { name: "Your Game Stats", href: "/player-analytics" },
     ],
     company: [
       { name: "About Us", href: "#" },
@@ -67,8 +67,8 @@ const Footer = () => {
               </div>
             </Link>
             <p className="text-slate-600 text-sm leading-relaxed mb-6 max-w-xs">
-              Transforming sports courts into intelligent, automated
-              environments that see, think, decide, and assist — powered by AI.
+              Courts that greet you, officiate your game, call every line, 
+              and announce the score — like having your own personal referee.
             </p>
             <div className="flex items-center gap-2">
               {socialLinks.map((social, index) => (
@@ -196,7 +196,7 @@ const Footer = () => {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-slate-500 text-sm">
             <MapPin className="w-4 h-4 text-emerald-500" />
-            <span>Building the future of sports, one court at a time.</span>
+            <span>Every court should feel like it knows you.</span>
           </div>
           <div className="flex items-center gap-6">
             <a

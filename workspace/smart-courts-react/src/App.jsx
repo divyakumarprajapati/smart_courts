@@ -387,13 +387,13 @@ function App() {
   const problems = [
     { icon: AlertTriangle, title: "Frustrating Call Disputes", description: "You've lost points to bad calls or spent more time arguing than playing" },
     { icon: XCircle, title: "No Way to Track Progress", description: "You want to improve but have no data on what's working and what's not" },
-    { icon: Users, title: "Always Waiting for Courts", description: "Finding referees or scorekeepers delays your games" },
+    { icon: Users, title: "Always Waiting for Referees", description: "Can't start your game until someone's available to keep score" },
     { icon: Activity, title: "Inconsistent Playing Experience", description: "Every venue feels different, making it hard to stay in your groove" },
   ];
 
   const solutions = [
     { icon: Eye, title: "Fair, Instant Calls", description: "Every line call is accurate and immediate — no debates" },
-    { icon: Zap, title: "Play Anytime, Instantly", description: "Walk on, start playing — everything else is handled" },
+    { icon: Zap, title: "The Court Officiates for You", description: "Walk on and play — the court greets you, runs your game, and calls every shot" },
     { icon: Target, title: "Your Performance, Measured", description: "See exactly how you're improving over time" },
     { icon: BarChart3, title: "Personalized Insights", description: "Get recommendations tailored to your game" },
   ];
@@ -423,8 +423,8 @@ function App() {
     },
     {
       icon: MonitorPlay,
-      title: "Know the Score Instantly",
-      description: "Live scoreboards update automatically with audio cues for calls.",
+      title: "Hear the Score Called Out",
+      description: "\"15-love!\" — the court announces every point and key moments of your match.",
     },
     {
       icon: Globe,
@@ -473,10 +473,10 @@ function App() {
   ];
 
   const typingTexts = [
-    "Smart Sports Courts",
-    "AI-Powered Officiating",
-    "Real-Time Analytics",
-    "Automated Game Flow",
+    "Courts That Talk to You",
+    "Your Personal AI Referee",
+    "Games That Run Themselves",
+    "Every Call, Instant & Fair",
   ];
 
   return (
@@ -532,9 +532,9 @@ function App() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed"
             >
-              Play without waiting for referees. Get instant, accurate calls every time. 
-              Track your performance and improve faster — all automatically, 
-              so you can focus on what matters: the game.
+              Walk onto a court that greets you, officiates your game, and calls every line. 
+              It announces the score, tracks your stats, and runs your match end-to-end — 
+              like having a professional referee who never misses a thing.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -763,9 +763,9 @@ function App() {
                 viewport={{ once: true }}
                 className="text-slate-600 text-lg mb-10"
               >
-                Every shot, every move, every point — captured and processed in real-time. 
-                You get instant calls, live scores, and insights while you play, 
-                without any setup or waiting.
+              The moment you step on, the court comes alive. It watches every rally, 
+              calls \"Out!\" or \"In!\" instantly, announces the score after each point, 
+              and manages your entire match — from first serve to \"Game, set, match!\"
               </motion.p>
 
               <div className="space-y-4">
@@ -906,8 +906,8 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-3xl mx-auto"
             >
-              Imagine walking onto any court and immediately getting professional-level officiating 
-              and analytics. That&apos;s the future we&apos;re building — for every player, at every level.
+              Imagine stepping onto any court and hearing \"Ready to play?\" The court knows who you are, 
+              officiates your entire match, and gives you pro-level analytics after. That&apos;s every game, everywhere.
             </motion.p>
           </div>
 
@@ -916,20 +916,20 @@ function App() {
             {[
               {
                 icon: Eye,
-                title: "Every Shot Seen",
-                description: "Nothing escapes the cameras — every ball, every line, every move is tracked",
+                title: "It Sees Everything",
+                description: "Every ball, every line, every movement — the court watches like a hawk and never blinks",
                 color: "emerald",
               },
               {
                 icon: Brain,
-                title: "Every Play Understood",
-                description: "The AI knows the game as well as any referee and never loses focus",
+                title: "It Knows the Rules",
+                description: "Foot faults, let serves, line calls — the court knows your sport inside and out",
                 color: "purple",
               },
               {
                 icon: Zap,
-                title: "Every Call Instant",
-                description: "Decisions are made in milliseconds — before you even finish your swing",
+                title: "It Speaks Up",
+                description: "\"Out!\" \"Fault!\" \"30-15!\" — instant voice calls keep your game flowing smoothly",
                 color: "cyan",
               },
             ].map((item, index) => (
@@ -1173,16 +1173,18 @@ function App() {
                 className="space-y-4 text-slate-600"
               >
                 <p>
-                  You deserve fair calls on every shot. You deserve to know how you&apos;re 
-                  improving. You deserve to spend your time playing, not waiting.
+                  Picture this: You walk onto the court and it greets you by name. 
+                  \"Ready when you are.\" You serve, and after a long rally — \"Out! 15-love.\" 
+                  The court saw it, called it, and updated the score. You just play.
                 </p>
                 <p>
-                  With CourtNG, every match feels like playing at a professional venue. 
-                  Accurate calls, automatic scoring, and insights that help you get better.
+                  No more pausing to remember the score. No more debates about close calls. 
+                  No more waiting for someone to officiate. The court handles everything 
+                  with the precision of a professional referee.
                 </p>
                 <p>
-                  Whether you&apos;re training, competing casually, or pushing for your next level, 
-                  the court now works as hard as you do.
+                  After the match, you see your stats, watch replays of key points, and 
+                  understand exactly how you played. This is what every game should feel like.
                 </p>
               </motion.div>
 
@@ -1244,8 +1246,8 @@ function App() {
               viewport={{ once: true }}
               className="text-slate-600 text-lg max-w-2xl mx-auto"
             >
-              Explore how a smart court sees your game. Every camera angle, every tracking point 
-              — all working together so you can focus on playing.
+              See how the court watches your game from every angle, tracks every shot, 
+              and officiates every rally — all happening invisibly so you can just play.
             </motion.p>
           </div>
 
@@ -1346,11 +1348,11 @@ function App() {
                   className="space-y-4"
                 >
                   {[
-                    "Fair, accurate calls on every shot",
-                    "Automatic scoring so you can focus on playing",
-                    "Track your improvement over time",
-                    "Get insights to level up your game",
-                    "Early access to new features before anyone else",
+                    "A court that greets you and runs your match end-to-end",
+                    "Instant line calls — \"Out!\" \"In!\" — called out loud",
+                    "Score announced after every point, automatically",
+                    "Your stats and highlights after every game",
+                    "Be first to experience the future of playing",
                   ].map((item, index) => (
                     <motion.li 
                       key={index} 
