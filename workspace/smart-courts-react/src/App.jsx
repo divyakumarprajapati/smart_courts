@@ -474,7 +474,7 @@ function App() {
 
   const typingTexts = [
     "Courts That Run Games",
-    "Courts That Coach You",
+    "Courts That Coaches You",
     "Every Call, Instant & Fair",
     "Real-Time Analytics",
   ];
