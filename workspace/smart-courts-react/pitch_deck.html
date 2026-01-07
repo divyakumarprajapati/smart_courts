@@ -3,984 +3,1975 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Courtng - Intelligent Automated Court Systems</title>
+    <title>CourtNG - Investor Pitch Deck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      /* Theme Variables */
       :root {
-        --font-family-display: "Plus Jakarta Sans", Arial, sans-serif;
-        --font-weight-display: 600;
-        --font-family-content: "Inter", Arial, sans-serif;
-        --font-weight-content: 400;
-        --font-size-content: 16px;
-        --line-height-content: 1.4;
+        --primary: #10b981;
+        --primary-dark: #059669;
+        --primary-light: #34d399;
+        --accent: #6366f1;
+        --accent-light: #818cf8;
+        --dark: #0f172a;
+        --dark-secondary: #1e293b;
+        --gray-900: #111827;
+        --gray-800: #1f2937;
+        --gray-700: #374151;
+        --gray-600: #4b5563;
+        --gray-500: #6b7280;
+        --gray-400: #9ca3af;
+        --gray-300: #d1d5db;
+        --gray-200: #e5e7eb;
+        --gray-100: #f3f4f6;
+        --white: #ffffff;
+        --gradient-1: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+        --gradient-2: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        --gradient-3: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
       }
 
-      /* LIGHT THEME - CourtNG Brand */
-      body.theme-light {
-        --color-bg-base: #f8fafc;
-        --color-bg-elevated: #ffffff;
-        --color-bg-surface: #ffffff;
-        --color-bg-muted: #e2e8f0;
-        --color-text-primary: #0f172a;
-        --color-text-secondary: #475569;
-        --color-text-muted: #64748b;
-        --color-text-accent: #10b981;
-        --color-primary: #10b981;
-        --color-primary-foreground: #ffffff;
-      }
-
-      /* Base Styles */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+      }
+
       body {
-        font-family: var(--font-family-content);
-        font-weight: var(--font-weight-content);
-        font-size: var(--font-size-content);
-        line-height: var(--line-height-content);
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #0a0a0a;
+        color: var(--white);
         overflow-x: hidden;
       }
 
-      /* Slide Container */
-      .slide {
-        width: 960px;
-        height: 540px;
-        margin: 0 auto 20px;
-        display: flex;
-        flex-shrink: 0;
-        position: relative;
-        overflow: hidden;
+      /* Presentation Container */
+      .presentation {
+        width: 100%;
+        height: 100vh;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
       }
 
-      /* Layout Utilities */
-      .row {
-        flex-direction: row;
-      }
-      .col {
+      /* Slide Base */
+      .slide {
+        width: 100%;
+        height: 100vh;
+        min-height: 100vh;
+        display: flex;
         flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
       }
-      .center {
+
+      /* Slide Backgrounds */
+      .slide-dark {
+        background: var(--gradient-hero);
+      }
+
+      .slide-light {
+        background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+        color: var(--dark);
+      }
+
+      .slide-gradient-1 {
+        background: linear-gradient(135deg, #0f172a 0%, #134e4a 50%, #0f172a 100%);
+      }
+
+      .slide-gradient-2 {
+        background: linear-gradient(135deg, #0f172a 0%, #312e81 50%, #0f172a 100%);
+      }
+
+      /* Animated Background Elements */
+      .bg-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.3;
+        pointer-events: none;
+        animation: float 20s ease-in-out infinite;
+      }
+
+      .bg-glow-1 {
+        width: 600px;
+        height: 600px;
+        background: var(--primary);
+        top: -200px;
+        right: -200px;
+      }
+
+      .bg-glow-2 {
+        width: 400px;
+        height: 400px;
+        background: var(--accent);
+        bottom: -100px;
+        left: -100px;
+        animation-delay: -10s;
+      }
+
+      .bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image: 
+          linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(30px, 30px) scale(1.1); }
+      }
+
+      /* Slide Content */
+      .slide-content {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 60px 80px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 10;
+      }
+
+      /* Slide Header */
+      .slide-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+      }
+
+      .slide-number {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--gray-500);
+        letter-spacing: 2px;
+      }
+
+      .slide-light .slide-number {
+        color: var(--gray-600);
+      }
+
+      .logo-small {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--white);
+      }
+
+      .slide-light .logo-small {
+        color: var(--dark);
+      }
+
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--gradient-1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Typography */
+      .slide-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 56px;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 24px;
+        background: linear-gradient(135deg, var(--white) 0%, var(--gray-300) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .slide-light .slide-title {
+        background: linear-gradient(135deg, var(--dark) 0%, var(--gray-700) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .slide-title-accent {
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .slide-subtitle {
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--gray-400);
+        line-height: 1.6;
+        max-width: 700px;
+      }
+
+      .slide-light .slide-subtitle {
+        color: var(--gray-600);
+      }
+
+      /* Hero Slide Specific */
+      .hero-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
       }
-      .space-between {
-        justify-content: space-between;
-      }
-      .items-center {
+
+      .hero-logo {
+        width: 120px;
+        height: 120px;
+        background: var(--gradient-1);
+        border-radius: 32px;
+        display: flex;
         align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+        box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4);
+        animation: pulse-glow 3s ease-in-out infinite;
       }
-      .items-start {
-        align-items: flex-start;
+
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4); }
+        50% { box-shadow: 0 30px 80px rgba(16, 185, 129, 0.6); }
       }
-      .items-end {
-        align-items: flex-end;
+
+      .hero-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 84px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        letter-spacing: -2px;
       }
-      .fill-width {
+
+      .hero-tagline {
+        font-size: 28px;
+        font-weight: 500;
+        color: var(--gray-300);
+        margin-bottom: 16px;
+      }
+
+      .hero-description {
+        font-size: 18px;
+        color: var(--gray-500);
+        max-width: 600px;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 50px;
+        padding: 12px 24px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 100px;
+        font-size: 14px;
+        color: var(--gray-400);
+      }
+
+      .hero-badge-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--primary);
+        border-radius: 50%;
+        animation: blink 2s ease-in-out infinite;
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+
+      /* Main Content Area */
+      .slide-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      /* Problem Cards */
+      .problem-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
         flex: 1;
       }
-      .fill-height {
+
+      .problem-card {
+        background: rgba(239, 68, 68, 0.08);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        border-radius: 20px;
+        padding: 32px;
+        display: flex;
+        gap: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .problem-card:hover {
+        background: rgba(239, 68, 68, 0.12);
+        transform: translateY(-2px);
+      }
+
+      .problem-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(239, 68, 68, 0.2);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 24px;
+      }
+
+      .problem-text h4 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #fca5a5;
+      }
+
+      .problem-text p {
+        font-size: 15px;
+        color: var(--gray-400);
+        line-height: 1.5;
+      }
+
+      /* Solution Cards */
+      .solution-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        flex: 1;
+      }
+
+      .solution-card {
+        background: rgba(16, 185, 129, 0.08);
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        border-radius: 20px;
+        padding: 32px;
+        display: flex;
+        gap: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .solution-card:hover {
+        background: rgba(16, 185, 129, 0.12);
+        transform: translateY(-2px);
+      }
+
+      .solution-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--gradient-1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 24px;
+      }
+
+      .solution-text h4 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--primary-light);
+      }
+
+      .solution-text p {
+        font-size: 15px;
+        color: var(--gray-400);
+        line-height: 1.5;
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      .stat-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 40px 32px;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+      }
+
+      .stat-value {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 52px;
+        font-weight: 800;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 8px;
+      }
+
+      .stat-label {
+        font-size: 16px;
+        color: var(--gray-400);
+        font-weight: 500;
+      }
+
+      .stat-source {
+        font-size: 12px;
+        color: var(--gray-600);
+        margin-top: 12px;
+      }
+
+      /* Validation Points */
+      .validation-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        flex: 1;
+      }
+
+      .validation-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 28px 32px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .validation-item:hover {
+        background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+        border-color: rgba(16, 185, 129, 0.3);
+      }
+
+      .validation-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 20px;
+      }
+
+      .validation-content h4 {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--white);
+        margin-bottom: 6px;
+      }
+
+      .validation-content p {
+        font-size: 15px;
+        color: var(--gray-400);
+        line-height: 1.5;
+      }
+
+      /* Product Features */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        flex: 1;
+      }
+
+      .product-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 36px 28px;
+        text-align: center;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--primary);
+      }
+
+      .product-card-icon {
+        width: 72px;
+        height: 72px;
+        background: var(--gradient-1);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        font-size: 32px;
+      }
+
+      .product-card h4 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: var(--white);
+      }
+
+      .product-card p {
+        font-size: 14px;
+        color: var(--gray-400);
+        line-height: 1.6;
+      }
+
+      /* Architecture Diagram */
+      .architecture-container {
+        flex: 1;
+        display: flex;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .arch-diagram {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .arch-layer {
+        display: flex;
+        gap: 16px;
+      }
+
+      .arch-box {
+        flex: 1;
+        padding: 28px 24px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .arch-box:hover {
+        border-color: var(--primary);
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.02) 100%);
+      }
+
+      .arch-box h5 {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--primary-light);
+        margin-bottom: 8px;
+      }
+
+      .arch-box p {
+        font-size: 13px;
+        color: var(--gray-500);
+      }
+
+      .arch-box.highlight {
+        background: var(--gradient-1);
+        border: none;
+      }
+
+      .arch-box.highlight h5 {
+        color: var(--white);
+      }
+
+      .arch-box.highlight p {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      /* Business Model */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        flex: 1;
+      }
+
+      .pricing-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 36px 28px;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .pricing-card.featured {
+        background: var(--gradient-1);
+        border: none;
+        transform: scale(1.05);
+      }
+
+      .pricing-card.featured:hover {
+        transform: scale(1.05) translateY(-4px);
+      }
+
+      .pricing-tier {
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--primary-light);
+        margin-bottom: 12px;
+      }
+
+      .pricing-card.featured .pricing-tier {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .pricing-price {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 42px;
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 4px;
+      }
+
+      .pricing-period {
+        font-size: 14px;
+        color: var(--gray-500);
+        margin-bottom: 24px;
+      }
+
+      .pricing-card.featured .pricing-period {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .pricing-features {
+        list-style: none;
+        flex: 1;
+      }
+
+      .pricing-features li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: var(--gray-400);
+        margin-bottom: 12px;
+      }
+
+      .pricing-card.featured .pricing-features li {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .pricing-features li::before {
+        content: "✓";
+        color: var(--primary);
+        font-weight: bold;
+      }
+
+      .pricing-card.featured .pricing-features li::before {
+        color: var(--white);
+      }
+
+      /* Competition Table */
+      .competition-table {
+        width: 100%;
         flex: 1;
         display: flex;
         flex-direction: column;
       }
 
-      /* Spacing */
-      .gap-sm {
-        gap: 0.5rem;
-      }
-      .gap-md {
-        gap: 1rem;
-      }
-      .gap-lg {
-        gap: 1.5rem;
-      }
-      .gap-xl {
-        gap: 2rem;
-      }
-      .gap-2xl {
-        gap: 3rem;
+      .table-header, .table-row {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+        gap: 16px;
+        padding: 20px 24px;
+        align-items: center;
       }
 
-      .p-4 {
-        padding: 1rem;
-      }
-      .p-6 {
-        padding: 1.5rem;
-      }
-      .p-8 {
-        padding: 2rem;
-      }
-      .p-12 {
-        padding: 3rem;
-      }
-      .p-16 {
-        padding: 4rem;
+      .table-header {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px 12px 0 0;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gray-400);
+        text-transform: uppercase;
+        letter-spacing: 1px;
       }
 
-      .mb-2 {
-        margin-bottom: 0.5rem;
-      }
-      .mb-4 {
-        margin-bottom: 1rem;
-      }
-      .mb-6 {
-        margin-bottom: 1.5rem;
-      }
-      .mb-8 {
-        margin-bottom: 2rem;
-      }
-      .mb-12 {
-        margin-bottom: 3rem;
+      .table-row {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 15px;
+        color: var(--gray-300);
+        transition: all 0.2s ease;
       }
 
-      .mt-2 {
-        margin-top: 0.5rem;
-      }
-      .mt-4 {
-        margin-top: 1rem;
-      }
-      .mt-6 {
-        margin-top: 1.5rem;
-      }
-      .mt-8 {
-        margin-top: 2rem;
-      }
-      .mt-12 {
-        margin-top: 3rem;
+      .table-row:hover {
+        background: rgba(255, 255, 255, 0.02);
       }
 
-      /* Typography */
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: var(--font-family-display);
-        font-weight: var(--font-weight-display);
-        line-height: 1.2;
-        margin: 0;
+      .table-row.highlight {
+        background: linear-gradient(90deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+        border: 1px solid var(--primary);
+        border-radius: 12px;
+        margin: 8px 0;
       }
 
-      h1 {
-        font-size: 3rem;
-      }
-      h2 {
-        font-size: 2.25rem;
-      }
-      h3 {
-        font-size: 1.75rem;
-      }
-      h4 {
-        font-size: 1.5rem;
-      }
-      h5 {
-        font-size: 1.25rem;
-      }
-      h6 {
-        font-size: 1rem;
-      }
-
-      .text-6xl {
-        font-size: 3.75rem;
-      }
-      .text-5xl {
-        font-size: 3rem;
-      }
-      .text-4xl {
-        font-size: 2.25rem;
-      }
-      .text-3xl {
-        font-size: 1.875rem;
-      }
-      .text-2xl {
-        font-size: 1.5rem;
-      }
-      .text-xl {
-        font-size: 1.25rem;
-      }
-      .text-lg {
-        font-size: 1.125rem;
-      }
-      .text-base {
-        font-size: 1rem;
-      }
-      .text-sm {
-        font-size: 0.875rem;
-      }
-      .text-xs {
-        font-size: 0.75rem;
-      }
-
-      .font-bold {
+      .table-row.highlight .company-name {
+        color: var(--primary-light);
         font-weight: 700;
       }
-      .font-semibold {
+
+      .company-name {
         font-weight: 600;
       }
-      .font-medium {
-        font-weight: 500;
-      }
-      .font-normal {
-        font-weight: 400;
+
+      .check-yes {
+        color: var(--primary);
+        font-weight: 600;
       }
 
-      .text-center {
+      .check-no {
+        color: #ef4444;
+      }
+
+      .check-partial {
+        color: #f59e0b;
+      }
+
+      /* Competitive Advantage */
+      .advantage-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        flex: 1;
+      }
+
+      .advantage-card {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.02) 100%);
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        border-radius: 20px;
+        padding: 32px;
+        display: flex;
+        gap: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .advantage-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--primary);
+      }
+
+      .advantage-icon {
+        width: 56px;
+        height: 56px;
+        background: var(--gradient-1);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 28px;
+      }
+
+      .advantage-content h4 {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 8px;
+      }
+
+      .advantage-content p {
+        font-size: 15px;
+        color: var(--gray-400);
+        line-height: 1.5;
+      }
+
+      /* Thank You Slide */
+      .thank-you-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         text-align: center;
       }
-      .text-left {
-        text-align: left;
-      }
-      .text-right {
-        text-align: right;
-      }
 
-      .opacity-90 {
-        opacity: 0.9;
-      }
-      .opacity-80 {
-        opacity: 0.8;
-      }
-      .opacity-70 {
-        opacity: 0.7;
-      }
-      .opacity-60 {
-        opacity: 0.6;
-      }
-
-      /* Lists */
-      ul,
-      ol {
-        margin-left: 2rem;
-        line-height: 1.8;
-      }
-
-      ul li {
-        list-style: disc;
-      }
-      ol li {
-        list-style: decimal;
-      }
-
-      li {
-        margin-bottom: 0.75rem;
-      }
-      li:last-child {
-        margin-bottom: 0;
-      }
-
-      /* Card Styles */
-      .card-rect {
-        padding: 2rem;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      }
-
-      .stat-box {
-        text-align: center;
-        padding: 1.5rem;
-        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
-        color: #0f172a;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
-        border: 1px solid #d1fae5;
-      }
-
-      .stat-number {
-        font-size: 2.5rem;
+      .thank-you-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 96px;
         font-weight: 800;
-        color: #10b981;
-        margin-bottom: 0.5rem;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 30px;
       }
 
-      .stat-label {
-        font-size: 0.95rem;
-        color: #475569;
+      .contact-info {
+        display: flex;
+        gap: 40px;
+        margin-top: 40px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 28px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 100px;
+        font-size: 16px;
+        color: var(--gray-300);
+      }
+
+      .contact-icon {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+      }
+
+      /* Progress Bar */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 100;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--gradient-1);
+        width: 0;
+        transition: width 0.3s ease;
+      }
+
+      /* Navigation Dots */
+      .nav-dots {
+        position: fixed;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 100;
+      }
+
+      .nav-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .nav-dot:hover, .nav-dot.active {
+        background: var(--primary);
+        transform: scale(1.3);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 1200px) {
+        .slide-content {
+          padding: 40px 50px;
+        }
+        .hero-title {
+          font-size: 64px;
+        }
+        .slide-title {
+          font-size: 42px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .problem-grid, .solution-grid, .advantage-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats-grid, .product-grid, .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+        .nav-dots {
+          display: none;
+        }
       }
     </style>
   </head>
-  <body class="theme-light">
-    <!-- Slide 1: Title Slide with Gradient -->
-    <section
-      class="slide p-16 col center"
-      style="
-        background: linear-gradient(
-          135deg,
-          #10b981 0%,
-          #06b6d4 50%,
-          #a855f7 100%
-        );
-        color: #ffffff;
-      "
-    >
-      <svg
-        width="120"
-        height="120"
-        viewBox="0 0 120 120"
-        style="margin-bottom: 2rem"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect width="120" height="120" rx="24" fill="#ffffff" opacity="0.15" />
-        <rect
-          x="20"
-          y="20"
-          width="80"
-          height="80"
-          rx="12"
-          fill="none"
-          stroke="#ffffff"
-          stroke-width="3"
-        />
-        <circle
-          cx="60"
-          cy="60"
-          r="20"
-          fill="none"
-          stroke="#ffffff"
-          stroke-width="3"
-        />
-        <circle cx="60" cy="60" r="6" fill="#ffffff" />
-        <line
-          x1="60"
-          y1="20"
-          x2="60"
-          y2="40"
-          stroke="#ffffff"
-          stroke-width="2"
-        />
-        <line
-          x1="60"
-          y1="80"
-          x2="60"
-          y2="100"
-          stroke="#ffffff"
-          stroke-width="2"
-        />
-        <line
-          x1="20"
-          y1="60"
-          x2="40"
-          y2="60"
-          stroke="#ffffff"
-          stroke-width="2"
-        />
-        <line
-          x1="80"
-          y1="60"
-          x2="100"
-          y2="60"
-          stroke="#ffffff"
-          stroke-width="2"
-        />
-      </svg>
-      <h1 class="text-6xl mb-4" style="color: #ffffff; font-weight: 800">
-        CourtNG
-      </h1>
-      <p class="text-2xl mb-8" style="color: #ffffff; font-weight: 500">
-        The Operating System for Courts That Run Games
-      </p>
-      <p class="text-lg" style="color: rgba(255, 255, 255, 0.9)">
-        Walk onto a court that greets you, officiates your game, and calls every
-        line
-      </p>
-      <p class="text-sm mt-12" style="color: rgba(255, 255, 255, 0.8)">
-        2026 • Early-Stage Hardware + Software
-      </p>
-    </section>
+  <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress"></div>
+    </div>
 
-    <!-- Slide 2: Problem -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">The Problem</h2>
-      <ul class="text-lg" style="color: #475569">
-        <li>
-          Manual scoring and refereeing errors → disputes and inconsistent
-          enforcement
-        </li>
-        <li>
-          High dependency on qualified officials → expensive, limited
-          availability
-        </li>
-        <li>
-          No real-time player insights → missed coaching and performance data
-        </li>
-        <li>
-          Fragmented systems → line calling, scoring, analytics require separate
-          vendors
-        </li>
-        <li>
-          Unaffordable for small venues → $60K+/court for Hawk-Eye limits
-          adoption
-        </li>
-      </ul>
-    </section>
+    <!-- Navigation Dots -->
+    <nav class="nav-dots" id="navDots"></nav>
 
-    <!-- Slide 3: Solution Overview -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">The Solution: CourtNG</h2>
-      <p class="text-lg mb-6" style="color: #475569">
-        An AI-first court operating system that fully automates game flow and
-        officiating:
-      </p>
-      <ul class="text-lg" style="color: #475569">
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >Autonomous Officiating:</span
-          >
-          Detect rally start/end, score points, call fouls in real time
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >Sport-Agnostic Rules Engine:</span
-          >
-          Configure for tennis, pickleball, badminton, futsal, etc.
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >Edge-First Deployment:</span
-          >
-          On-premise inference, low latency, works offline
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >Integrated Analytics:</span
-          >
-          Player stats, heatmaps, performance trends in real time
-        </li>
-      </ul>
-    </section>
-
-    <!-- Slide 4: Market Validation - Existing Solutions -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">
-        Market Validation: Existing Solutions
-      </h2>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold"
-          >Elite tier proven:</span
-        >
-        Wimbledon (2025), ATP, US Open deploy full AI line-calling
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold"
-          >Mid-market growth:</span
-        >
-        PlaySight, Wingfield, SwingVision, TVConal raising funding
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Key gap:</span>
-        <span style="color: #a855f7; font-weight: bold"
-          >No vendor offers fully autonomous, sport-agnostic "court OS"</span
-        >
-      </p>
-      <p class="text-lg" style="color: #475569">
-        Existing players focus on: single-sport, analytics/review assistance,
-        NOT end-to-end match automation
-      </p>
-    </section>
-
-    <!-- Slide 5: Market Size - Total Addressable Market -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">Market Size: TAM</h2>
-      <div class="row gap-lg mt-2">
-        <div class="fill-width stat-box">
-          <div class="stat-number">$8.7B</div>
-          <div class="stat-label">Computer Vision in Sports (2029)</div>
-        </div>
-        <div class="fill-width stat-box">
-          <div class="stat-number">$10.1B</div>
-          <div class="stat-label">
-            Tournament Management Software (2033, 14.7% CAGR)
+    <div class="presentation" id="presentation">
+      <!-- SLIDE 1: Start/Title -->
+      <section class="slide slide-dark" data-slide="1">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="hero-content">
+            <div class="hero-logo">
+              <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="3"/>
+                <circle cx="30" cy="30" r="10" stroke="white" stroke-width="3"/>
+                <circle cx="30" cy="30" r="3" fill="white"/>
+                <line x1="30" y1="8" x2="30" y2="20" stroke="white" stroke-width="2"/>
+                <line x1="30" y1="40" x2="30" y2="52" stroke="white" stroke-width="2"/>
+                <line x1="8" y1="30" x2="20" y2="30" stroke="white" stroke-width="2"/>
+                <line x1="40" y1="30" x2="52" y2="30" stroke="white" stroke-width="2"/>
+              </svg>
+            </div>
+            <h1 class="hero-title">
+              <span style="color: white;">Court</span><span class="slide-title-accent">NG</span>
+            </h1>
+            <p class="hero-tagline">The Operating System for Intelligent Courts</p>
+            <p class="hero-description">
+              AI-powered court automation that officiates games, calls every line, 
+              and delivers real-time analytics — without human intervention.
+            </p>
+            <div class="hero-badge">
+              <span class="hero-badge-dot"></span>
+              <span>Seed Stage • 2026</span>
+            </div>
           </div>
         </div>
-        <div class="fill-width stat-box">
-          <div class="stat-number">$991.7B</div>
-          <div class="stat-label">
-            Sports Facilities Global (2034, 24.3% CAGR)
+      </section>
+
+      <!-- SLIDE 2: Problem -->
+      <section class="slide slide-dark" data-slide="2">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">02 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">The Problem</h2>
+          <p class="slide-subtitle">Sports courts today are stuck in the past — expensive, inconsistent, and data-blind.</p>
+          <div class="slide-main">
+            <div class="problem-grid">
+              <div class="problem-card">
+                <div class="problem-icon">⚠️</div>
+                <div class="problem-text">
+                  <h4>Human Error & Disputes</h4>
+                  <p>Manual scoring and refereeing leads to errors, disputes, and inconsistent rule enforcement that ruins the game experience.</p>
+                </div>
+              </div>
+              <div class="problem-card">
+                <div class="problem-icon">💰</div>
+                <div class="problem-text">
+                  <h4>Expensive Officials</h4>
+                  <p>Qualified referees are scarce and expensive. Venues spend $172K/month on staff overhead alone.</p>
+                </div>
+              </div>
+              <div class="problem-card">
+                <div class="problem-icon">📊</div>
+                <div class="problem-text">
+                  <h4>Zero Player Insights</h4>
+                  <p>No real-time data means missed coaching opportunities and no performance analytics for players.</p>
+                </div>
+              </div>
+              <div class="problem-card">
+                <div class="problem-icon">🚫</div>
+                <div class="problem-text">
+                  <h4>Unaffordable Technology</h4>
+                  <p>Hawk-Eye costs $60K+ per court. Only elite venues can afford automation, leaving 99% underserved.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Slide 6: Market Size - SAM & Court Opportunity -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">
-        Market Size: SAM (Serviceable Addressable)
-      </h2>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Tennis:</span> ~7,000
-        facilities globally, 150+ academies in India alone
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold"
-          >Pickleball (high growth):</span
-        >
-        13,000+ courts (2024) → 20,000+ expected by 2026
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold"
-          >India pickleball surge:</span
-        >
-        159% annual growth, 1,000+ courts built, target 10,000 by 2028
-      </p>
-      <p class="text-lg" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold"
-          >Multi-sport addressable:</span
-        >
-        ~50,000 venues (tennis, pickleball, badminton, futsal)
-      </p>
-    </section>
-
-    <!-- Slide 7: Market Adoption Drivers -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">Market Adoption Drivers</h2>
-      <ul class="text-lg" style="color: #475569">
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >Operator cost pressure:</span
-          >
-          Multi-sport complexes spend $172K/month overhead; automation reduces
-          ref/umpire payroll
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold">Academy demand:</span>
-          Coaches want per-player data, heatmaps, AI-driven coaching insights
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >League standardization:</span
-          >
-          Tournament organizers need consistent, dispute-free officiating
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >Broadcast/content:</span
-          >
-          Media companies want structured event feeds for highlights, streaming,
-          stats
-        </li>
-      </ul>
-    </section>
-
-    <!-- Slide 8: Product Differentiators -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">
-        Product: Why CourtNG Is Different
-      </h2>
-      <ul class="text-lg" style="color: #475569">
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >Fully autonomous:</span
-          >
-          Not an "assist" layer—CourtNG runs the match end-to-end (serve to
-          game-over)
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold">Sport-agnostic:</span>
-          Single platform configures for tennis, pickleball, badminton, indoor
-          soccer
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold">Edge-first:</span>
-          On-premise NVIDIA Jetson inference; sub-50ms latency, works offline
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >Modular & upgradeable:</span
-          >
-          Vision, Rules, Events, Analytics swappable; AI models upgrade
-          independently
-        </li>
-      </ul>
-    </section>
-
-    <!-- Slide 9: Product Architecture -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">Product Architecture</h2>
-      <div class="row gap-md">
-        <div class="fill-width stat-box">
-          <h3 style="color: #10b981; margin-bottom: 1rem; font-size: 1.25rem">
-            Vision Module
-          </h3>
-          <p style="color: #475569; font-size: 0.95rem">
-            Multi-camera, ball/player tracking, boundary detection
-          </p>
-        </div>
-        <div class="fill-width stat-box">
-          <h3 style="color: #10b981; margin-bottom: 1rem; font-size: 1.25rem">
-            Rules Engine
-          </h3>
-          <p style="color: #475569; font-size: 0.95rem">
-            Configurable per sport; declarative rule definitions
-          </p>
-        </div>
-      </div>
-      <div class="row gap-md mt-4">
-        <div class="fill-width stat-box">
-          <h3 style="color: #10b981; margin-bottom: 1rem; font-size: 1.25rem">
-            Event Engine
-          </h3>
-          <p style="color: #475569; font-size: 0.95rem">
-            Rally detection, scoring, game flow, AV cues
-          </p>
-        </div>
-        <div class="fill-width stat-box">
-          <h3 style="color: #10b981; margin-bottom: 1rem; font-size: 1.25rem">
-            Analytics & Control
-          </h3>
-          <p style="color: #475569; font-size: 0.95rem">
-            Live dashboards, statistics, admin interface
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 10: Business Model -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">
-        Business Model: Subscription SaaS + Hardware
-      </h2>
-      <p class="text-lg mb-6" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Software:</span>
-        $500–$2,000/month subscription (tiered by court count &amp; features)
-      </p>
-      <ul class="text-lg" style="color: #475569; margin-bottom: 1.5rem">
-        <li>
-          <span style="color: #10b981; font-weight: bold">Starter:</span> Single
-          court, basic scoring, local dashboard = $500/mo
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold">Growth:</span> 2–5
-          courts, analytics, mobile app, leaderboards = $1,000/mo
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold">Enterprise:</span>
-          Unlimited courts, custom rules, API access, cloud sync = $2,000/mo
-        </li>
-      </ul>
-      <p class="text-lg" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Hardware:</span> NVIDIA
-        Jetson bundle + cameras + PoE network = $8K–$15K one-time setup
-      </p>
-    </section>
-
-    <!-- Slide 11: Go-to-Market Strategy -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">Go-to-Market Strategy</h2>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Phase 1 (2026):</span>
-        Launch with tennis &amp; pickleball; deploy 3–5 reference sites in India
-        &amp; US
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold"
-          >Phase 2 (2026–2027):</span
-        >
-        Partner with regional federations for low-cost tournament automation
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Phase 3 (2027):</span>
-        Expand to badminton &amp; futsal; integrate with broadcast/media
-        platforms
-      </p>
-      <p class="text-lg" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Channels:</span> Direct
-        sales to academies, B2B partnerships with facility operators, federation
-        deals
-      </p>
-    </section>
-
-    <!-- Slide 12: Competitive Advantage -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">Competitive Advantage</h2>
-      <ul class="text-lg" style="color: #475569">
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >Hawk-Eye only does line calling:</span
-          >
-          CourtNG owns end-to-end match automation
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >PlaySight/Wingfield are vertical:</span
-          >
-          CourtNG's sport-agnostic rules engine scales to multiple sports
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >Hawk-Eye costs $60–70K/court:</span
-          >
-          CourtNG's edge hardware is 5–10x cheaper
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >No competitor fully automates officiating + scoring + UX:</span
-          >
-          This is CourtNG's moat
-        </li>
-        <li>
-          <span style="color: #10b981; font-weight: bold"
-            >IP-XACT &amp; SoC expertise:</span
-          >
-          Custom silicon optimization opportunity post-MVP
-        </li>
-      </ul>
-    </section>
-
-    <!-- Slide 13: Competition Matrix -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">Competitive Positioning</h2>
-      <div
-        style="width: 100%; display: flex; flex-direction: column; gap: 1rem"
-      >
-        <div
-          style="
-            display: flex;
-            gap: 0.5rem;
-            font-weight: bold;
-            color: #64748b;
-            font-size: 0.9rem;
-          "
-        >
-          <div style="flex: 1.2">Vendor</div>
-          <div style="flex: 1">Autonomous</div>
-          <div style="flex: 1">Multi-Sport</div>
-          <div style="flex: 1">Cost/Court</div>
-        </div>
-        <div
-          style="display: flex; gap: 0.5rem; color: #475569; font-size: 0.95rem"
-        >
-          <div style="flex: 1.2">Hawk-Eye</div>
-          <div style="flex: 1">⚠️ Assist</div>
-          <div style="flex: 1">❌ 1–2</div>
-          <div style="flex: 1" style="color: #ef4444">$60K+</div>
-        </div>
-        <div
-          style="display: flex; gap: 0.5rem; color: #475569; font-size: 0.95rem"
-        >
-          <div style="flex: 1.2">PlaySight</div>
-          <div style="flex: 1">⚠️ Assist</div>
-          <div style="flex: 1">❌ 1</div>
-          <div style="flex: 1" style="color: #f97316">$20K</div>
-        </div>
-        <div
-          style="display: flex; gap: 0.5rem; color: #475569; font-size: 0.95rem"
-        >
-          <div style="flex: 1.2">SwingVision</div>
-          <div style="flex: 1">⚠️ Assist</div>
-          <div style="flex: 1">❌ 1–2</div>
-          <div style="flex: 1" style="color: #f97316">App</div>
-        </div>
-        <div
-          style="
-            display: flex;
-            gap: 0.5rem;
-            color: #0f172a;
-            font-size: 0.95rem;
-            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
-            padding: 0.75rem;
-            border: 2px solid #10b981;
-          "
-        >
-          <div style="flex: 1.2; color: #10b981; font-weight: bold">
-            CourtNG
+      <!-- SLIDE 3: Solution -->
+      <section class="slide slide-gradient-1" data-slide="3">
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">03 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
           </div>
-          <div style="flex: 1; color: #10b981; font-weight: bold">✅ Full</div>
-          <div style="flex: 1; color: #10b981; font-weight: bold">✅ 4+</div>
-          <div style="flex: 1; color: #10b981; font-weight: bold">$8–15K</div>
+          <h2 class="slide-title">The Solution: <span class="slide-title-accent">CourtNG</span></h2>
+          <p class="slide-subtitle">An AI-first court operating system that fully automates game flow and officiating.</p>
+          <div class="slide-main">
+            <div class="solution-grid">
+              <div class="solution-card">
+                <div class="solution-icon">🤖</div>
+                <div class="solution-text">
+                  <h4>Autonomous Officiating</h4>
+                  <p>AI detects rally start/end, scores points, and calls fouls in real-time — no humans needed.</p>
+                </div>
+              </div>
+              <div class="solution-card">
+                <div class="solution-icon">🎯</div>
+                <div class="solution-text">
+                  <h4>Sport-Agnostic Engine</h4>
+                  <p>Configure once, deploy anywhere: tennis, pickleball, badminton, futsal, and more.</p>
+                </div>
+              </div>
+              <div class="solution-card">
+                <div class="solution-icon">⚡</div>
+                <div class="solution-text">
+                  <h4>Edge-First Deployment</h4>
+                  <p>On-premise NVIDIA Jetson inference. Sub-50ms latency. Works offline.</p>
+                </div>
+              </div>
+              <div class="solution-card">
+                <div class="solution-icon">📈</div>
+                <div class="solution-text">
+                  <h4>Integrated Analytics</h4>
+                  <p>Live player stats, heatmaps, and performance trends delivered in real-time.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Slide 14: Adoption Metrics -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">
-        Market Adoption & Growth Projections
-      </h2>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Year 1 (2026):</span> 20
-        reference courts deployed, $500K ARR
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Year 2 (2027):</span>
-        500 courts, $3M ARR, 2–3 sports launched
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Year 3 (2028):</span>
-        2,000 courts, $15M+ ARR, India + US + EU markets
-      </p>
-      <p class="text-lg" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold"
-          >Retention assumption:</span
-        >
-        85% net revenue retention (low churn, upsell from Starter →
-        Growth/Enterprise)
-      </p>
-    </section>
-
-    <!-- Slide 15: Use Case Example - Tennis Academy -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">Use Case: Tennis Academy</h2>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Before CourtNG:</span> 4
-        courts, 1 coach, 1 manager, manual score-keeping → errors, slow events,
-        limited data
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">With CourtNG:</span>
-        Fully automated scoring, live player stats, heatmaps, serve patterns,
-        coach dashboards
-      </p>
-      <ul class="text-lg" style="color: #475569">
-        <li>Reduce staff overhead by 30% (fewer scorekeepers)</li>
-        <li>Run 2x more concurrent matches (auto-management)</li>
-        <li>Improve player engagement with real-time data & feedback</li>
-        <li>
-          Generate insights for tournament sponsorships &amp; media licensing
-        </li>
-      </ul>
-    </section>
-
-    <!-- Slide 16: Financial Projection Snapshot -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">
-        Financial Projections (3-Year)
-      </h2>
-      <div class="row gap-md">
-        <div class="fill-width stat-box">
-          <div class="stat-number">$500K</div>
-          <div class="stat-label">Year 1 ARR (20 sites)</div>
+      <!-- SLIDE 4: Market Validation -->
+      <section class="slide slide-dark" data-slide="4">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">04 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">Market Validation</h2>
+          <p class="slide-subtitle">The elite tier has proven AI officiating works. Now it's time to democratize access.</p>
+          <div class="slide-main">
+            <div class="validation-list">
+              <div class="validation-item">
+                <div class="validation-icon">🏆</div>
+                <div class="validation-content">
+                  <h4>Elite Tier Proven</h4>
+                  <p>Wimbledon (2025), ATP, and US Open have deployed full AI line-calling. The technology works at the highest level.</p>
+                </div>
+              </div>
+              <div class="validation-item">
+                <div class="validation-icon">📈</div>
+                <div class="validation-content">
+                  <h4>Mid-Market Growth</h4>
+                  <p>PlaySight, Wingfield, SwingVision, and TVConal are all raising funding — proving market demand.</p>
+                </div>
+              </div>
+              <div class="validation-item">
+                <div class="validation-icon">🎯</div>
+                <div class="validation-content">
+                  <h4>The Gap We're Filling</h4>
+                  <p><strong style="color: var(--primary-light);">No vendor offers fully autonomous, sport-agnostic "court OS".</strong> Existing players focus on single-sport, analytics-only solutions.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="fill-width stat-box">
-          <div class="stat-number">$3M</div>
-          <div class="stat-label">Year 2 ARR (500 sites)</div>
+      </section>
+
+      <!-- SLIDE 5: Market Size -->
+      <section class="slide slide-gradient-2" data-slide="5">
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">05 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">Market Size</h2>
+          <p class="slide-subtitle">A massive, rapidly growing opportunity across multiple converging markets.</p>
+          <div class="slide-main">
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-value">$8.7B</div>
+                <div class="stat-label">Computer Vision in Sports</div>
+                <div class="stat-source">Projected by 2029</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">$10.1B</div>
+                <div class="stat-label">Tournament Management Software</div>
+                <div class="stat-source">2033 • 14.7% CAGR</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">$991B</div>
+                <div class="stat-label">Sports Facilities Global</div>
+                <div class="stat-source">2034 • 24.3% CAGR</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 24px; margin-top: 20px;">
+              <div class="stat-card" style="flex: 1; padding: 28px;">
+                <div style="display: flex; justify-content: space-around;">
+                  <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: 800; color: var(--primary-light);">50K+</div>
+                    <div style="font-size: 14px; color: var(--gray-400);">Addressable Venues</div>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: 800; color: var(--primary-light);">159%</div>
+                    <div style="font-size: 14px; color: var(--gray-400);">Pickleball Growth (India)</div>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: 800; color: var(--primary-light);">20K+</div>
+                    <div style="font-size: 14px; color: var(--gray-400);">US Courts by 2026</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="fill-width stat-box">
-          <div class="stat-number">$15M+</div>
-          <div class="stat-label">Year 3 ARR (2K sites)</div>
+      </section>
+
+      <!-- SLIDE 6: Global Court Inventory (TAM) -->
+      <section class="slide slide-dark" data-slide="6">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">06 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">Global Court Inventory <span class="slide-title-accent">(TAM)</span></h2>
+          <p class="slide-subtitle">436,057 total courts across 4 key markets — segmented by venue type.</p>
+          <div class="slide-main">
+            <!-- Highlight Bar -->
+            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%); border: 1px solid var(--primary); border-radius: 12px; padding: 16px 24px; text-align: center; margin-bottom: 20px;">
+              <span style="color: var(--gray-400); font-size: 16px;">Total Addressable Market: </span>
+              <span style="color: var(--primary-light); font-size: 18px; font-weight: 700;">436,057 Courts</span>
+              <span style="color: var(--gray-400); font-size: 16px;"> | Venue: 75,500 | Community: 238,400 | Residential: 122,157</span>
+            </div>
+            
+            <!-- Court Inventory Table -->
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden;">
+              <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                  <tr style="background: rgba(16, 185, 129, 0.1);">
+                    <th style="padding: 14px 20px; text-align: left; color: var(--primary-light); font-size: 13px; font-weight: 600;">Country</th>
+                    <th style="padding: 14px 20px; text-align: right; color: var(--primary-light); font-size: 13px; font-weight: 600;">Total Courts</th>
+                    <th style="padding: 14px 20px; text-align: right; color: var(--primary-light); font-size: 13px; font-weight: 600;">Venue</th>
+                    <th style="padding: 14px 20px; text-align: right; color: var(--primary-light); font-size: 13px; font-weight: 600;">Community</th>
+                    <th style="padding: 14px 20px; text-align: right; color: var(--primary-light); font-size: 13px; font-weight: 600;">Residential</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 12px 20px; color: white; font-weight: 600;">🇺🇸 USA</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--primary-light); font-weight: 700;">293,480</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">45,000</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">159,400</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">89,080</td>
+                  </tr>
+                  <tr style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 12px 20px; color: white; font-weight: 600;">🇫🇷 France</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--primary-light); font-weight: 700;">59,235</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">13,000</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">31,000</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">15,235</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 12px 20px; color: white; font-weight: 600;">🇬🇧 UK</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--primary-light); font-weight: 700;">55,397</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">12,000</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">30,000</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">13,397</td>
+                  </tr>
+                  <tr style="background: rgba(255,255,255,0.02);">
+                    <td style="padding: 12px 20px; color: white; font-weight: 600;">🇮🇳 India</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--primary-light); font-weight: 700;">27,945</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">5,500</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">18,000</td>
+                    <td style="padding: 12px 20px; text-align: right; color: var(--gray-400);">4,445</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <!-- Bottom Stats -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px;">
+              <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; text-align: center;">
+                <div style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px;">🇺🇸 USA Dominates</div>
+                <div style="font-size: 16px; color: white; font-weight: 600;">67% of global courts</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; text-align: center;">
+                <div style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px;">🏢 Venue Focus</div>
+                <div style="font-size: 16px; color: white; font-weight: 600;">75,500 premium courts</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; text-align: center;">
+                <div style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px;">📈 Growth Market</div>
+                <div style="font-size: 16px; color: white; font-weight: 600;">India +159% YoY</div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <p class="text-lg mt-6" style="color: #475569; text-align: center">
-        Blended ARPU: $1,200/month/venue; gross margin 70% (SaaS) + 25%
-        (hardware)
-      </p>
-    </section>
+      </section>
 
-    <!-- Slide 17: Current Stage & Funding Ask -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">Current Stage & Funding Ask</h2>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Stage:</span>
-        Early-stage MVP, vision &amp; rules engine validated
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Funding needed:</span>
-        $500K–$1.5M for Year 1
-      </p>
-      <ul class="text-lg" style="color: #475569">
-        <li>Engineering team build-out (vision, rules, infrastructure)</li>
-        <li>Reference site deployments &amp; customer success</li>
-        <li>Go-to-market &amp; partnerships (federations, venues)</li>
-        <li>Hardware procurement &amp; optimization</li>
-      </ul>
-    </section>
+      <!-- SLIDE 7: Market by Sport & Geography -->
+      <section class="slide slide-gradient-2" data-slide="7">
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">07 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">Market Opportunity: <span class="slide-title-accent">$815M</span> Revenue</h2>
+          <p class="slide-subtitle">Revenue breakdown by sport and geography with conservative adoption rates.</p>
+          <div class="slide-main" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <!-- By Sport -->
+            <div>
+              <h4 style="color: var(--primary-light); font-size: 14px; margin-bottom: 12px; font-weight: 600;">📊 BY SPORT</h4>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: white; font-weight: 600;">🎾 Tennis</span>
+                  <div style="display: flex; gap: 20px; align-items: center;">
+                    <span style="color: var(--gray-400); font-size: 13px;">20,832 courts</span>
+                    <span style="color: var(--primary-light); font-weight: 700; font-size: 18px;">$625M</span>
+                    <span style="color: var(--gray-500); font-size: 12px;">76%</span>
+                  </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: white; font-weight: 600;">🏓 Pickleball</span>
+                  <div style="display: flex; gap: 20px; align-items: center;">
+                    <span style="color: var(--gray-400); font-size: 13px;">5,601 courts</span>
+                    <span style="color: var(--primary-light); font-weight: 700; font-size: 18px;">$168M</span>
+                    <span style="color: var(--gray-500); font-size: 12px;">21%</span>
+                  </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: white; font-weight: 600;">🏸 Badminton</span>
+                  <div style="display: flex; gap: 20px; align-items: center;">
+                    <span style="color: var(--gray-400); font-size: 13px;">935 courts</span>
+                    <span style="color: var(--primary-light); font-weight: 700; font-size: 18px;">$22M</span>
+                    <span style="color: var(--gray-500); font-size: 12px;">3%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- By Geography -->
+            <div>
+              <h4 style="color: var(--primary-light); font-size: 14px; margin-bottom: 12px; font-weight: 600;">🌍 BY GEOGRAPHY</h4>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: white; font-weight: 600;">🇺🇸 USA</span>
+                  <div style="display: flex; gap: 16px; align-items: center;">
+                    <span style="color: var(--gray-400); font-size: 13px;">18,024</span>
+                    <span style="color: var(--primary-light); font-weight: 700; font-size: 16px;">$539M</span>
+                    <span style="color: var(--gray-500); font-size: 12px;">66%</span>
+                  </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: white; font-weight: 600;">🇫🇷 France</span>
+                  <div style="display: flex; gap: 16px; align-items: center;">
+                    <span style="color: var(--gray-400); font-size: 13px;">3,988</span>
+                    <span style="color: var(--primary-light); font-weight: 700; font-size: 16px;">$119M</span>
+                    <span style="color: var(--gray-500); font-size: 12px;">15%</span>
+                  </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: white; font-weight: 600;">🇬🇧 UK</span>
+                  <div style="display: flex; gap: 16px; align-items: center;">
+                    <span style="color: var(--gray-400); font-size: 13px;">3,559</span>
+                    <span style="color: var(--primary-light); font-weight: 700; font-size: 16px;">$106M</span>
+                    <span style="color: var(--gray-500); font-size: 12px;">13%</span>
+                  </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: white; font-weight: 600;">🇮🇳 India</span>
+                  <div style="display: flex; gap: 16px; align-items: center;">
+                    <span style="color: var(--gray-400); font-size: 13px;">1,797</span>
+                    <span style="color: var(--primary-light); font-weight: 700; font-size: 16px;">$52M</span>
+                    <span style="color: var(--gray-500); font-size: 12px;">6%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bottom Summary -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px;">
+            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.02) 100%); border: 1px solid var(--primary); border-radius: 12px; padding: 16px; text-align: center;">
+              <div style="font-size: 28px; color: var(--primary-light); font-weight: 800;">$2,500</div>
+              <div style="font-size: 12px; color: var(--gray-400);">/mo Per Court Pricing</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.02) 100%); border: 1px solid var(--primary); border-radius: 12px; padding: 16px; text-align: center;">
+              <div style="font-size: 28px; color: var(--primary-light); font-weight: 800;">27,368</div>
+              <div style="font-size: 12px; color: var(--gray-400);">Addressable Courts</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.02) 100%); border: 1px solid var(--primary); border-radius: 12px; padding: 16px; text-align: center;">
+              <div style="font-size: 28px; color: var(--primary-light); font-weight: 800;">$815.5M</div>
+              <div style="font-size: 12px; color: var(--gray-400);">Total ARR Potential</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- Slide 18: Team & Vision -->
-    <section
-      class="slide p-16 col"
-      style="background-color: #f8fafc; color: #0f172a"
-    >
-      <h2 class="mb-6" style="color: #10b981">Team & Vision</h2>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Founder/CTO:</span>
-        Hardware engineer with camera SoC design &amp; AI/ML sports vision
-        expertise
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold"
-          >Advisors/Partners:</span
-        >
-        Sports federation contacts, camera manufacturers, NVIDIA ecosystem
-      </p>
-      <p class="text-lg mb-4" style="color: #475569">
-        <span style="color: #10b981; font-weight: bold">Vision:</span> CourtNG =
-        the default "operating system" for sports courts globally
-      </p>
-      <p class="text-lg" style="color: #475569">
-        Similar to how iOS/Android power devices, CourtNG will power play
-        itself.
-      </p>
-    </section>
+      <!-- SLIDE 8: Revenue Model & Adoption -->
+      <section class="slide slide-gradient-1" data-slide="8">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">08 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">Adoption Model & <span class="slide-title-accent">Revenue Projections</span></h2>
+          <p class="slide-subtitle">Conservative adoption: 10% Venue Courts + 5% Community Courts</p>
+          <div class="slide-main" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <!-- Left: Adoption by Region -->
+            <div>
+              <h4 style="color: var(--primary-light); font-size: 14px; margin-bottom: 12px; font-weight: 600;">📍 ADOPTION BY REGION</h4>
+              <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                  <thead>
+                    <tr style="background: rgba(16, 185, 129, 0.1);">
+                      <th style="padding: 10px 14px; text-align: left; color: var(--primary-light);">Region</th>
+                      <th style="padding: 10px 14px; text-align: right; color: var(--primary-light);">Venue (10%)</th>
+                      <th style="padding: 10px 14px; text-align: right; color: var(--primary-light);">Comm (5%)</th>
+                      <th style="padding: 10px 14px; text-align: right; color: var(--primary-light);">Revenue</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                      <td style="padding: 10px 14px; color: white; font-weight: 600;">USA</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--gray-400);">4,500</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--gray-400);">7,970</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--primary-light); font-weight: 700;">$374M</td>
+                    </tr>
+                    <tr style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05);">
+                      <td style="padding: 10px 14px; color: white; font-weight: 600;">France</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--gray-400);">1,300</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--gray-400);">1,550</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--primary-light); font-weight: 700;">$86M</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                      <td style="padding: 10px 14px; color: white; font-weight: 600;">UK</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--gray-400);">1,200</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--gray-400);">1,500</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--primary-light); font-weight: 700;">$81M</td>
+                    </tr>
+                    <tr style="background: rgba(255,255,255,0.02);">
+                      <td style="padding: 10px 14px; color: white; font-weight: 600;">India</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--gray-400);">550</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--gray-400);">900</td>
+                      <td style="padding: 10px 14px; text-align: right; color: var(--primary-light); font-weight: 700;">$44M</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr style="background: rgba(16, 185, 129, 0.15); border-top: 2px solid var(--primary);">
+                      <td style="padding: 12px 14px; color: var(--primary-light); font-weight: 700;">TOTAL</td>
+                      <td style="padding: 12px 14px; text-align: right; color: var(--primary-light); font-weight: 700;">7,550</td>
+                      <td style="padding: 12px 14px; text-align: right; color: var(--primary-light); font-weight: 700;">11,920</td>
+                      <td style="padding: 12px 14px; text-align: right; color: var(--primary-light); font-weight: 800; font-size: 15px;">$584M</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+            
+            <!-- Right: Unit Economics -->
+            <div>
+              <h4 style="color: var(--primary-light); font-size: 14px; margin-bottom: 12px; font-weight: 600;">💰 UNIT ECONOMICS</h4>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: var(--primary-light); font-weight: 700; font-size: 18px;">$348K-435K</span>
+                  <span style="color: var(--gray-400); font-size: 13px;">Lifetime Value (LTV) per court</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: var(--primary-light); font-weight: 700; font-size: 18px;">$15K-20K</span>
+                  <span style="color: var(--gray-400); font-size: 13px;">Customer Acquisition Cost</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: var(--primary-light); font-weight: 700; font-size: 18px;">17:1 - 29:1</span>
+                  <span style="color: var(--gray-400); font-size: 13px;">LTV:CAC Ratio</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: var(--primary-light); font-weight: 700; font-size: 18px;">7-9 months</span>
+                  <span style="color: var(--gray-400); font-size: 13px;">Payback Period</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bottom Revenue Summary -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%); border: 1px solid var(--primary); border-radius: 16px; padding: 20px; text-align: center;">
+              <div style="font-size: 36px; color: var(--primary-light); font-weight: 800;">$48.7M</div>
+              <div style="font-size: 14px; color: var(--gray-400);">Monthly Recurring Revenue</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%); border: 1px solid var(--primary); border-radius: 16px; padding: 20px; text-align: center;">
+              <div style="font-size: 36px; color: var(--primary-light); font-weight: 800;">$584M</div>
+              <div style="font-size: 14px; color: var(--gray-400);">Annual Recurring Revenue</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- Slide 19: Thank You -->
-    <section
-      class="slide p-16 col center"
-      style="
-        background: linear-gradient(
-          135deg,
-          #10b981 0%,
-          #06b6d4 50%,
-          #a855f7 100%
-        );
-        color: #ffffff;
-      "
-    >
-      <h2 class="text-5xl mb-6" style="color: #ffffff; font-weight: 800">
-        Thank You!
-      </h2>
-      <p class="text-xl mb-2" style="color: #ffffff">Questions?</p>
-      <p class="text-sm mt-8" style="color: rgba(255, 255, 255, 0.9)">
-        CourtNG — The Operating System for Courts That Run Games
-      </p>
-    </section>
+      <!-- SLIDE 9: Product - Core Features -->
+      <section class="slide slide-dark" data-slide="9">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">09 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">Product: Core Capabilities</h2>
+          <p class="slide-subtitle">Everything a court needs to run itself — in one unified platform.</p>
+          <div class="slide-main">
+            <div class="product-grid">
+              <div class="product-card">
+                <div class="product-card-icon">👁️</div>
+                <h4>Computer Vision</h4>
+                <p>Multi-camera ball & player tracking with sub-centimeter precision for accurate line calls.</p>
+              </div>
+              <div class="product-card">
+                <div class="product-card-icon">⚙️</div>
+                <h4>Rules Engine</h4>
+                <p>Declarative, configurable rules for any sport. Switch from tennis to pickleball in seconds.</p>
+              </div>
+              <div class="product-card">
+                <div class="product-card-icon">🎮</div>
+                <h4>Event Detection</h4>
+                <p>Real-time rally detection, scoring, game flow management, and audio-visual cues.</p>
+              </div>
+              <div class="product-card">
+                <div class="product-card-icon">📊</div>
+                <h4>Live Analytics</h4>
+                <p>Player stats, heatmaps, serve patterns, and performance metrics — all in real-time.</p>
+              </div>
+              <div class="product-card">
+                <div class="product-card-icon">🖥️</div>
+                <h4>Admin Dashboard</h4>
+                <p>Full control over courts, matches, players, and system settings from one interface.</p>
+              </div>
+              <div class="product-card">
+                <div class="product-card-icon">📱</div>
+                <h4>Mobile Apps</h4>
+                <p>Player apps for stats, booking, and social features. Coach apps for analytics & insights.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10: Product - Architecture -->
+      <section class="slide slide-gradient-1" data-slide="10">
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">10 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">Product: Architecture</h2>
+          <p class="slide-subtitle">Modular, upgradeable, and built for scale from day one.</p>
+          <div class="slide-main">
+            <div class="architecture-container">
+              <div class="arch-diagram">
+                <div class="arch-layer">
+                  <div class="arch-box">
+                    <h5>📹 Vision Module</h5>
+                    <p>Multi-camera, ball/player tracking, boundary detection</p>
+                  </div>
+                  <div class="arch-box">
+                    <h5>📐 Rules Engine</h5>
+                    <p>Sport-agnostic, declarative rule definitions</p>
+                  </div>
+                </div>
+                <div class="arch-layer">
+                  <div class="arch-box highlight">
+                    <h5>🧠 CourtNG Core</h5>
+                    <p>Orchestration • State Machine • Event Bus</p>
+                  </div>
+                </div>
+                <div class="arch-layer">
+                  <div class="arch-box">
+                    <h5>🎯 Event Engine</h5>
+                    <p>Rally detection, scoring, game flow, AV cues</p>
+                  </div>
+                  <div class="arch-box">
+                    <h5>📊 Analytics</h5>
+                    <p>Live dashboards, statistics, cloud sync</p>
+                  </div>
+                </div>
+                <div class="arch-layer">
+                  <div class="arch-box">
+                    <h5>💻 Edge Hardware</h5>
+                    <p>NVIDIA Jetson • PoE Cameras • Local Storage</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11: Product - Differentiators -->
+      <section class="slide slide-dark" data-slide="11">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">11 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">Why CourtNG is <span class="slide-title-accent">Different</span></h2>
+          <p class="slide-subtitle">Not just another sports tech solution — a complete paradigm shift.</p>
+          <div class="slide-main">
+            <div class="validation-list">
+              <div class="validation-item">
+                <div class="validation-icon">🚀</div>
+                <div class="validation-content">
+                  <h4>Fully Autonomous</h4>
+                  <p>Not an "assist" layer — CourtNG runs the entire match end-to-end, from first serve to game over.</p>
+                </div>
+              </div>
+              <div class="validation-item">
+                <div class="validation-icon">🌐</div>
+                <div class="validation-content">
+                  <h4>Sport-Agnostic</h4>
+                  <p>Single platform configures for tennis, pickleball, badminton, futsal — and more to come.</p>
+                </div>
+              </div>
+              <div class="validation-item">
+                <div class="validation-icon">⚡</div>
+                <div class="validation-content">
+                  <h4>Edge-First Architecture</h4>
+                  <p>On-premise inference with sub-50ms latency. Works offline. No cloud dependency for core functions.</p>
+                </div>
+              </div>
+              <div class="validation-item">
+                <div class="validation-icon">🔧</div>
+                <div class="validation-content">
+                  <h4>Modular & Upgradeable</h4>
+                  <p>Vision, Rules, Events, and Analytics are swappable components. AI models upgrade independently.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12: Business Model -->
+      <section class="slide slide-gradient-2" data-slide="12">
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">12 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">Business Model</h2>
+          <p class="slide-subtitle">SaaS subscription + hardware bundle = predictable revenue + high margins.</p>
+          <div class="slide-main">
+            <div class="pricing-grid">
+              <div class="pricing-card">
+                <div class="pricing-tier">Starter</div>
+                <div class="pricing-price">$500</div>
+                <div class="pricing-period">/month per court</div>
+                <ul class="pricing-features">
+                  <li>Single court</li>
+                  <li>Basic scoring</li>
+                  <li>Local dashboard</li>
+                  <li>Email support</li>
+                </ul>
+              </div>
+              <div class="pricing-card featured">
+                <div class="pricing-tier">Growth</div>
+                <div class="pricing-price">$1,000</div>
+                <div class="pricing-period">/month for 2-5 courts</div>
+                <ul class="pricing-features">
+                  <li>2-5 courts</li>
+                  <li>Full analytics suite</li>
+                  <li>Mobile app access</li>
+                  <li>Leaderboards</li>
+                  <li>Priority support</li>
+                </ul>
+              </div>
+              <div class="pricing-card">
+                <div class="pricing-tier">Enterprise</div>
+                <div class="pricing-price">$2,000+</div>
+                <div class="pricing-period">/month unlimited</div>
+                <ul class="pricing-features">
+                  <li>Unlimited courts</li>
+                  <li>Custom rules engine</li>
+                  <li>Full API access</li>
+                  <li>Cloud sync</li>
+                  <li>Dedicated success manager</li>
+                </ul>
+              </div>
+            </div>
+            <div style="text-align: center; margin-top: 24px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+              <span style="color: var(--gray-400); font-size: 16px;">
+                <strong style="color: var(--primary-light);">Hardware Bundle:</strong> 
+                NVIDIA Jetson + Cameras + PoE Network = <strong style="color: white;">$8K–$15K</strong> one-time setup
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13: Competition -->
+      <section class="slide slide-dark" data-slide="13">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">13 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">Competitive Landscape</h2>
+          <p class="slide-subtitle">Current solutions are expensive, limited, or both. We're changing that.</p>
+          <div class="slide-main">
+            <div class="competition-table">
+              <div class="table-header">
+                <div>Company</div>
+                <div>Autonomous</div>
+                <div>Multi-Sport</div>
+                <div>Cost/Court</div>
+                <div>Target</div>
+              </div>
+              <div class="table-row">
+                <div class="company-name">Hawk-Eye</div>
+                <div class="check-partial">⚠️ Assist Only</div>
+                <div class="check-no">❌ 1-2 Sports</div>
+                <div style="color: #ef4444; font-weight: 600;">$60K+</div>
+                <div>Elite Only</div>
+              </div>
+              <div class="table-row">
+                <div class="company-name">PlaySight</div>
+                <div class="check-partial">⚠️ Assist Only</div>
+                <div class="check-no">❌ Tennis</div>
+                <div style="color: #f59e0b; font-weight: 600;">$20K</div>
+                <div>Academies</div>
+              </div>
+              <div class="table-row">
+                <div class="company-name">SwingVision</div>
+                <div class="check-partial">⚠️ Assist Only</div>
+                <div class="check-no">❌ Tennis</div>
+                <div style="color: #22c55e; font-weight: 600;">App</div>
+                <div>Consumers</div>
+              </div>
+              <div class="table-row">
+                <div class="company-name">Wingfield</div>
+                <div class="check-partial">⚠️ Assist Only</div>
+                <div class="check-no">❌ Tennis</div>
+                <div style="color: #f59e0b; font-weight: 600;">$15K</div>
+                <div>Clubs</div>
+              </div>
+              <div class="table-row highlight">
+                <div class="company-name">CourtNG</div>
+                <div class="check-yes">✅ Full</div>
+                <div class="check-yes">✅ 4+ Sports</div>
+                <div style="color: var(--primary); font-weight: 700;">$8-15K</div>
+                <div style="color: var(--primary-light); font-weight: 600;">Everyone</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14: Competitive Advantage -->
+      <section class="slide slide-gradient-1" data-slide="14">
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">14 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <h2 class="slide-title">Our Competitive <span class="slide-title-accent">Moat</span></h2>
+          <p class="slide-subtitle">Multiple defensible advantages that compound over time.</p>
+          <div class="slide-main">
+            <div class="advantage-grid">
+              <div class="advantage-card">
+                <div class="advantage-icon">🎯</div>
+                <div class="advantage-content">
+                  <h4>End-to-End Automation</h4>
+                  <p>Hawk-Eye only does line calling. We own the entire match — from check-in to final score.</p>
+                </div>
+              </div>
+              <div class="advantage-card">
+                <div class="advantage-icon">🌐</div>
+                <div class="advantage-content">
+                  <h4>Sport-Agnostic Platform</h4>
+                  <p>Competitors are single-sport. Our rules engine scales across tennis, pickleball, badminton, futsal.</p>
+                </div>
+              </div>
+              <div class="advantage-card">
+                <div class="advantage-icon">💰</div>
+                <div class="advantage-content">
+                  <h4>5-10x Cost Advantage</h4>
+                  <p>Hawk-Eye: $60K/court. CourtNG: $8-15K. We unlock 99% of venues they can't serve.</p>
+                </div>
+              </div>
+              <div class="advantage-card">
+                <div class="advantage-icon">🔒</div>
+                <div class="advantage-content">
+                  <h4>Full-Stack Integration</h4>
+                  <p>No competitor automates officiating + scoring + UX together. This is our moat.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15: Thank You -->
+      <section class="slide slide-dark" data-slide="15">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-grid"></div>
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">15 / 15</span>
+            <div class="logo-small">
+              <div class="logo-icon">
+                <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="4"/>
+                  <circle cx="30" cy="30" r="8" stroke="white" stroke-width="4"/>
+                </svg>
+              </div>
+              CourtNG
+            </div>
+          </div>
+          <div class="thank-you-content">
+            <div class="hero-logo" style="margin-bottom: 30px;">
+              <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="8" width="44" height="44" rx="6" stroke="white" stroke-width="3"/>
+                <circle cx="30" cy="30" r="10" stroke="white" stroke-width="3"/>
+                <circle cx="30" cy="30" r="3" fill="white"/>
+                <line x1="30" y1="8" x2="30" y2="20" stroke="white" stroke-width="2"/>
+                <line x1="30" y1="40" x2="30" y2="52" stroke="white" stroke-width="2"/>
+                <line x1="8" y1="30" x2="20" y2="30" stroke="white" stroke-width="2"/>
+                <line x1="40" y1="30" x2="52" y2="30" stroke="white" stroke-width="2"/>
+              </svg>
+            </div>
+            <h2 class="thank-you-title">Thank You</h2>
+            <p style="font-size: 24px; color: var(--gray-300); margin-bottom: 10px;">Let's build the future of sports together.</p>
+            <p style="font-size: 18px; color: var(--gray-500); max-width: 600px;">
+              CourtNG — The Operating System for Courts That Run Themselves
+            </p>
+            <div class="contact-info">
+              <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <span>hello@courtng.com</span>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">🌐</div>
+                <span>www.courtng.com</span>
+              </div>
+            </div>
+            <div class="hero-badge" style="margin-top: 50px;">
+              <span class="hero-badge-dot"></span>
+              <span>Seeking $1M Seed Round</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Initialize navigation dots
+      const slides = document.querySelectorAll('.slide');
+      const navDots = document.getElementById('navDots');
+      const progressFill = document.getElementById('progress');
+      const presentation = document.getElementById('presentation');
+
+      slides.forEach((slide, index) => {
+        const dot = document.createElement('button');
+        dot.className = 'nav-dot';
+        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+        dot.addEventListener('click', () => {
+          slide.scrollIntoView({ behavior: 'smooth' });
+        });
+        navDots.appendChild(dot);
+      });
+
+      const navDotElements = document.querySelectorAll('.nav-dot');
+
+      // Update progress and active dot on scroll
+      function updateProgress() {
+        const scrollTop = presentation.scrollTop;
+        const scrollHeight = presentation.scrollHeight - presentation.clientHeight;
+        const progress = (scrollTop / scrollHeight) * 100;
+        progressFill.style.width = `${progress}%`;
+
+        // Update active dot
+        const slideHeight = presentation.clientHeight;
+        const currentSlide = Math.round(scrollTop / slideHeight);
+        
+        navDotElements.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentSlide);
+        });
+      }
+
+      presentation.addEventListener('scroll', updateProgress);
+      updateProgress();
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        const currentScroll = presentation.scrollTop;
+        const slideHeight = presentation.clientHeight;
+        const currentSlide = Math.round(currentScroll / slideHeight);
+
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+          e.preventDefault();
+          if (currentSlide < slides.length - 1) {
+            slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+          }
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          if (currentSlide > 0) {
+            slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    </script>
   </body>
 </html>
